@@ -2,12 +2,170 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/gps_guide.css') }}">
+<style>
+    /* Specific styles for the organization */
+    .region-section {
+        margin-bottom: 30px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .region-header {
+        background-color: var(--primary-green);
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .region-content {
+        display: none; /* Hidden by default */
+        padding: 15px;
+        background-color: white;
+    }
+    .region-content.active {
+        display: block;
+    }
+    .resource-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+    }
+    .resource-item:last-child { border-bottom: none; }
+    .nav-btn {
+        background-color: var(--primary-maroon);
+        color: white;
+        padding: 5px 15px;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.3s;
+    }
+    .nav-btn:hover { background-color: #006400; }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="card gps-action-card">
-    <button onclick="getLocation()" class="btn-primary">Get My Current Location</button>
-    <div id="status">Waiting for GPS...</div>
+<div style="max-width: 900px; margin: 0 auto;">
+    <h2 style="color: var(--primary-maroon);">📍 GPS Resource Locator</h2>
+    <p>Activate GPS to find and navigate to the nearest experts.</p>
+
+    <!-- GPS Activation Card -->
+    <div class="card gps-action-card">
+        <button onclick="getLocation()" class="btn-primary" id="gpsBtn">📡 Get My Current Location</button>
+        <div id="status" style="margin-top:10px; font-weight:bold; color:#555;">Waiting for GPS signal...</div>
+        
+        <!-- Hidden inputs to store live coords for JS to grab -->
+        <input type="hidden" id="currentLat">
+        <input type="hidden" id="currentLon">
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button onclick="filterType('agrovet')" class="btn-secondary">🏪 Agrovets</button>
+        <button onclick="filterType('agronomist')" class="btn-secondary">👨‍🔬 Agronomists</button>
+        <button onclick="filterType('all')" class="btn-primary">Show All</button>
+    </div>
+
+    <!-- Listings Container -->
+    <div id="listings">
+        {% set grouped_shops = agrovets|groupby('region') %}
+        
+        <!-- AGROVETS SECTION -->
+        <div class="type-group agrovet-group">
+            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;">🏪 Agrovets</h3>
+            {% for region, items in grouped_shops %}
+            <div class="region-section">
+                <div class="region-header" onclick="toggleRegion(this)">
+                    <span>{{ region }} Region</span>
+                    <span style="font-size: 0.8rem;">▼</span>
+                </div>
+                <div class="region-content">
+                    {% for shop in items %}
+                    <div class="resource-item">
+                        <div>
+                            <strong>{{ shop.agrovet }}</strong><br>
+                            <small>📞 {{ shop.phone }}</small>
+                        </div>
+                        <!-- The target attribute stores the destination for JS to use -->
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ shop.location|urlencode }}" 
+                           class="nav-btn dynamic-link" 
+                           data-dest="{{ shop.location or shop.agrovet + ', ' + shop.region }}">
+                           🚀 Navigate
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- AGRONOMISTS SECTION -->
+        <div class="type-group agronomist-group" style="margin-top: 30px;">
+            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;">👨‍🔬 Agronomists</h3>
+            {% set grouped_vets = agronomists|groupby('region') %}
+            {% for region, items in grouped_vets %}
+            <div class="region-section">
+                <div class="region-header" onclick="toggleRegion(this)">
+                    <span>{{ region }} Region</span>
+                    <span style="font-size: 0.8rem;">▼</span>
+                </div>
+                <div class="region-content">
+                    {% for doc in items %}
+                    <div class="resource-item">
+                        <div>
+                            <strong>{{ doc.agronomist }}</strong><br>
+                            <small>📞 {{ doc.phone }} | 📧 {{ doc.email }}</small>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ doc.location|urlencode }}" 
+                           class="nav-btn dynamic-link" 
+                           data-dest="{{ doc.location or doc.agronomist + ', ' + doc.region }}">
+                           🚀 Navigate
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
 <script src="{{ url_for('static', filename='js/gps_guide.js') }}"></script>
+<script>
+    // Accordion Logic
+    function toggleRegion(header) {
+        const content = header.nextElementSibling;
+        content.classList.toggle('active');
+    }
+
+    // Filter Logic
+    function filterType(type) {
+        const agrovets = document.querySelector('.agrovet-group');
+        const agronomists = document.querySelector('.agronomist-group');
+        
+        if (type === 'all') {
+            agrovets.style.display = 'block';
+            agronomists.style.display = 'block';
+        } else if (type === 'agrovet') {
+            agrovets.style.display = 'block';
+            agronomists.style.display = 'none';
+        } else {
+            agrovets.style.display = 'none';
+            agronomists.style.display = 'block';
+        }
+    }
+    
+    // Open all regions by default for better visibility
+    document.querySelectorAll('.region-content').forEach(el => el.classList.add('active'));
+</script>
 {% endblock %}

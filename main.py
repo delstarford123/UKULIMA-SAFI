@@ -64,8 +64,21 @@ def dashboard():
 
 @app.route('/guide')
 def guide():
-    """Renders the GPS Guide Page."""
-    return render_template('gps_guide.html')
+    """
+    Renders the GPS Guide Page.
+    PASSES DATA: We send the full list of contacts so the page can display them.
+    """
+    # Group data by region for better organization
+    agrovets = ai_system.contact_db.get('agrovets', [])
+    agronomists = ai_system.contact_db.get('agronomists', [])
+    
+    # Convert DataFrames to dictionaries if necessary
+    if hasattr(agrovets, 'to_dict'):
+        agrovets = agrovets.to_dict(orient='records')
+    if hasattr(agronomists, 'to_dict'):
+        agronomists = agronomists.to_dict(orient='records')
+
+    return render_template('gps_guide.html', agrovets=agrovets, agronomists=agronomists)
 
 @app.route('/indoor')
 def indoor():

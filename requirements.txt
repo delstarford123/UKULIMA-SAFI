@@ -11,3 +11,5 @@ requests
 
 # --- Utilities & Environment ---
 python-dotenv
+
+gunicorn
