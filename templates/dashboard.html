@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto;">
+    <h2 style="color: var(--primary-maroon); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
+        UKULIMA SAFI Crop Diagnosis Dashboard
+    </h2>
+
+    <div class="card">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">1. Upload Crop Image:</label>
+                
+                <!-- Option A: File Upload -->
+                <input type="file" id="imageUpload" name="file" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;">
+                
+                <div style="text-align: center; margin: 10px 0; font-weight: bold; color: #666;">- OR -</div>
+
+                <!-- Option B: Camera Capture -->
+                <button type="button" id="startCameraBtn" class="btn-secondary" style="width: 100%; margin-bottom: 10px;">📸 Use Camera</button>
+                
+                <!-- Camera Interface (Hidden by default) -->
+                <div id="cameraContainer" style="display: none; text-align: center; background: #000; padding: 10px; border-radius: 5px;">
+                    <video id="videoFeed" autoplay playsinline style="width: 100%; max-height: 300px; border-radius: 5px;"></video>
+                    <canvas id="cameraCanvas" style="display: none;"></canvas>
+                    <div style="margin-top: 10px;">
+                        <button type="button" id="captureBtn" class="btn-primary"> Capture Photo</button>
+                        <button type="button" id="closeCameraBtn" class="btn-secondary" style="background-color: #666;">❌ Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Preview of Captured Image -->
+                <div id="capturedPreview" style="display: none; text-align: center; margin-top: 10px;">
+                    <p style="color: var(--primary-green); font-weight: bold;">Image Captured!</p>
+                    <img id="previewImg" src="" style="max-width: 200px; border: 2px solid var(--primary-green); border-radius: 5px;">
+                    <button type="button" id="retakeBtn" class="btn-secondary" style="font-size: 0.8rem; margin-top: 5px;">Retake</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="regionInput" style="display: block; font-weight: bold; margin-bottom: 5px;">2. Your Region (for Weather/Contacts):</label>
+                <input type="text" id="regionInput" name="region" placeholder="e.g. Kakamega" value="Kakamega" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            
+            <input type="hidden" id="userLat" name="lat">
+            <input type="hidden" id="userLon" name="lon">
+
+            <button type="submit" class="btn-primary" style="width: 100%;">Analyze Crop</button>
+        </form>
+    </div>
+
+    <div id="loading" style="display: none; text-align: center; padding: 20px;">
+        <p style="color: var(--primary-green); font-weight: bold;">UKULIMA SAFI is Analyzing...</p>
+    </div>
+
+    <div id="resultsArea" style="display: none;">
+        
+        <div class="card" style="border-top-color: var(--primary-maroon);">
+            <h3 style="color: var(--primary-maroon);">Diagnosis Report</h3>
+            <div style="display: flex; gap: 20px; align-items: start; flex-wrap: wrap;">
+                <img id="resultImage" src="" alt="Uploaded Crop" style="width: 150px; border-radius: 5px; border: 2px solid #ddd;">
+                <div>
+                    <p><strong>Crop:</strong> <span id="resCrop"></span></p>
+                    <p><strong>Detected Issue:</strong> <span id="resDisease" style="color: red; font-weight: bold;"></span></p>
+                    <p><strong>Growth Stage:</strong> <span id="resStage"></span></p>
+                    <p><strong>Confidence:</strong> <span id="resConf"></span>%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--primary-green);">Recommended Treatment</h3>
+            <p><strong>Insecticide:</strong> <span id="treatInsect"></span></p>
+            <p><strong>Pesticide/Fungicide:</strong> <span id="treatPest"></span></p>
+            <p><strong>Expert Advice:</strong> <span id="treatAdvice"></span></p>
+        </div>
+
+        <div class="card" style="background-color: #e8f5e9;">
+            <h3 style="color: #2E7D32;">Weather Analysis</h3>
+            <p><strong>Current Conditions:</strong> <span id="weatherCond"></span></p>
+            <div id="weatherAdvice" style="white-space: pre-line; margin-top: 10px; font-style: italic;"></div>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--primary-maroon);">Nearest Help</h3>
+            <h4>Available Agrovets:</h4>
+            <ul id="agrovetList" style="padding-left: 20px;"></ul>
+            
+            <h4 style="margin-top: 15px;">Available Agronomists:</h4>
+            <ul id="agronomistList" style="padding-left: 20px;"></ul>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

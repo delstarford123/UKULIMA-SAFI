@@ -1,0 +1,101 @@
+Crop,ID,Trade_Name,Type,Target_Disease,Dosage,Safety_Class
+Tomatoes,PES_001,Ridomil Gold,Fungicide,Late Blight,2.5 g/L,Class III
+Potatoes,PES_002,Ridomil Gold,Fungicide,Late Blight,2.5 g/L,Class III
+Wheat,PES_003,Amistar Xtra,Fungicide,"Wheat Rust, Septoria",0.75 L/Ha,Class II
+Rice,PES_004,Nativo,Fungicide,Rice Blast,0.5 g/L,Class III
+Beans,PES_005,Ortiva,Fungicide,"Anthracnose, Rust",1.0 ml/L,Class U
+Onions,PES_006,Mancozeb,Fungicide,Downy Mildew,2.0 g/L,Class III
+Carrots,PES_007,Score 250 EC,Fungicide,Leaf Blight,0.5 ml/L,Class III
+Maize,PES_008,Headline AMP,Fungicide,Gray Leaf Spot,1.0 L/Ha,Class II
+Soybeans,PES_009,Priaxor,Fungicide,Brown Spot,0.5 L/Ha,Class II
+Tomatoes,PES_010,Kocide 2000,Bactericide,Bacterial Spot,2.0 g/L,Class III
+Tomatoes,PES_011,Revus,Fungicide,Late Blight,0.6 L/Ha,Class U
+Tomatoes,PES_012,Score 250 EC,Fungicide,Early Blight,0.5 ml/L,Class III
+Tomatoes,PES_013,Cabrio Duo,Fungicide,"Early Blight, Late Blight",2.0 L/Ha,Class II
+Tomatoes,PES_014,Dithane M-45,Fungicide,Septoria Leaf Spot,2.0 g/L,Class U
+Tomatoes,PES_015,Amistar Top,Fungicide,Powdery Mildew,1.0 ml/L,Class II
+Tomatoes,PES_016,Aliette,Fungicide,Damping Off,2.5 g/L,Class III
+Tomatoes,PES_017,Ortiva,Fungicide,Early Blight,1.0 ml/L,Class U
+Tomatoes,PES_018,Antracol,Fungicide,Early Blight,2.0 g/L,Class U
+Tomatoes,PES_019,Mastercop,Bactericide,Bacterial Wilt,1.5 ml/L,Class II
+Tomatoes,PES_020,Infinito,Fungicide,Late Blight,1.5 L/Ha,Class III
+Potatoes,PES_021,Shirlan,Fungicide,Late Blight,0.4 L/Ha,Class II
+Potatoes,PES_022,Monceren,Fungicide,Black Scurf,1.0 kg/ton,Class U
+Potatoes,PES_023,Revus Top,Fungicide,"Late Blight, Early Blight",0.6 L/Ha,Class III
+Potatoes,PES_024,Daconil,Fungicide,Early Blight,2.0 L/Ha,Class II
+Potatoes,PES_025,Infinito,Fungicide,Late Blight,1.6 L/Ha,Class III
+Potatoes,PES_026,Consento,Fungicide,Late Blight,2.0 L/Ha,Class III
+Potatoes,PES_027,Amistar,Fungicide,Black Dot,0.5 L/Ha,Class U
+Potatoes,PES_028,Banjo,Fungicide,Late Blight,0.5 L/Ha,Class II
+Potatoes,PES_029,Penncozeb,Fungicide,Early Blight,2.0 kg/Ha,Class U
+Potatoes,PES_030,Ranman Top,Fungicide,Late Blight,0.5 L/Ha,Class III
+Maize,PES_031,Tilt,Fungicide,Common Rust,0.5 L/Ha,Class III
+Maize,PES_032,Opera,Fungicide,"Northern Corn Leaf Blight, Rust",1.5 L/Ha,Class II
+Maize,PES_033,Quilt Xcel,Fungicide,Gray Leaf Spot,1.0 L/Ha,Class III
+Maize,PES_034,Amistar Top,Fungicide,Northern Corn Leaf Blight,1.0 L/Ha,Class II
+Maize,PES_035,Nativo,Fungicide,Rust,0.8 L/Ha,Class III
+Maize,PES_036,Folicur,Fungicide,Southern Rust,0.75 L/Ha,Class III
+Maize,PES_037,Priaxor,Fungicide,Gray Leaf Spot,0.5 L/Ha,Class II
+Maize,PES_038,Stratego YLD,Fungicide,Leaf Blight,0.5 L/Ha,Class III
+Maize,PES_039,Acanto Plus,Fungicide,Rust,1.0 L/Ha,Class III
+Maize,PES_040,Bumper,Fungicide,Leaf Spot,0.5 L/Ha,Class III
+Wheat,PES_041,Folicur,Fungicide,Fusarium Head Blight,1.0 L/Ha,Class III
+Wheat,PES_042,Opus,Fungicide,Septoria Leaf Blotch,1.0 L/Ha,Class II
+Wheat,PES_043,Prosaro,Fungicide,"Fusarium, Rust",1.0 L/Ha,Class III
+Wheat,PES_044,Tilt,Fungicide,Powdery Mildew,0.5 L/Ha,Class III
+Wheat,PES_045,Caramba,Fungicide,Fusarium Head Blight,1.2 L/Ha,Class II
+Wheat,PES_046,Elatus Era,Fungicide,Septoria Tritici,0.8 L/Ha,Class III
+Wheat,PES_047,Adexar,Fungicide,Rusts,1.5 L/Ha,Class II
+Wheat,PES_048,Cherokee,Fungicide,"Leaf Spot, Rust",2.0 L/Ha,Class III
+Wheat,PES_049,Aviator Xpro,Fungicide,Septoria,1.0 L/Ha,Class III
+Wheat,PES_050,Comet,Fungicide,Rust,0.5 L/Ha,Class III
+Rice,PES_051,Beam,Fungicide,Rice Blast,0.3 kg/Ha,Class III
+Rice,PES_052,Fujione,Fungicide,Rice Blast,1.0 L/Ha,Class III
+Rice,PES_053,Tilt,Fungicide,Sheath Blight,0.5 L/Ha,Class III
+Rice,PES_054,Validacin,Fungicide,Sheath Blight,2.0 L/Ha,Class U
+Rice,PES_055,Amistar Top,Fungicide,"Sheath Blight, Blast",0.75 L/Ha,Class II
+Rice,PES_056,Hinosan,Fungicide,Blast,1.0 L/Ha,Class II
+Rice,PES_057,Moncut,Fungicide,Sheath Blight,0.5 kg/Ha,Class III
+Rice,PES_058,Score 250 EC,Fungicide,Sheath Rot,0.5 L/Ha,Class III
+Rice,PES_059,Folicur,Fungicide,False Smut,0.75 L/Ha,Class III
+Rice,PES_060,Kocide,Bactericide,Bacterial Leaf Blight,2.0 kg/Ha,Class III
+Beans,PES_061,Daconil,Fungicide,Anthracnose,2.0 L/Ha,Class II
+Beans,PES_062,Folicur,Fungicide,Rust,0.5 L/Ha,Class III
+Beans,PES_063,Amistar,Fungicide,Angular Leaf Spot,0.8 L/Ha,Class U
+Beans,PES_064,Ridomil Gold,Fungicide,Root Rot,2.5 kg/Ha,Class III
+Beans,PES_065,Score,Fungicide,Rust,0.5 L/Ha,Class III
+Beans,PES_066,Copper Nordox,Bactericide,Halo Blight,2.0 kg/Ha,Class III
+Beans,PES_067,Rovral,Fungicide,Botrytis Rot,1.0 L/Ha,Class III
+Beans,PES_068,Tecto,Fungicide,White Mold,0.5 L/Ha,Class III
+Beans,PES_069,Signum,Fungicide,Chocolate Spot,1.0 kg/Ha,Class III
+Beans,PES_070,Switch,Fungicide,Gray Mold,0.8 kg/Ha,Class U
+Onions,PES_071,Ridomil Gold,Fungicide,Downy Mildew,2.5 kg/Ha,Class III
+Onions,PES_072,Ortiva,Fungicide,Purple Blotch,0.8 L/Ha,Class U
+Onions,PES_073,Dithane M-45,Fungicide,Leaf Blight,2.0 kg/Ha,Class U
+Onions,PES_074,Folicur,Fungicide,Purple Blotch,0.75 L/Ha,Class III
+Onions,PES_075,Cabrio,Fungicide,Downy Mildew,1.0 L/Ha,Class III
+Onions,PES_076,Rovral,Fungicide,Neck Rot,1.5 L/Ha,Class III
+Onions,PES_077,Luna Experience,Fungicide,Stemphylium Leaf Blight,0.75 L/Ha,Class III
+Onions,PES_078,Score,Fungicide,Purple Blotch,0.5 L/Ha,Class III
+Onions,PES_079,Switch,Fungicide,Botrytis Leaf Blight,1.0 kg/Ha,Class U
+Onions,PES_080,Bravo,Fungicide,Botrytis,2.0 L/Ha,Class II
+Carrots,PES_081,Bravo,Fungicide,Alternaria Leaf Blight,2.0 L/Ha,Class II
+Carrots,PES_082,Merivon,Fungicide,Powdery Mildew,0.5 L/Ha,Class III
+Carrots,PES_083,Amistar Top,Fungicide,Leaf Blight,0.75 L/Ha,Class II
+Carrots,PES_084,Signum,Fungicide,Sclerotinia Rot,1.0 kg/Ha,Class III
+Carrots,PES_085,Switch,Fungicide,White Mold,0.8 kg/Ha,Class U
+Carrots,PES_086,Rovral,Fungicide,Black Rot,1.5 L/Ha,Class III
+Carrots,PES_087,Folicur,Fungicide,Leaf Spot,0.75 L/Ha,Class III
+Carrots,PES_088,Daconil,Fungicide,Early Blight,2.0 L/Ha,Class II
+Carrots,PES_089,Score,Fungicide,Powdery Mildew,0.5 L/Ha,Class III
+Carrots,PES_090,Luna Privilege,Fungicide,Powdery Mildew,0.5 L/Ha,Class III
+Soybeans,PES_091,Aproach Prima,Fungicide,Soybean Rust,0.8 L/Ha,Class II
+Soybeans,PES_092,Topguard,Fungicide,Frogeye Leaf Spot,0.7 L/Ha,Class III
+Soybeans,PES_093,Amistar Xtra,Fungicide,Rust,0.5 L/Ha,Class II
+Soybeans,PES_094,Priaxor,Fungicide,Septoria Brown Spot,0.5 L/Ha,Class II
+Soybeans,PES_095,Headline,Fungicide,Plant Health/Rust,0.6 L/Ha,Class II
+Soybeans,PES_096,Quadris,Fungicide,Aerial Blight,0.8 L/Ha,Class U
+Soybeans,PES_097,Domark,Fungicide,Rust,0.4 L/Ha,Class III
+Soybeans,PES_098,Tilt,Fungicide,Cercospora Leaf Blight,0.5 L/Ha,Class III
+Soybeans,PES_099,Alto,Fungicide,Rust,0.4 L/Ha,Class III
+Soybeans,PES_100,Fortix,Fungicide,"Rust, Leaf Spot",1.0 L/Ha,Class II

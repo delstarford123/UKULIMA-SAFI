@@ -1,0 +1,101 @@
+Crop,ID,Trade_Name,Active_Ingredient,Target_Pest,Dosage,PHI_Days
+Beans,INS_001,Confidor,Imidacloprid,"Aphids, Whiteflies",0.5 ml/L,7
+Beans,INS_002,Thunder,Beta-cyfluthrin + Imidacloprid,Bean Fly,1.0 ml/L,7
+Beans,INS_003,Actara,Thiamethoxam,Bean Aphid,0.2 g/L,21
+Beans,INS_004,Match,Lufenuron,Pod Borer,1.5 ml/L,14
+Beans,INS_005,Karate Zeon,Lambda-cyhalothrin,Flower Thrips,0.5 ml/L,7
+Beans,INS_006,Decis,Deltamethrin,Spotted Pod Borer,0.7 ml/L,7
+Beans,INS_007,Coragen,Chlorantraniliprole,Leaf Miners,0.3 ml/L,14
+Beans,INS_008,Benevia,Cyantraniliprole,Whiteflies,0.5 ml/L,10
+Beans,INS_009,Ampligo,Chlorantraniliprole + Lambda-cyhalothrin,Bollworm,0.4 ml/L,14
+Beans,INS_010,Avaunt,Indoxacarb,Pod Borer,0.5 ml/L,10
+Maize,INS_011,Coragen,Chlorantraniliprole,Fall Armyworm,0.3 ml/L,14
+Maize,INS_012,Thunder,Beta-cyfluthrin + Imidacloprid,Stalk Borer,1.0 ml/L,7
+Maize,INS_013,Belt,Flubendiamide,Stem Borer,0.2 ml/L,7
+Maize,INS_014,Match,Lufenuron,Cutworms,1.5 ml/L,14
+Maize,INS_015,Voliam Targo,Chlorantraniliprole + Abamectin,Mites,0.5 ml/L,14
+Maize,INS_016,Escort,Emamectin Benzoate,Fall Armyworm,0.5 g/L,7
+Maize,INS_017,Prove,Imidacloprid,Corn Aphid,0.5 ml/L,21
+Maize,INS_018,Ampligo,Chlorantraniliprole + Lambda-cyhalothrin,African Armyworm,0.4 ml/L,14
+Maize,INS_019,Regent,Fipronil,Termites,1.0 ml/L,60
+Maize,INS_020,Marshal,Carbosulfan,Wireworms,2.0 ml/L,30
+Tomatoes,INS_021,Match,Lufenuron,"Caterpillars, Tuta Absoluta",1.5 ml/L,7
+Tomatoes,INS_022,Coragen,Chlorantraniliprole,Tuta Absoluta,0.3 ml/L,3
+Tomatoes,INS_023,Confidor,Imidacloprid,Whiteflies,0.5 ml/L,7
+Tomatoes,INS_024,Oberon,Spiromesifen,Red Spider Mites,0.5 ml/L,3
+Tomatoes,INS_025,Tracer,Spinosad,Thrips,0.4 ml/L,3
+Tomatoes,INS_026,Actara,Thiamethoxam,Aphids,0.2 g/L,7
+Tomatoes,INS_027,Belt,Flubendiamide,Tomato Fruit Worm,0.2 ml/L,3
+Tomatoes,INS_028,Pegasus,Diafenthiuron,Whiteflies,1.0 ml/L,7
+Tomatoes,INS_029,Dynamec,Abamectin,Leaf Miners,0.5 ml/L,7
+Tomatoes,INS_030,Benevia,Cyantraniliprole,Whitefly,0.5 ml/L,5
+Tomatoes,INS_031,Delegate,Spinetoram,Thrips,0.3 ml/L,3
+Tomatoes,INS_032,Movento,Spirotetramat,"Whiteflies, Aphids",0.5 ml/L,7
+Wheat,INS_033,Actara,Thiamethoxam,Russian Wheat Aphid,0.2 g/L,21
+Wheat,INS_034,Karate Zeon,Lambda-cyhalothrin,Hessian Fly,0.2 ml/L,7
+Wheat,INS_035,Thunder,Beta-cyfluthrin + Imidacloprid,Wheat Stem Sawfly,1.0 ml/L,14
+Wheat,INS_036,Decis,Deltamethrin,Cereal Leaf Beetle,0.5 ml/L,7
+Wheat,INS_037,Confidor,Imidacloprid,Greenbug,0.5 ml/L,21
+Wheat,INS_038,Sumithion,Fenitrothion,Armyworms,1.5 ml/L,14
+Wheat,INS_039,Bulldock,Beta-cyfluthrin,Cutworms,0.5 ml/L,14
+Wheat,INS_040,Dursban,Chlorpyrifos,Wireworms,2.0 ml/L,60
+Onions,INS_041,Confidor,Imidacloprid,Thrips,0.5 ml/L,14
+Onions,INS_042,Actara,Thiamethoxam,Onion Maggot,0.2 g/L,21
+Onions,INS_043,Karate Zeon,Lambda-cyhalothrin,Cutworms,0.5 ml/L,7
+Onions,INS_044,Tracer,Spinosad,Thrips,0.4 ml/L,7
+Onions,INS_045,Match,Lufenuron,Armyworms,1.5 ml/L,14
+Onions,INS_046,Dynamec,Abamectin,Leaf Miners,0.5 ml/L,7
+Onions,INS_047,Benevia,Cyantraniliprole,Onion Thrips,0.5 ml/L,10
+Onions,INS_048,Delegate,Spinetoram,Thrips,0.3 ml/L,7
+Onions,INS_049,Movento,Spirotetramat,Thrips,0.6 ml/L,14
+Onions,INS_050,Regent,Fipronil,Onion Maggot,1.0 ml/L,21
+Potatoes,INS_051,Belt,Flubendiamide,Potato Tuber Moth,0.2 ml/L,7
+Potatoes,INS_052,Confidor,Imidacloprid,Colorado Potato Beetle,0.5 ml/L,14
+Potatoes,INS_053,Actara,Thiamethoxam,Aphids,0.2 g/L,14
+Potatoes,INS_054,Coragen,Chlorantraniliprole,Tuber Moth,0.3 ml/L,14
+Potatoes,INS_055,Calypso,Thiacloprid,Potato Beetle,0.4 ml/L,14
+Potatoes,INS_056,Karate Zeon,Lambda-cyhalothrin,Leafhoppers,0.5 ml/L,7
+Potatoes,INS_057,Decis,Deltamethrin,Cutworms,0.5 ml/L,7
+Potatoes,INS_058,Voliam Targo,Chlorantraniliprole + Abamectin,Mites,0.5 ml/L,14
+Potatoes,INS_059,Mospilan,Acetamiprid,Aphids,0.2 g/L,7
+Potatoes,INS_060,Regent,Fipronil,Wireworms,1.5 ml/L,30
+Rice,INS_061,Regent,Fipronil,Leaf Folder,1.0 ml/L,21
+Rice,INS_062,Confidor,Imidacloprid,Brown Planthopper,0.5 ml/L,21
+Rice,INS_063,Actara,Thiamethoxam,Rice Bug,0.2 g/L,21
+Rice,INS_064,Virtako,Chlorantraniliprole + Thiamethoxam,Stem Borer,0.1 g/L,14
+Rice,INS_065,Karate Zeon,Lambda-cyhalothrin,Rice Hispa,0.5 ml/L,7
+Rice,INS_066,Decis,Deltamethrin,Caseworm,0.5 ml/L,7
+Rice,INS_067,Sumithion,Fenitrothion,Rice Gall Midge,1.5 ml/L,14
+Rice,INS_068,Coragen,Chlorantraniliprole,Stem Borer,0.3 ml/L,14
+Rice,INS_069,Applaud,Buprofezin,Planthoppers,1.0 ml/L,14
+Rice,INS_070,Marshal,Carbosulfan,Root Weevils,2.0 ml/L,30
+Carrots,INS_071,Coragen,Chlorantraniliprole,Carrot Fly,0.3 ml/L,7
+Carrots,INS_072,Karate Zeon,Lambda-cyhalothrin,Aphids,0.5 ml/L,7
+Carrots,INS_073,Actara,Thiamethoxam,Carrot Psyllid,0.2 g/L,14
+Carrots,INS_074,Confidor,Imidacloprid,Aphids,0.5 ml/L,14
+Carrots,INS_075,Decis,Deltamethrin,Cutworms,0.5 ml/L,7
+Carrots,INS_076,Movento,Spirotetramat,Carrot Fly,0.6 ml/L,14
+Carrots,INS_077,Benevia,Cyantraniliprole,Weevils,0.5 ml/L,10
+Carrots,INS_078,Mospilan,Acetamiprid,Leafhoppers,0.2 g/L,7
+Carrots,INS_079,Voliam Targo,Chlorantraniliprole + Abamectin,Mites,0.5 ml/L,14
+Carrots,INS_080,Sumithion,Fenitrothion,Wireworms,1.5 ml/L,30
+Soybeans,INS_081,Endigo,Zeta-cypermethrin + Chlorantraniliprole,"Soybean Aphid, Caterpillars",1.0 ml/L,14
+Soybeans,INS_082,Confidor,Imidacloprid,Soybean Aphid,0.5 ml/L,21
+Soybeans,INS_083,Coragen,Chlorantraniliprole,Pod Borer,0.3 ml/L,14
+Soybeans,INS_084,Karate Zeon,Lambda-cyhalothrin,Bean Leaf Beetle,0.5 ml/L,7
+Soybeans,INS_085,Match,Lufenuron,Armyworms,1.5 ml/L,14
+Soybeans,INS_086,Decis,Deltamethrin,Green Stink Bug,0.5 ml/L,7
+Soybeans,INS_087,Thunder,Beta-cyfluthrin + Imidacloprid,Pod Sucking Bugs,1.0 ml/L,14
+Soybeans,INS_088,Actara,Thiamethoxam,Whiteflies,0.2 g/L,21
+Soybeans,INS_089,Steward,Indoxacarb,Loopers,0.5 g/L,14
+Soybeans,INS_090,Ampligo,Chlorantraniliprole + Lambda-cyhalothrin,Cutworms,0.4 ml/L,14
+Cabbage,INS_091,Match,Lufenuron,Diamondback Moth,1.5 ml/L,7
+Cabbage,INS_092,Coragen,Chlorantraniliprole,Cabbage Looper,0.3 ml/L,3
+Cabbage,INS_093,Confidor,Imidacloprid,Cabbage Aphid,0.5 ml/L,7
+Cabbage,INS_094,Karate Zeon,Lambda-cyhalothrin,Cutworms,0.5 ml/L,7
+Cabbage,INS_095,Proclaim,Emamectin Benzoate,Diamondback Moth,0.5 g/L,3
+Cabbage,INS_096,Actara,Thiamethoxam,Aphids,0.2 g/L,7
+Cabbage,INS_097,Belt,Flubendiamide,Cabbage Webworm,0.2 ml/L,3
+Cabbage,INS_098,Benevia,Cyantraniliprole,Cabbage Maggot,0.5 ml/L,5
+Cabbage,INS_099,Movento,Spirotetramat,Whiteflies,0.6 ml/L,7
+Cabbage,INS_100,Delegate,Spinetoram,Thrips,0.3 ml/L,3

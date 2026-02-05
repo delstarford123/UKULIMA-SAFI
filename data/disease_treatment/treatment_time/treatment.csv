@@ -1,0 +1,301 @@
+Crop,Disease_Type,Preferred_Time,Frequency,Weather_Condition,Temp,Humid,Notes
+Tomatoes,Fungal (Early Blight),Early Morning (6-9 AM),Every 7 Days,Dry Foliage,18-24°C,60-75%,Critical during wet season; focus on lower leaves.
+Tomatoes,Fungal (Late Blight),Morning,Every 5 Days,Cool/Cloudy,12-20°C,80-90%,Preventative spray is essential before rain.
+Tomatoes,Bacterial (Bacterial Spot),Late Afternoon,Every 7-10 Days,Dry Weather,24-30°C,70-80%,Avoid overhead irrigation to reduce spread.
+Tomatoes,Insect (Tuta Absoluta),Late Evening,Weekly,Calm Wind,20-28°C,50-70%,Use pheromone traps for monitoring.
+Tomatoes,Viral (Tomato Yellow Leaf Curl),Early Morning,Twice Weekly,No Wind,22-32°C,40-60%,Control whitefly vectors immediately.
+Tomatoes,Fungal (Septoria Leaf Spot),Morning,Every 10 Days,Dry Foliage,20-25°C,65-75%,Remove infected lower leaves before spraying.
+Tomatoes,Insect (Whiteflies),Early Morning,Every 5 Days,Calm Wind,25-30°C,50-70%,Target undersides of leaves where pests hide.
+Tomatoes,Fungal (Powdery Mildew),Afternoon,Every 7-10 Days,Dry,20-28°C,40-60%,High humidity at night promotes spread.
+Tomatoes,Insect (Aphids),Morning,Weekly,Calm,18-25°C,50-70%,Check growing tips for clusters.
+Tomatoes,Fungal (Anthracnose),Late Afternoon,Every 7 Days,Dry,22-28°C,70-90%,Affects ripe fruit; harvest early if possible.
+Tomatoes,Bacterial (Bacterial Wilt),Morning,As Needed,Dry Soil,24-32°C,80-90%,Remove and destroy infected plants immediately.
+Tomatoes,Insect (Leaf Miners),Morning,Weekly,No Wind,20-30°C,50-70%,Look for serpentine tunnels in leaves.
+Tomatoes,Fungal (Gray Mold/Botrytis),Early Morning,Every 5-7 Days,Cool/Humid,15-20°C,85-95%,Improve air circulation in greenhouse.
+Tomatoes,Insect (Fruit Worm),Late Evening,When Larvae Seen,No Rain,20-28°C,60-70%,Spray when eggs hatch.
+Tomatoes,Fungal (Fusarium Wilt),Morning,Preventative,Warm Soil,25-30°C,60-80%,Drench soil; difficult to cure once infected.
+Tomatoes,Nutritional (Blossom End Rot),Morning,Weekly,Consistent Moisture,20-30°C,50-70%,Calcium deficiency; maintain steady watering.
+Tomatoes,Insect (Spider Mites),Early Morning,Every 3-5 Days,Hot/Dry,28-35°C,30-50%,Mites thrive in hot dry conditions.
+Tomatoes,Viral (Tomato Mosaic Virus),N/A,No Cure,N/A,20-30°C,N/A,Sanitize tools; remove infected plants.
+Tomatoes,Fungal (Target Spot),Morning,Every 10 Days,Humid,20-28°C,80-90%,Similar symptoms to early blight.
+Tomatoes,Insect (Thrips),Late Afternoon,Weekly,Calm Wind,25-32°C,40-60%,Vector for Spotted Wilt Virus.
+Maize,Insect (Fall Armyworm),Late Evening,Every 7 Days,No Rain,20-30°C,50-70%,Spray directly into the funnel (whorl).
+Maize,Fungal (Northern Leaf Blight),Morning,Every 14 Days,Cool/Wet,18-25°C,70-90%,Start spraying at first sign of lesions.
+Maize,Insect (Stem Borer),Afternoon,Every 10 Days,Dry,22-30°C,60-80%,Apply granules or spray into leaf axils.
+Maize,Fungal (Gray Leaf Spot),Morning,Every 14 Days,Warm/Humid,25-30°C,80-95%,Major yield reducer; use resistant varieties.
+Maize,Insect (Maize Aphid),Morning,Weekly,Calm,20-26°C,50-70%,Often attacks tassels; check during pollination.
+Maize,Fungal (Common Rust),Early Morning,Every 10 Days,Cool/Moist,16-24°C,75-90%,Pustules appear on both sides of leaves.
+Maize,Insect (Cutworms),Late Evening,At Planting,Moist Soil,18-25°C,60-80%,Apply bait or spray around base of plants.
+Maize,Viral (Maize Lethal Necrosis),Morning,Weekly (Vector),No Wind,22-28°C,60-80%,Control thrips and beetles aggressively.
+Maize,Fungal (Southern Leaf Blight),Morning,Every 10 Days,Warm/Wet,25-32°C,80-95%,Lesions are smaller than Northern Blight.
+Maize,Insect (Grasshoppers),Mid-Day,As Needed,Dry,25-35°C,40-60%,Treat borders of the field first.
+Maize,Fungal (Ear Rot),Late Season,Preventative,Dry,20-28°C,60-80%,Harvest early if wet weather is forecast.
+Maize,Insect (Termites),Morning,Pre-planting,Dry Soil,25-35°C,40-60%,Destroy mounds; treat soil.
+Maize,Fungal (Head Smut),Pre-planting,Seed Treatment,N/A,20-28°C,50-70%,Soil-borne; crop rotation is key.
+Maize,Nutritional (Nitrogen Deficiency),Morning,Early Growth,Moist Soil,20-30°C,60-80%,Pale yellow V-shape on leaves; top dress urea.
+Maize,Insect (African Armyworm),Evening,Outbreak,No Rain,22-30°C,50-70%,Marching caterpillars; spray field perimeter.
+Maize,Fungal (Anthracnose Stalk Rot),Post-Harvest,Residue Mgmt,N/A,25-30°C,70-90%,Plow under debris to reduce inoculum.
+Maize,Insect (Weevils),Post-Harvest,Storage,Dry,20-25°C,40-60%,Fumigate grain bins; keep moisture low.
+Maize,Fungal (Diplodia Ear Rot),Late Season,Preventative,Wet,20-28°C,80-95%,White mold on ears; rotate crops.
+Maize,Insect (Spider Mites),Afternoon,Drought,Hot/Dry,30-38°C,20-40%,Attacks lower leaves first during drought.
+Maize,Bacterial (Stewart's Wilt),Morning,Vector Control,Calm,25-32°C,60-80%,Control flea beetles.
+Rice,Fungal (Rice Blast),Early Morning,At Tillering,Calm Wind,22-30°C,70-90%,Critical to drain water before spraying.
+Rice,Insect (Brown Planthopper),Late Afternoon,Weekly,No Wind,25-32°C,70-85%,Spray base of stems; avoid resurgence.
+Rice,Bacterial (Bacterial Leaf Blight),Morning,Preventative,Stormy,26-32°C,80-95%,Spread by wind and rain; avoid excessive nitrogen.
+Rice,Insect (Stem Borer),Evening,Every 10 Days,Calm,24-30°C,60-80%,Dead hearts are a primary symptom.
+Rice,Fungal (Sheath Blight),Morning,Booting Stage,Hot/Humid,28-35°C,85-95%,Scout near water line for lesions.
+Rice,Insect (Rice Bug),Morning/Evening,Milking Stage,Calm,25-30°C,60-80%,Sucks sap from developing grains.
+Rice,Fungal (Brown Spot),Morning,Every 10 Days,Poor Soil,20-28°C,70-90%,Associated with nutrient deficiency.
+Rice,Insect (Leaf Folder),Morning,Vegetative,Cloudy,25-30°C,70-85%,Leaves are folded longitudinally.
+Rice,Viral (Rice Yellow Mottle),Morning,Vector Control,Calm,24-32°C,60-80%,Control beetles; sanitize farm machinery.
+Rice,Insect (Gall Midge),Morning,Early Growth,Humid,26-30°C,80-90%,Causes 'silver shoot' symptom.
+Rice,Fungal (False Smut),Late Afternoon,Flowering,Cloudy/Wet,25-30°C,85-95%,Orange balls on panicles; reduce humidity.
+Rice,Insect (Rice Hispa),Morning,Weekly,Calm,24-32°C,70-90%,Scrapes chlorophyll from leaves.
+Rice,Fungal (Sheath Rot),Morning,Heading,Warm,25-32°C,70-85%,Reddish-brown lesions on flag leaf sheath.
+Rice,Insect (Caseworm),Afternoon,Vegetative,Standing Water,25-30°C,80-90%,Drain field to control larvae.
+Rice,Bacterial (Bacterial Leaf Streak),Morning,Preventative,Rainy,26-30°C,85-95%,Water-soaked streaks on leaves.
+Rice,Insect (Armyworm),Evening,Seedling,Dry,22-30°C,50-70%,Larvae feed on leaves at night.
+Rice,Fungal (Bakanae),Pre-planting,Seed Treatment,N/A,25-30°C,N/A,Causes elongation of plants (Foolish Seedling).
+Rice,Insect (Thrips),Morning,Nursery,Dry,25-32°C,40-60%,Leaves curl and wither.
+Rice,Nutritional (Zinc Deficiency),Morning,Transplanting,Flooded,22-30°C,N/A,Leaves turn rusty brown; apply Zinc Sulfate.
+Rice,Insect (Whorl Maggot),Morning,Early Tillering,Calm,25-30°C,70-90%,Damages leaf margins.
+Potatoes,Fungal (Late Blight),Morning,Every 5-7 Days,Cool/Cloudy,12-20°C,90-100%,Most destructive; treat before row closure.
+Potatoes,Fungal (Early Blight),Morning,Every 7-10 Days,Warm/Wet,20-25°C,80-90%,Bullseye lesions on older leaves.
+Potatoes,Insect (Colorado Potato Beetle),Mid-Day,Weekly,Sunny,22-30°C,50-70%,Rotate insecticides to prevent resistance.
+Potatoes,Bacterial (Blackleg),Pre-planting,Seed Treatment,Wet Soil,15-20°C,80-90%,Use certified seed; bacterial soft rot.
+Potatoes,Insect (Potato Tuber Moth),Late Evening,Storage/Field,Dry,20-30°C,40-60%,Keep tubers well-covered with soil.
+Potatoes,Viral (Potato Virus Y),Morning,Vector Control,Calm,20-25°C,60-80%,Control aphids; plant certified seed.
+Potatoes,Insect (Aphids),Morning,Weekly,Calm,18-24°C,50-70%,Vectors for many viruses.
+Potatoes,Fungal (Black Scurf),Pre-planting,Seed Treatment,Cold/Wet,10-15°C,70-90%,Wash tubers; causes Rhizoctonia canker.
+Potatoes,Insect (Leafhoppers),Afternoon,Every 10 Days,Warm,22-28°C,50-70%,Causes 'hopper burn' on leaf tips.
+Potatoes,Bacterial (Common Scab),N/A,Soil Mgmt,Dry Soil,20-25°C,40-60%,Avoid high soil pH; irrigate during tuber set.
+Potatoes,Fungal (Fusarium Dry Rot),Post-Harvest,Storage,Cool,10-15°C,60-70%,Minimize bruising during harvest.
+Potatoes,Insect (Wireworms),Pre-planting,Soil Treat,Moist,15-20°C,60-80%,Avoid planting after sod/grass.
+Potatoes,Fungal (Verticillium Wilt),Morning,Preventative,Warm,22-28°C,60-80%,Early dying complex; long rotation needed.
+Potatoes,Insect (Cutworms),Evening,Emergence,Dry,15-22°C,50-70%,Chews stems at ground level.
+Potatoes,Fungal (Powdery Scab),N/A,Soil Mgmt,Cool/Wet,12-18°C,80-90%,Transmitted by soil drainage water.
+Potatoes,Insect (Flea Beetles),Mid-Day,Seedling,Sunny,20-28°C,40-60%,Shot-hole damage on leaves.
+Potatoes,Bacterial (Ring Rot),N/A,Sanitation,N/A,20-25°C,N/A,Zero tolerance; sanitize all equipment.
+Potatoes,Insect (White Grubs),Pre-planting,Soil Treat,Moist,15-25°C,60-80%,Larvae feed on tubers.
+Potatoes,Fungal (Pink Rot),Pre-Harvest,Foliar Spray,Wet,15-20°C,90-100%,Water-soaked tubers; smells like vinegar.
+Potatoes,Nematode (Root Knot),Pre-planting,Soil Fumigation,Sandy Soil,20-30°C,50-70%,Causes galls on tubers.
+Wheat,Fungal (Stem Rust),Morning,At Flag Leaf,Warm/Humid,18-30°C,70-90%,Reddish-brown pustules on stems.
+Wheat,Fungal (Stripe Rust),Morning,Booting,Cool/Wet,10-15°C,80-100%,Yellow stripes on leaves; systemic.
+Wheat,Insect (Russian Wheat Aphid),Morning,Weekly,Cool,10-20°C,40-60%,Causes white/purple streaking on leaves.
+Wheat,Fungal (Fusarium Head Blight),Morning,Flowering,Warm/Wet,20-30°C,85-95%,Bleaches heads; creates mycotoxins.
+Wheat,Insect (Hessian Fly),Pre-planting,Resistant Variety,Cool,10-18°C,60-80%,Plant after fly-free date.
+Wheat,Fungal (Powdery Mildew),Afternoon,Every 10 Days,Humid/Cloudy,15-22°C,85-95%,White cottony growth on lower leaves.
+Wheat,Insect (Armyworm),Evening,Heading,Dry,20-28°C,50-70%,Clips heads off; check ground for larvae.
+Wheat,Fungal (Septoria Leaf Blotch),Morning,Tillering,Wet,15-25°C,80-95%,Yellow spots with black pycnidia.
+Wheat,Fungal (Tan Spot),Morning,Seedling,Wet Residue,15-25°C,80-90%,Crop rotation essential in no-till.
+Wheat,Insect (Cereal Leaf Beetle),Mid-Day,Booting,Sunny,18-25°C,50-70%,Larvae look like slug-like slime.
+Wheat,Viral (Barley Yellow Dwarf),Morning,Aphid Control,Cool,10-18°C,60-80%,Red/Yellow leaf tips; control aphids early.
+Wheat,Fungal (Loose Smut),Pre-planting,Seed Treatment,Cool,16-22°C,60-80%,Heads replaced by black spore masses.
+Wheat,Insect (Wheat Stem Sawfly),Pre-Harvest,Resistant Variety,Dry,20-30°C,30-50%,Causes lodging; solid-stem varieties help.
+Wheat,Bacterial (Black Chaff),Morning,Preventative,Stormy,20-30°C,85-95%,Dark stripes on glumes.
+Wheat,Insect (Wireworms),Pre-planting,Soil Treat,Moist,10-20°C,60-80%,Thin stands; attacks seeds.
+Wheat,Fungal (Eyespot),Early Spring,Stem Extension,Cool/Wet,5-15°C,80-90%,Oval lesions at stem base.
+Wheat,Insect (Mites),Afternoon,Jointing,Dry/Windy,15-25°C,40-60%,Vectors for Wheat Streak Mosaic.
+Wheat,Fungal (Common Bunt),Pre-planting,Seed Treatment,Cool,5-15°C,50-70%,Grain filled with stinking black spores.
+Wheat,Nutritional (Copper Deficiency),Morning,Tillering,Sandy Soil,15-25°C,N/A,Pig-tailing of leaf tips.
+Wheat,Insect (Thrips),Afternoon,Flowering,Dry,20-28°C,40-60%,Can cause sterility.
+Beans,Fungal (Anthracnose),Late Afternoon,Every 10 Days,Cool/Wet,17-24°C,90-100%,Spread by rain splash; avoid wet harvest.
+Beans,Insect (Bean Fly),Morning,Seedling Stage,Dry,20-28°C,50-70%,Maggots mine into stem at ground level.
+Beans,Fungal (Angular Leaf Spot),Morning,Every 14 Days,Warm/Humid,20-28°C,80-95%,Angular lesions bounded by veins.
+Beans,Insect (Aphids),Morning,Pre-Flowering,Calm,18-25°C,50-70%,Black aphids cluster on stems/flowers.
+Beans,Bacterial (Halo Blight),Morning,Preventative,Cool/Wet,16-20°C,80-90%,Yellow halos around spots; seed-borne.
+Beans,Insect (Flower Thrips),Evening,Flowering,Dry,22-30°C,40-60%,Causes flower abortion; spray early.
+Beans,Fungal (Rust),Morning,Every 10 Days,Humid,18-25°C,85-95%,Reddish-brown pustules; prone in late season.
+Beans,Insect (Pod Borer),Evening,Pod Setting,No Rain,22-30°C,60-80%,Larvae bore holes into pods.
+Beans,Viral (Bean Common Mosaic),Morning,Aphid Control,Warm,20-30°C,60-80%,Mottled leaves; plant resistant varieties.
+Beans,Fungal (Root Rot),Pre-planting,Seed Treatment,Wet Soil,15-22°C,80-95%,Improve drainage; crop rotation.
+Beans,Insect (Leaf Beetles),Mid-Day,Vegetative,Sunny,20-28°C,50-70%,Skeletonizes leaves.
+Beans,Bacterial (Common Blight),Morning,Preventative,Warm/Humid,25-32°C,80-90%,Large brown lesions; use certified seed.
+Beans,Insect (Whiteflies),Morning,Every 7 Days,Calm,25-32°C,50-70%,Vector for Golden Mosaic Virus.
+Beans,Fungal (White Mold),Mid-Day,Flowering,Cool/Wet,15-20°C,90-100%,Cottony growth; spray fungicides at bloom.
+Beans,Insect (Spotted Pod Borer),Evening,Pod Fill,Warm,24-30°C,60-80%,Webs leaves and pods together.
+Beans,Fungal (Web Blight),Morning,Vegetative,Hot/Humid,25-30°C,90-100%,Rapid blight; improve air circulation.
+Beans,Insect (Cutworms),Evening,Emergence,Dry,18-25°C,50-70%,Use bait around seedlings.
+Beans,Nutritional (Manganese Deficiency),Morning,Foliar Spray,High pH Soil,20-25°C,N/A,Yellowing between veins.
+Beans,Insect (Spider Mites),Afternoon,Pod Fill,Hot/Dry,28-35°C,30-50%,Leaves turn bronze/yellow.
+Beans,Fungal (Ascochyta Blight),Morning,Every 10 Days,Cool/Wet,15-20°C,80-95%,Dark lesions on leaves and pods.
+Onions,Fungal (Downy Mildew),Early Morning,Every 7-10 Days,Foggy/Humid,10-20°C,90-100%,Destructive; violet fur on leaves.
+Onions,Insect (Thrips),Late Afternoon,Every 7 Days,Hot/Dry,25-30°C,40-60%, silvery streaks; hide in leaf axils.
+Onions,Fungal (Purple Blotch),Morning,Every 10 Days,Warm/Wet,25-30°C,80-90%,Purple lesions with yellow rings.
+Onions,Insect (Onion Maggot),Pre-planting,Soil Treat,Cool/Wet,10-18°C,70-90%,Larvae attack bulbs; rotate crops.
+Onions,Fungal (Neck Rot),Post-Harvest,Curing,Cool/Moist,15-20°C,70-85%,Cure onions well before storage.
+Onions,Bacterial (Soft Rot),N/A,Harvest Care,Wet,20-30°C,80-90%,Avoid bruising bulbs; store dry.
+Onions,Fungal (White Rot),Pre-planting,Soil Fumigation,Cool,10-20°C,60-80%,Sclerotia survive in soil for years.
+Onions,Insect (Cutworms),Evening,Seedling,Dry,15-22°C,50-70%,Apply bait near base.
+Onions,Fungal (Botrytis Leaf Blight),Morning,Every 7 Days,Warm/Humid,20-25°C,80-90%,Small white spots on leaves.
+Onions,Insect (Leaf Miners),Morning,Weekly,Calm,20-28°C,60-80%,Mines in green leaves.
+Onions,Fungal (Pink Root),N/A,Resistant Variety,Warm Soil,24-30°C,60-80%,Roots turn pink and die.
+Onions,Nutritional (Sulfur Deficiency),Morning,Fertilizer,Sandy Soil,15-25°C,N/A,General yellowing; essential for pungency.
+Onions,Insect (Wireworms),Pre-planting,Soil Treat,Moist,15-20°C,60-80%,Damage roots and bulbs.
+Onions,Viral (Iris Yellow Spot),Morning,Thrips Control,Dry,25-32°C,40-60%,Straw-colored diamond lesions.
+Onions,Fungal (Stemphylium Leaf Blight),Morning,Every 10 Days,Warm/Humid,25-30°C,85-95%,Usually follows Downy Mildew.
+Onions,Insect (Bulb Mites),Post-Harvest,Storage,Humid,20-25°C,80-90%,Secondary pests in rotting bulbs.
+Onions,Fungal (Smut),Pre-planting,Seed Treatment,Cool,10-20°C,60-80%,Black streaks on seedlings.
+Onions,Environmental (Sunscald),Harvest,Curing,Sunny/Hot,30-35°C,20-40%,Protect bulbs from direct sun after pulling.
+Onions,Insect (Armyworm),Evening,Outbreak,Dry,20-28°C,50-70%,Mass feeding on foliage.
+Onions,Fungal (Fusarium Basal Rot),Morning,Preventative,Warm,25-30°C,60-80%,Rot starts at base plate.
+Carrots,Fungal (Alternaria Leaf Blight),Morning,Every 7-10 Days,Warm/Humid,20-28°C,80-90%,Brown spots on older leaves.
+Carrots,Insect (Carrot Rust Fly),Evening,Weekly,Cool/Calm,15-20°C,60-80%,Larvae tunnel into roots.
+Carrots,Fungal (Powdery Mildew),Afternoon,Every 14 Days,Dry,20-30°C,40-60%,White powder on leaves.
+Carrots,Nematode (Root Knot),Pre-planting,Soil Fumigation,Sandy/Warm,20-30°C,50-70%,Forked/galled roots.
+Carrots,Bacterial (Soft Rot),Post-Harvest,Storage,Wet,20-25°C,90-100%,Slimy rot; improve drainage.
+Carrots,Insect (Aphids),Morning,Weekly,Calm,18-24°C,50-70%,Check crown of plant.
+Carrots,Fungal (Cercospora Leaf Spot),Morning,Every 7-10 Days,Warm/Wet,20-28°C,85-95%,Younger leaves affected first.
+Carrots,Insect (Weevils),Evening,Adults,Dry,20-25°C,50-70%,Grubs feed on roots.
+Carrots,Fungal (Sclerotinia White Mold),Mid-Day,Dense Canopy,Cool/Wet,15-20°C,90-100%,Cottony rot at crown.
+Carrots,Insect (Leafhoppers),Afternoon,Vector Control,Warm,22-28°C,50-70%,Transmits Aster Yellows.
+Carrots,Viral (Aster Yellows),Morning,Vector Control,Warm,22-30°C,60-80%,Hairy roots; bitter taste.
+Carrots,Fungal (Black Rot),Post-Harvest,Storage,Humid,15-20°C,80-90%,Black sunken lesions on root.
+Carrots,Insect (Cutworms),Evening,Seedling,Dry,15-22°C,50-70%,Clips stems.
+Carrots,Fungal (Violet Root Rot),Pre-planting,Rotation,Wet,15-20°C,80-90%,Purple mycelium on roots.
+Carrots,Insect (Wireworms),Pre-planting,Soil Treat,Moist,15-20°C,60-80%,Holes in roots.
+Carrots,Fungal (Cavity Spot),Pre-planting,Fungicide,Cool/Wet,10-15°C,90-100%,Small sunken elliptical spots.
+Carrots,Nutritional (Boron Deficiency),Morning,Foliar Spray,Dry Soil,20-25°C,N/A,Hollow heart in roots.
+Carrots,Insect (Armyworm),Evening,Foliage,Dry,20-28°C,50-70%,Rapid defoliation.
+Carrots,Fungal (Rhizoctonia Canker),Morning,Preventative,Cool/Wet,15-20°C,80-90%,Cankers on crown.
+Carrots,Insect (Flea Beetles),Mid-Day,Seedling,Sunny,20-28°C,40-60%,Small holes in leaves.
+Soybeans,Fungal (Soybean Rust),Morning,Every 14 Days,Humid/Cloudy,15-28°C,80-100%,Monitor lower canopy; treat early.
+Soybeans,Insect (Soybean Aphid),Morning,Threshold Basis,Cool,20-25°C,60-70%,Treat if >250 aphids/plant.
+Soybeans,Fungal (Frogeye Leaf Spot),Morning,Every 14 Days,Warm/Humid,25-30°C,80-90%,Circular spots on upper leaves.
+Soybeans,Insect (Pod Borer),Evening,Pod Fill,Dry,22-30°C,50-70%,Larvae feed inside pods.
+Soybeans,Fungal (Septoria Brown Spot),Morning,Vegetative,Warm/Wet,20-28°C,80-90%,Yellow leaves at bottom of plant.
+Soybeans,Insect (Stink Bugs),Morning,Pod Fill,Warm,24-30°C,60-80%,Punctures pods; seed damage.
+Soybeans,Fungal (White Mold),Mid-Day,Flowering,Cool/Wet,15-22°C,90-100%,Sclerotinia; spray at R1 stage.
+Soybeans,Insect (Bean Leaf Beetle),Mid-Day,Emergence,Sunny,20-28°C,50-70%,Transmits Bean Pod Mottle Virus.
+Soybeans,Fungal (Charcoal Rot),Late Season,Drought Mgmt,Hot/Dry,28-35°C,30-50%, microsclerotia in stems.
+Soybeans,Insect (Spider Mites),Afternoon,Drought,Hot/Dry,30-38°C,20-40%,Check field edges first.
+Soybeans,Bacterial (Bacterial Blight),Morning,Preventative,Cool/Wet,18-24°C,80-90%,Water-soaked spots tearing away.
+Soybeans,Insect (Loopers),Evening,Foliage,Warm,22-30°C,60-80%,Inch-worm movement.
+Soybeans,Fungal (Sudden Death Syndrome),Pre-planting,Resistant Variety,Cool/Wet,15-20°C,80-95%,Root rot + leaf scorching.
+Soybeans,Insect (Japanese Beetle),Mid-Day,Reproductive,Sunny,25-32°C,50-70%,Skeletonizes leaves.
+Soybeans,Viral (Soybean Mosaic Virus),Morning,Aphid Control,Cool,18-25°C,60-80%,Rugose/crinkled leaves.
+Soybeans,Fungal (Phytophthora Root Rot),Pre-planting,Seed Treat,Wet/Compact,15-25°C,90-100%,Damping off; stem rot.
+Soybeans,Insect (Thrips),Morning,Seedling,Dry,25-32°C,40-60%,Silvering of leaves.
+Soybeans,Fungal (Downy Mildew),Morning,Every 14 Days,Cool/Humid,15-22°C,85-95%,Yellow spots on top, gray fuzz below.
+Soybeans,Nematode (Soybean Cyst),Pre-planting,Rotation,Warm,22-30°C,50-70%,Stunted yellow plants; cysts on roots.
+Soybeans,Insect (Cutworms),Evening,Emergence,Dry,15-22°C,50-70%,Stand loss.
+Cabbage,Insect (Diamondback Moth),Late Afternoon,Every 5-7 Days,Dry,20-30°C,40-60%,Rotate chemicals; rapid resistance.
+Cabbage,Bacterial (Black Rot),Morning,Preventative,Warm/Wet,25-30°C,85-95%,V-shaped lesions; seed sanitation key.
+Cabbage,Insect (Cabbage Aphid),Morning,Weekly,Cool/Dry,15-22°C,50-70%,Waxy gray colonies on leaves.
+Cabbage,Fungal (Alternaria Leaf Spot),Morning,Every 10 Days,Cool/Wet,15-20°C,80-90%,Target spots on older leaves.
+Cabbage,Insect (Cabbage Looper),Evening,Weekly,Warm,22-28°C,60-80%,Green larvae; holes in leaves.
+Cabbage,Fungal (Clubroot),Pre-planting,Lime Soil,Acidic/Wet,18-24°C,80-100%,Swollen roots; raise pH > 7.2.
+Cabbage,Insect (Cutworms),Evening,Seedling,Dry,15-22°C,50-70%,Collars around seedlings help.
+Cabbage,Fungal (Downy Mildew),Morning,Seedling,Cool/Humid,10-16°C,90-100%,Check undersides of cotyledons.
+Cabbage,Insect (Flea Beetles),Mid-Day,Transplanting,Sunny,20-28°C,40-60%,Shot-holes in leaves.
+Cabbage,Bacterial (Soft Rot),Harvest,Post-Harvest,Wet,20-25°C,90-100%,Slimy, foul-smelling rot.
+Cabbage,Insect (Thrips),Afternoon,Cupping Stage,Dry,25-30°C,40-60%,Causes bronzing/edema on leaves.
+Cabbage,Fungal (White Mold),Mid-Day,Maturing,Cool/Wet,15-20°C,90-100%,Sclerotinia rot.
+Cabbage,Insect (Webworm),Evening,Seedling,Warm,24-30°C,60-80%,Spins webs near growing point.
+Cabbage,Fungal (Ring Spot),Morning,Every 14 Days,Cool/Wet,15-20°C,85-95%,Small dark spots with halos.
+Cabbage,Insect (Root Maggot),Pre-planting,Soil Drench,Cool/Wet,10-18°C,80-90%,Wilting plants; maggots on roots.
+Cabbage,Viral (Turnip Mosaic Virus),Morning,Aphid Control,Cool,15-22°C,60-80%,Mottling; control aphid vectors.
+Cabbage,Fungal (Fusarium Yellows),Pre-planting,Resistant Variety,Warm,24-30°C,60-80%,One-sided yellowing of leaves.
+Cabbage,Insect (Whiteflies),Morning,Every 7 Days,Calm,25-32°C,50-70%,Sooty mold develops on honeydew.
+Cabbage,Nutritional (Tipburn),Morning,Calcium Spray,Fluctuating,20-30°C,50-70%,Internal leaf necrosis; erratic water.
+Cabbage,Insect (Armyworm),Evening,Heading,Dry,20-28°C,50-70%,Bores into heads.
+Peppers,Fungal (Phytophthora Blight),Morning,Every 7 Days,Wet/Warm,25-30°C,90-100%,Rapid wilting; improve drainage.
+Peppers,Insect (Thrips),Afternoon,Flowering,Dry,25-32°C,40-60%,Vector for TSWV.
+Peppers,Bacterial (Bacterial Spot),Morning,Preventative,Warm/Humid,24-30°C,85-95%,Scabby spots on fruit.
+Peppers,Insect (Aphids),Morning,Weekly,Calm,20-25°C,60-80%,Excrete honeydew.
+Peppers,Fungal (Anthracnose),Late Afternoon,Fruit Set,Warm/Wet,24-30°C,80-95%,Sunken lesions on ripe fruit.
+Peppers,Insect (Broad Mite),Afternoon,New Growth,Humid,20-28°C,80-90%,Leaves curl downward/deformed.
+Peppers,Viral (Pepper Mild Mottle),N/A,Sanitation,N/A,20-30°C,N/A,Seed-borne; no cure.
+Peppers,Insect (Pepper Maggot),Evening,Fruit Set,Warm,22-28°C,60-80%,Larvae feed inside fruit.
+Peppers,Fungal (Powdery Mildew),Afternoon,Every 10 Days,Dry,20-28°C,50-70%,White powder on undersides.
+Peppers,Insect (Cutworms),Evening,Seedling,Dry,18-24°C,50-70%,Stem clipping.
+Peppers,Bacterial (Soft Rot),Post-Harvest,Storage,Wet,20-25°C,90-100%,Watery decay.
+Peppers,Insect (Whiteflies),Morning,Weekly,Calm,25-32°C,50-70%,Shake plants to monitor.
+Peppers,Fungal (Cercospora Leaf Spot),Morning,Every 10 Days,Warm/Wet,25-30°C,90-100%,Frogeye spots.
+Peppers,Nutritional (Blossom End Rot),Morning,Irrigation,Dry,25-35°C,40-60%,Calcium deficiency.
+Peppers,Insect (Corn Borer),Evening,Fruit Fill,Warm,22-30°C,60-80%,Bores into fruit stem.
+Peppers,Viral (Tomato Spotted Wilt),Morning,Thrips Control,Warm,24-30°C,50-70%,Ring-spots on fruit.
+Peppers,Fungal (Verticillium Wilt),Pre-planting,Fumigation,Cool,18-24°C,60-80%,Vascular discoloration.
+Peppers,Insect (Flea Beetles),Mid-Day,Seedling,Sunny,22-30°C,40-60%,Small holes.
+Peppers,Fungal (Damping Off),Pre-planting,Seed Treat,Cool/Wet,15-20°C,90-100%,Seedlings collapse.
+Peppers,Insect (Spider Mites),Afternoon,Drought,Hot/Dry,30-35°C,30-50%,Stippling on leaves.
+Spinach,Fungal (Downy Mildew),Morning,Every 7 Days,Cool/Humid,10-15°C,85-100%,Blue mold; plant resistant varieties.
+Spinach,Insect (Aphids),Morning,Weekly,Cool,10-18°C,60-80%,Vectors for CMV.
+Spinach,Fungal (White Rust),Morning,Every 10 Days,Cool/Wet,12-20°C,80-90%,White blisters on undersides.
+Spinach,Insect (Leaf Miners),Morning,Weekly,Calm,15-24°C,60-80%,Blotchy mines in leaves.
+Spinach,Fungal (Fusarium Wilt),Pre-planting,Rotation,Warm,24-30°C,60-80%,Yellowing foliage.
+Spinach,Insect (Flea Beetles),Mid-Day,Seedling,Sunny,20-25°C,50-70%,Shot holes.
+Spinach,Viral (Cucumber Mosaic),Morning,Aphid Control,Cool,15-20°C,60-80%,Yellow mottling; stunted plants.
+Spinach,Fungal (Anthracnose),Morning,Every 10 Days,Wet,18-24°C,85-95%,Tan spots on leaves.
+Spinach,Insect (Cutworms),Evening,Seedling,Dry,15-20°C,50-70%,Damage at soil line.
+Spinach,Fungal (Cladosporium Leaf Spot),Morning,Every 14 Days,Cool/Humid,12-18°C,80-90%,Round tan spots.
+Spinach,Insect (Wireworms),Pre-planting,Soil Treat,Moist,10-18°C,60-80%,Root damage.
+Spinach,Bacterial (Soft Rot),Harvest,Post-Harvest,Wet,20-25°C,90-100%,Slimy decay in bags.
+Spinach,Insect (Thrips),Afternoon,Vegetative,Dry,20-28°C,40-60%,Silvering.
+Spinach,Fungal (Damping Off),Pre-planting,Seed Treat,Wet,15-20°C,90-100%,Poor germination.
+Spinach,Insect (Armyworm),Evening,Outbreak,Dry,20-28°C,50-70%,Foliage feeding.
+Spinach,Fungal (Stemphylium Leaf Spot),Morning,Every 10 Days,Warm/Humid,20-25°C,85-95%,Oval spots.
+Spinach,Nutritional (Yellowing),Morning,Nitrogen,Cool,10-20°C,N/A,General chlorosis.
+Spinach,Insect (Mites),Afternoon,Drought,Dry,25-30°C,30-50%,Stippling.
+Spinach,Viral (Beet Curly Top),Morning,Leafhopper Ctrl,Dry,25-30°C,40-60%,Leaves curl and yellow.
+Spinach,Environmental (Bolting),N/A,Harvest,Long Days,25-30°C,N/A,Heat stress causes seed stalk.
+Kale,Insect (Diamondback Moth),Evening,Weekly,Warm,20-30°C,40-60%,Larvae wriggle when disturbed.
+Kale,Insect (Aphids),Morning,Weekly,Cool,15-22°C,60-80%,Cluster on undersides.
+Kale,Fungal (Black Rot),Morning,Preventative,Warm/Wet,25-30°C,85-95%,V-lesions on margins.
+Kale,Insect (Cabbage Looper),Evening,Weekly,Warm,22-28°C,60-80%,Large holes in leaves.
+Kale,Fungal (Alternaria),Morning,Every 14 Days,Cool/Wet,15-20°C,80-90%,Black spots.
+Kale,Insect (Flea Beetles),Mid-Day,Seedling,Sunny,20-28°C,40-60%,Severe damage on young plants.
+Kale,Insect (Harlequin Bug),Morning,Weekly,Warm,24-30°C,50-70%,Sucks sap; causes wilting.
+Kale,Fungal (Downy Mildew),Morning,Seedling,Cool/Humid,10-16°C,90-100%,Gray mold on undersides.
+Kale,Insect (Whiteflies),Morning,Weekly,Calm,25-32°C,50-70%,Clouds of white flies.
+Kale,Bacterial (Soft Rot),Harvest,Post-Harvest,Wet,20-25°C,90-100%,Wet rot.
+Kale,Insect (Thrips),Afternoon,Vegetative,Dry,25-30°C,40-60%,Scaring on leaves.
+Kale,Fungal (White Mold),Mid-Day,Mature,Cool/Wet,15-20°C,90-100%,Sclerotinia.
+Kale,Insect (Root Maggot),Pre-planting,Drench,Cool/Wet,10-18°C,80-90%,Wilting.
+Kale,Fungal (Clubroot),Pre-planting,Lime,Acidic,18-24°C,80-100%,Swollen roots.
+Kale,Insect (Armyworm),Evening,Foliage,Dry,20-28°C,50-70%,Heavy feeding.
+Kale,Viral (Turnip Mosaic),Morning,Vector Ctrl,Cool,15-22°C,60-80%,Mottling.
+Kale,Nutritional (Calcium Def),Morning,Spray,Dry,20-30°C,50-70%,Tip burn.
+Kale,Insect (Webworm),Evening,Seedling,Warm,24-30°C,60-80%,Webbing.
+Kale,Fungal (Ring Spot),Morning,Every 14 Days,Cool/Wet,15-20°C,85-95%,Spots with halos.
+Kale,Insect (Cutworms),Evening,Seedling,Dry,15-22°C,50-70%,Cut stems.
+Barley,Fungal (Scald),Morning,Tillering,Cool/Wet,10-15°C,85-95%,Water-soaked lesions.
+Barley,Fungal (Net Blotch),Morning,Every 14 Days,Cool/Humid,15-20°C,80-90%,Net-like pattern on leaves.
+Barley,Insect (Aphids),Morning,Weekly,Cool,10-18°C,60-80%,BYDV vector.
+Barley,Fungal (Rust),Morning,Flag Leaf,Warm/Humid,18-25°C,70-90%,Orange pustules.
+Barley,Insect (Cereal Leaf Beetle),Mid-Day,Booting,Sunny,18-25°C,50-70%,Larvae feeding.
+Barley,Fungal (Powdery Mildew),Afternoon,Stem Ext,Humid,15-22°C,85-95%,White pustules.
+Barley,Insect (Wireworms),Pre-planting,Soil Treat,Moist,10-20°C,60-80%,Root damage.
+Barley,Fungal (Smut),Pre-planting,Seed Treat,Cool,15-20°C,60-80%,Black heads.
+Barley,Insect (Armyworm),Evening,Heading,Dry,20-28°C,50-70%,Head clipping.
+Barley,Viral (Yellow Dwarf),Morning,Vector Ctrl,Cool,10-18°C,60-80%,Yellowing.
+Barley,Fungal (Ramularia),Morning,Flowering,Wet,15-20°C,90-100%,Rectangular spots.
+Barley,Insect (Thrips),Afternoon,Flowering,Dry,20-28°C,40-60%,Sterility.
+Barley,Fungal (Fusarium),Morning,Flowering,Warm/Wet,20-30°C,85-95%,Scab.
+Barley,Insect (Hessian Fly),Pre-planting,Resistant Var,Cool,10-18°C,60-80%,Stunted plants.
+Barley,Nutritional (Manganese),Morning,Spray,High pH,15-20°C,N/A,Gray speck.
+Barley,Insect (Mites),Afternoon,Jointing,Dry,15-25°C,40-60%,Stippling.
+Barley,Fungal (Eyespot),Early Spring,Stem Ext,Cool/Wet,5-15°C,80-90%,Lodging.
+Barley,Insect (Sawfly),Pre-Harvest,Resistant Var,Dry,20-30°C,30-50%,Stem cutting.
+Barley,Bacterial (Bacterial Blight),Morning,Preventative,Wet,20-25°C,85-95%,Streaks.
+Barley,Fungal (Root Rot),Pre-planting,Rotation,Wet,10-15°C,80-90%,Common root rot.
+Millet,Fungal (Blast),Morning,Heading,Warm/Humid,25-30°C,80-95%,Leaf spots/head blast.
+Millet,Insect (Stem Borer),Evening,Vegetative,Dry,25-32°C,60-80%,Dead hearts.
+Millet,Fungal (Downy Mildew),Morning,Seedling,Cool/Wet,15-22°C,90-100%,Green ear.
+Millet,Insect (Shoot Fly),Morning,Seedling,Calm,25-30°C,70-90%,Dead hearts.
+Millet,Fungal (Rust),Morning,Flowering,Humid,20-28°C,80-90%,Pustules.
+Millet,Insect (Armyworm),Evening,Outbreak,Dry,25-32°C,50-70%,Foliage loss.
+Millet,Fungal (Ergot),Pre-Harvest,Flowering,Cool/Wet,18-24°C,90-100%,Sticky honeydew.
+Millet,Insect (Midge),Morning,Flowering,Humid,25-30°C,80-90%,Chaffy heads.
+Millet,Fungal (Smut),Pre-planting,Seed Treat,Warm,25-30°C,70-80%,Black sori.
+Millet,Insect (Grasshoppers),Mid-Day,All Stages,Dry,28-35°C,40-60%,Defoliation.
+Sorghum,Insect (Shoot Fly),Morning,Seedling,Calm,25-30°C,70-90%,Dead hearts.
+Sorghum,Fungal (Anthracnose),Morning,Every 14 Days,Warm/Wet,25-30°C,85-95%,Red lesions.
+Sorghum,Insect (Stem Borer),Evening,Vegetative,Dry,25-32°C,60-80%,Tunneling.
+Sorghum,Fungal (Downy Mildew),Morning,Systemic,Cool/Wet,18-24°C,90-100%,Striping.
+Sorghum,Insect (Midge),Morning,Flowering,Humid,25-30°C,80-90%,Empty glumes.
+Sorghum,Fungal (Grain Mold),Pre-Harvest,Maturation,Wet,25-30°C,85-95%,Moldy grain.
+Sorghum,Insect (Aphids),Morning,Weekly,Calm,20-28°C,50-70%,Honeydew.
+Sorghum,Fungal (Rust),Morning,Flag Leaf,Humid,20-28°C,80-90%,Pustules.
+Sorghum,Insect (Head Bug),Morning,Milking,Warm,25-30°C,60-80%,Kernel damage.
+Sorghum,Fungal (Ergot),Pre-Harvest,Flowering,Cool/Wet,18-22°C,90-100%,Sugary drip.

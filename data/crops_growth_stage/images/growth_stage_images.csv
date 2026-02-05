@@ -1,0 +1,46 @@
+crop,growth_stage,age,time_taken,possible_stage_diseases,image
+Tomatoes,Seedling,2 weeks,14 days,Early Blight;Late Blight;Septoria Leaf Spot,data/crops_growth_stage/images/Tomatoes_Seedling.jpg
+Tomatoes,Vegetative,4 weeks,28 days,Early Blight;Late Blight,data/crops_growth_stage/images/Tomatoes_Vegetative.jpg
+Tomatoes,Budding,6 weeks,42 days,Late Blight;Septoria Leaf Spot,data/crops_growth_stage/images/Tomatoes_Budding.jpg
+Tomatoes,Flowering,8 weeks,56 days,Early Blight;Late Blight,data/crops_growth_stage/images/Tomatoes_Flowering.jpg
+Tomatoes,Fruiting,10 weeks,70 days,Late Blight;Septoria Leaf,data/crops_growth_stage/images/Tomatoes_Fruiting.jpg
+Potatoes,Seedling,3 weeks,21 days,Early Blight;Late Blight;Blackleg,data/crops_growth_stage/images/Potatoes_Seedling.jpg
+Potatoes,Vegetative,5 weeks,35 days,Early Blight;Late Blight,data/crops_growth_stage/images/Potatoes_Vegetative.jpg
+Potatoes,Budding,7 weeks,49 days,Late Blight;Blackleg,data/crops_growth_stage/images/Potatoes_Budding.jpg
+Potatoes,Flowering,9 weeks,63 days,Early Blight;Late Blight,data/crops_growth_stage/images/Potatoes_Flowering.jpg
+Potatoes,Fruiting,11 weeks,77 days,Late Blight;Blackleg,data/crops_growth_stage/images/Potatoes_Fruiting.jpg
+Wheat,Seedling,2 weeks,14 days,Rust;Fusarium Head Blight,data/crops_growth_stage/images/Wheat_Seedling.jpg
+Wheat,Vegetative,4 weeks,28 days,Rust;Fusarium Head Blight,data/crops_growth_stage/images/Wheat_Vegetative.jpg
+Wheat,Budding,6 weeks,42 days,Fusarium Head Blight,data/crops_growth_stage/images/Wheat_Budding.jpg
+Wheat,Flowering,8 weeks,56 days,Rust;Fusarium Head Blight,data/crops_growth_stage/images/Wheat_Flowering.jpg
+Wheat,Fruiting,10 weeks,70 days,Rust;Fusarium Head Blight,data/crops_growth_stage/images/Wheat_Fruiting.jpg
+Rice,Seedling,3 weeks,21 days,Bacterial Leaf Blight;Rice Blast,data/crops_growth_stage/images/Rice_Seedling.jpg
+Rice,Vegetative,5 weeks,35 days,Bacterial Leaf Blight;Rice Blast,data/crops_growth_stage/images/Rice_Vegetative.jpg
+Rice,Budding,7 weeks,49 days,Rice Blast,data/crops_growth_stage/images/Rice_Budding.jpg
+Rice,Flowering,9 weeks,63 days,Bacterial Leaf Blight;Rice Blast,data/crops_growth_stage/images/Rice_Flowering.jpg
+Rice,Fruiting,11 weeks,77 days,Bacterial Leaf Blight;Rice Blast,data/crops_growth_stage/images/Rice_Fruiting.jpg
+Maize,Seedling,2 weeks,14 days,Gray Leaf Spot;Northern Corn Leaf Blight,data/crops_growth_stage/images/Maize_Seedling.jpg
+Maize,Vegetative,4 weeks,28 days,Gray Leaf Spot;Northern Corn Leaf Blight,data/crops_growth_stage/images/Maize_Vegetative.jpg
+Maize,Budding,6 weeks,42 days,Northern Corn Leaf Blight,data/crops_growth_stage/images/Maize_Budding.jpg
+Maize,Flowering,8 weeks,56 days,Gray Leaf Spot;Northern Corn Leaf Blight,data/crops_growth_stage/images/Maize_Flowering.jpg
+Maize,Fruiting,10 weeks,70 days,Gray Leaf Spot;Northern Corn Leaf Blight,data/crops_growth_stage/images/Maize_Fruiting.jpg
+Soybeans,Seedling,2 weeks,14 days,Soybean Cyst Nematode,data/crops_growth_stage/images/Soybeans_Seedling.jpg
+Soybeans,Vegetative,4 weeks,28 days,Soybean Cyst Nematode;Brown Spot,data/crops_growth_stage/images/Soybeans_Vegetative.jpg
+Soybeans,Budding,6 weeks,42 days,Brown Spot,data/crops_growth_stage/images/Soybeans_Budding.jpg
+Soybeans,Flowering,8 weeks,56 days,Soybean Cyst Nematode;Brown Spot,data/crops_growth_stage/images/Soybeans_Flowering.jpg
+Soybeans,Fruiting,10 weeks,70 days,Soybean Cyst Nematode,data/crops_growth_stage/images/Soybeans_Fruiting.jpg
+Carrots,Seedling,2 weeks,14 days,Alternaria Leaf Blight;Root Knot Nematode,data/crops_growth_stage/images/Carrots_Seedling.jpg
+Carrots,Vegetative,4 weeks,28 days,Alternaria Leaf Blight;Root Knot Nematode,data/crops_growth_stage/images/Carrots_Vegetative.jpg
+Carrots,Budding,6 weeks,42 days,Root Knot Nematode,data/crops_growth_stage/images/Carrots_Budding.jpg
+Carrots,Flowering,8 weeks,56 days,Alternaria Leaf Blight;Root Knot Nematode,data/crops_growth_stage/images/Carrots_Flowering.jpg
+Carrots,Fruiting,10 weeks,70 days,Alternaria Leaf Blight;Root Knot Nematode,data/crops_growth_stage/images/Carrots_Fruiting.jpg
+Onions,Seedling,3 weeks,21 days,Downy Mildew;Fusarium Basal Rot;Neck Rot,data/crops_growth_stage/images/Onions_Seedling.jpg
+Onions,Vegetative,5 weeks,35 days,Downy Mildew;Fusarium Basal Rot,data/crops_growth_stage/images/Onions_Vegetative.jpg
+Onions,Budding,7 weeks,49 days,Fusarium Basal Rot;Neck Rot,data/crops_growth_stage/images/Onions_Budding.jpg
+Onions,Flowering,9 weeks,63 days,Downy Mildew;Fusarium Basal Rot,data/crops_growth_stage/images/Onions_Flowering.jpg
+Onions,Fruiting,11 weeks,77 days,Downy Mildew;Neck Rot,data/crops_growth_stage/images/Onions_Fruiting.jpg
+Beans,Seedling,2 weeks,14 days,Anthracnose;Bacterial Blight,data/crops_growth_stage/images/Beans_Seedling.jpg
+Beans,Vegetative,4 weeks,28 days,Anthracnose;Bacterial Blight,data/crops_growth_stage/images/Beans_Vegetative.jpg
+Beans,Budding,6 weeks,42 days,Bacterial Blight,data/crops_growth_stage/images/Beans_Budding.jpg
+Beans,Flowering,8 weeks,56 days,Anthracnose;Bacterial Blight,data/crops_growth_stage/images/Beans_Flowering.jpg
+Beans,Fruiting,10 weeks,70 days,Anthracnose;Bacterial Blight,data/crops_growth_stage/images/Beans_Fruiting.jpg

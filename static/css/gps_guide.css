@@ -1,0 +1,70 @@
+/* UKULIMA SAFI AI - GPS Guide Styles */
+
+/* The main container for the GPS button */
+.gps-action-card {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+    border-top: 5px solid var(--primary-maroon);
+    margin-bottom: 30px;
+}
+
+/* Status Text Styling */
+#status {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.status-searching {
+    color: var(--primary-maroon);
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+.status-success {
+    background-color: #d4edda;
+    color: #155724; /* Dark Green */
+    border: 1px solid #c3e6cb;
+}
+
+.status-error {
+    background-color: #f8d7da;
+    color: #721c24; /* Dark Red */
+    border: 1px solid #f5c6cb;
+}
+
+/* Coordinates Display */
+.coords-box {
+    display: inline-block;
+    background: var(--light-gray);
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    font-family: monospace;
+    font-weight: bold;
+    border: 1px solid #ddd;
+}
+
+/* Pulse Animation for Searching */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { opacity: 0.6; }
+}
+
+/* Guide Cards (The links to Shops/Vets) */
+.guide-link-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-align: center;
+    border-left: 5px solid transparent;
+}
+
+.guide-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--primary-green);
+}

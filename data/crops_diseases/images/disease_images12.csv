@@ -1,0 +1,31 @@
+crop,disease,image_location,description,treatment
+Tomatoes,Early Blight,images/tomatoes/early_blight.jpg,A fungal disease causing dark spots on leaves and fruit,Use fungicides and practice crop rotation
+Tomatoes,Late Blight,images/tomatoes/late_blight.jpg,A serious disease that causes dark lesions on leaves and fruit,Remove infected plants and use resistant varieties
+Tomatoes,Septoria Leaf Spot,images/tomatoes/septoria_leaf_spot.jpg,A fungal disease causing small circular spots on leaves,Apply fungicides and ensure proper spacing for air circulation
+
+
+Potatoes,Early Blight,images/potatoes/early_blight.jpg,Causes dark spots on leaves and tubers,Use fungicides and rotate crops
+Potatoes,Late Blight,images/potatoes/late_blight.jpg,Leads to dark lesions on leaves and tubers,Remove infected plants and use resistant varietie
+Potatoes,Blackleg,images/potatoes/blackleg.jpg,Bacterial disease causing blackened stems,Use certified seed potatoes and avoid overwatering
+
+Wheat,Rust,images/wheat/rust.jpg,Fungal disease causing orange-red pustules on leaves,Use resistant varieties and fungicides
+Wheat,Fusarium Head Blight,images/wheat/fusarium_head_blight.jpg,Causes bleaching of wheat heads and pinkish mold,Rotate crops and use fungicides
+
+Rice,Bacterial Leaf Blight,images/rice/bacterial_leaf_blight.jpg,Causes yellowing and wilting of leaves,Use resistant varieties and proper field sanitation
+Rice,Rice Blast,images/rice/rice_blast.jpg,Fungal disease causing lesions on leaves and stems,Apply fungicides and manage water levels
+
+Maize,Gray Leaf Spot,images/Corn_(maize)__Cercospora_leaf_spot Gray_leaf_spot /gray_leaf_spot.jpg,Causes grayish lesions on leaves,Use resistant varieties and crop rotation
+Maize,Northern Corn Leaf Blight,images/maize/northern_corn_leaf_blight.jpg,Leads to long, elliptical lesions on leaves,Apply fungicides and plant resistant hybrids
+
+Soybeans,Soybean Cyst Nematode,images/soybeans/soybean_cyst_nematode.jpg,Causes stunted growth and yellowing of plants,Use resistant varieties and crop rotation
+Soybeans,Brown Spot,images/soybeans/brown_spot.jpg,Fungal disease causing brown lesions on leaves,Apply fungicides and ensure proper field drainage
+
+Carrots,Alternaria Leaf Blight,images/carrots/alternaria_leaf_blight.jpg,Causes dark spots on leaves,Use fungicides and rotate crops
+Carrots,Root Knot Nematode,images/carrots/root_knot_nematode.jpg,Causes galls on roots leading to stunted growth,Use resistant varieties and solarize soil
+
+Onions,Downy Mildew,images/onions/downy_mildew.jpg,Causes pale green spots on leaves,Apply fungicides and ensure good air circulation
+Onions,Fusarium Basal Rot,images/onions/fusarium_basal_rot.jpg,Causes yellowing and wilting of leaves,Use disease-free sets and rotate crops  
+Onions,Neck Rot,images/onions/neck_rot.jpg,Causes soft rot at the neck of the bulb,Store onions in a dry, well-ventilated area 
+
+Beans,Anthracnose,images/beans/anthracnose.jpg,Causes dark, sunken lesions on stems and pods,Use fungicides and plant resistant varieties
+Beans,Bacterial Blight,images/beans/bacterial_blight.jpg,Causes water-soaked spots on leaves and pods,Use disease-free seeds and practice crop rotation

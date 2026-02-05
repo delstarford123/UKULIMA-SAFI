@@ -1,0 +1,69 @@
+/* UKULIMA SAFI AI - Global Styles */
+:root {
+    --primary-maroon: #800000;   /* Maroon - Trust/Strong */
+    --primary-green: #2E8B57;    /* Sea Green - Agriculture */
+    --accent-green: #006400;     /* Dark Green - Contrast */
+    --white: #ffffff;
+    --light-gray: #f4f4f4;
+    --text-dark: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- BUTTONS --- */
+.btn-primary {
+    background-color: var(--primary-maroon);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-green);
+}
+
+.btn-secondary {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-maroon);
+}
+
+/* --- CARDS --- */
+.card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--primary-green);
+    margin-bottom: 20px;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--primary-maroon);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}

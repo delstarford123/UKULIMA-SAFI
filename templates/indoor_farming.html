@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Indoor Farming - UKULIMA SAFI AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto;">
+
+    <div style="display: flex; border-bottom: 2px solid #ddd; margin-bottom: 30px;">
+        <a href="/indoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: var(--primary-green); color: white; border-radius: 10px 10px 0 0; text-decoration: none;">
+            🏠 Indoor / Greenhouse
+        </a>
+        <a href="/outdoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: #eee; color: #555; text-decoration: none; border-radius: 10px 10px 0 0;">
+            🌤️ Outdoor / Field
+        </a>
+    </div>
+
+    <div class="card" style="border-top-color: var(--primary-green);">
+        <h2 style="color: var(--primary-green);">Greenhouse & Vertical Farming Guide</h2>
+        <p>Optimized strategies for controlled environments (Greenhouses, Hydroponics, and Indoor Systems).</p>
+    </div>
+
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        
+        <div class="card" style="flex: 1; min-width: 280px;">
+            <h3 style="color: var(--primary-maroon);">🌡️ Climate Control</h3>
+            <ul style="padding-left: 20px; line-height: 1.6;">
+                <li><strong>Temperature:</strong> Maintain 21°C–29°C for most veg. Use shade nets if >30°C.</li>
+                <li><strong>Humidity:</strong> Keep at 60-70%. High humidity leads to mold; low leads to stress.</li>
+                <li><strong>Ventilation:</strong> Open side vents daily. Use circulating fans to strengthen stems.</li>
+            </ul>
+        </div>
+
+        <div class="card" style="flex: 1; min-width: 280px;">
+            <h3 style="color: var(--primary-maroon);">💡 Lighting & Energy</h3>
+            <ul style="padding-left: 20px; line-height: 1.6;">
+                <li><strong>Grow Lights:</strong> Use full-spectrum LEDs for indoor vertical farms (12-16 hours/day).</li>
+                <li><strong>Greenhouses:</strong> Clean roof plastic regularly to maximize natural sunlight.</li>
+                <li><strong>Energy Saving:</strong> Use reflective mulch to bounce light back onto plants.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+        <h3 style="color: var(--primary-green);">🦠 Common Indoor Diseases</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead style="background: var(--light-gray);">
+                <tr>
+                    <th style="padding: 10px; text-align: left;">Disease</th>
+                    <th style="padding: 10px; text-align: left;">Cause</th>
+                    <th style="padding: 10px; text-align: left;">Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; font-weight: bold;">Powdery Mildew</td>
+                    <td style="padding: 10px;">High humidity, poor airflow</td>
+                    <td style="padding: 10px;">Increase fan speed, reduce humidity, apply sulfur fungicide.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; font-weight: bold;">Root Rot</td>
+                    <td style="padding: 10px;">Overwatering, stagnant water</td>
+                    <td style="padding: 10px;">Check drainage, oxygenate hydroponic water, use hydrogen peroxide.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; font-weight: bold;">Whiteflies</td>
+                    <td style="padding: 10px;">Warm, sheltered environment</td>
+                    <td style="padding: 10px;">Use yellow sticky traps, introduce ladybugs (predators).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/dashboard" class="btn-primary">Scan Your Indoor Crop Now</a>
+    </div>
+
+</div>
+{% endblock %}

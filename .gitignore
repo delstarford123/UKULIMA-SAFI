@@ -1,0 +1,32 @@
+--- Security & Environment ---
+
+.env
+.venv/
+venv/
+ENV/
+
+--- Python Cache (Junk files) ---
+
+pycache/
+*.pyc
+
+--- Large AI Models ---
+
+GitHub rejects files larger than 100MB.
+
+Since you have train.py, users can generate these themselves.
+
+*.h5
+*.keras
+
+--- Temporary User Data ---
+
+We don't want to upload photos random users took
+
+static/uploads/
+
+--- IDE & OS Settings ---
+
+.vscode/
+.idea/
+.DS_Store

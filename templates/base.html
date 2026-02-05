@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UKULIMA SAFI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">UKULIMA <span>SAFI</span></a>
+        
+        <!-- Hamburger Menu Button -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">AI Dashboard</a></li>
+            <li><a href="/guide">GPS Guide</a></li>
+            <li><a href="/shops">Agrovets</a></li>
+            <li><a href="/vets">Agronomists</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container" style="padding: 20px; max-width: 1200px; margin: 0 auto; min-height: 80vh;">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 UKULIMA SAFI
+         . Architected by DELSTARFORD WORKS.CO.KE</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

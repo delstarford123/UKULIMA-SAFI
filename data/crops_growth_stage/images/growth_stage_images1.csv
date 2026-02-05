@@ -1,0 +1,47 @@
+crop,growth_stage,age,time_taken,possible_stage_diseases,image
+Tomatoes,Seedling,2 weeks,14 days,Early Blight;Late Blight;Septoria Leaf Spot
+Tomatoes,Vegetative,4 weeks,28 days,Early Blight;Late Blight
+Tomatoes,Budding,6 weeks,42 days,Late Blight;Septoria Leaf Spot
+Tomatoes,Flowering,8 weeks,56 days,Early Blight;Late Blight
+Tomatoes,Fruiting,10 weeks,70 days,Late Blight;Septoria Leaf
+Potatoes,Seedling,3 weeks,21 days,Early Blight;Late Blight;Blackleg
+Potatoes,Vegetative,5 weeks,35 days,Early Blight;Late Blight
+Potatoes,Budding,7 weeks,49 days,Late Blight;Blackleg
+Potatoes,Flowering,9 weeks,63 days,Early Blight;Late Blight
+Potatoes,Fruiting,11 weeks,77 days,Late Blight;Blackleg
+Wheat,Seedling,2 weeks,14 days,Rust;Fusarium Head Bl
+Wheat,Vegetative,4 weeks,28 days,Rust;Fusarium Head Blight
+Wheat,Budding,6 weeks,42 days,Fusarium Head Blight
+Wheat,Flowering,8 weeks,56 days,Rust;Fusarium Head Blight
+Wheat,Fruiting,10 weeks,70 days,Rust;Fusarium Head Bl
+Rice,Seedling,3 weeks,21 days,Bacterial Leaf Blight;Rice Blast
+Rice,Vegetative,5 weeks,35 days,Bacterial Leaf Blight;Rice Blast
+Rice,Budding,7 weeks,49 days,Rice Blast
+Rice,Flowering,9 weeks,63 days,Bacterial Leaf Blight;Rice Blast
+Rice,Fruiting,11 weeks,77 days,Bacterial Leaf Blight;Rice Blast
+Maize,Seedling,2 weeks,14 days,Gray Leaf Spot;Northern Corn Leaf Blight
+Maize,Vegetative,4 weeks,28 days,Gray Leaf Spot;Northern Corn Leaf Blight
+Maize,Budding,6 weeks,42 days,Northern Corn Leaf Blight
+Maize,Flowering,8 weeks,56 days,Gray Leaf Spot;Northern Corn Leaf
+Maize,Fruiting,10 weeks,70 days,Gray Leaf Spot;Northern Corn Leaf Blight
+Soybeans,Seedling,2 weeks,14 days,Soybean Cyst Nematode
+Soybeans,Vegetative,4 weeks,28 days,Soybean Cyst Nematode;Brown Spot
+Soybeans,Budding,6 weeks,42 days,Brown Spot
+Soybeans,Flowering,8 weeks,56 days,Soybean Cyst Nematode;Brown Spot
+Soybeans,Fruiting,10 weeks,70 days,Soybean Cyst Nematode
+Carrots,Seedling,2 weeks,14 days,Alternaria Leaf Blight;Root Knot Nematode
+Carrots,Vegetative,4 weeks,28 days,Alternaria Leaf Blight;Root Knot Nematode
+Carrots,Budding,6 weeks,42 days,Root Knot Nematode
+Carrots,Flowering,8 weeks,56 days,Alternaria Leaf Blight;Root Knot Nematode
+Carrots,Fruiting,10 weeks,70 days,Alternaria Leaf Blight;Root Knot Nematode
+Onions,Seedling,3 weeks,21 days,Downy Mildew;Fusarium Basal Rot;Neck Rot
+Onions,Vegetative,5 weeks,35 days,Downy Mildew;Fusarium Basal Rot
+Onions,Budding,7 weeks,49 days,Fusarium Basal Rot;Neck Rot
+Onions,Flowering,9 weeks,63 days,Downy Mildew;Fusarium Basal Rot
+Onions,Fruiting,11 weeks,77 days,Downy Mildew;Neck Rot
+Beans,Seedling,2 weeks,14 days,Anthracnose;Bacterial Blight
+Beans,Vegetative,4 weeks,28 days,Anthracnose;Bacterial Blight
+Beans,Budding,6 weeks,42 days,Bacterial Blight
+Beans,Flowering,8 weeks,56 days,Anthracnose;Bacterial Blight
+Beans,Fruiting,10 weeks,70 days,Anthracnose;Bacterial Blight
+

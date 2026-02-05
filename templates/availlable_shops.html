@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="color: var(--primary-maroon);">Available Agrovets</h2>
+<p>List of trusted agricultural supply shops.</p>
+
+<div class="card">
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: var(--primary-green); color: white;">
+                <th style="padding: 10px; text-align: left;">Name</th>
+                <th style="padding: 10px; text-align: left;">Region</th>
+                <th style="padding: 10px; text-align: left;">Phone</th>
+                <th style="padding: 10px; text-align: left;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px;">Kedel Agrovet</td>
+                <td style="padding: 10px;">Kakamega</td>
+                <td style="padding: 10px;">0707605751</td>
+                <td style="padding: 10px;">
+                    <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 0.8rem;">Get Directions</a>
+                </td>
+            </tr>
+            </tbody>
+    </table>
+</div>
+{% endblock %}

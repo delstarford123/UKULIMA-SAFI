@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Outdoor Farming - UKULIMA SAFI AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto;">
+
+    <div style="display: flex; border-bottom: 2px solid #ddd; margin-bottom: 30px;">
+        <a href="/indoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: #eee; color: #555; border-radius: 10px 10px 0 0; text-decoration: none;">
+            Indoor / Greenhouse
+        </a>
+        <a href="/outdoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: var(--primary-maroon); color: white; text-decoration: none; border-radius: 10px 10px 0 0;">
+            Outdoor / Field
+        </a>
+    </div>
+
+    <div class="card" style="border-top-color: var(--primary-maroon);">
+        <h2 style="color: var(--primary-maroon);">Field & Open Air Farming Guide</h2>
+        <p>Strategies for traditional farming, dealing with weather patterns, and soil management.</p>
+    </div>
+
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        
+        <div class="card" style="flex: 1; min-width: 280px;">
+            <h3 style="color: var(--primary-green);">Soil Management</h3>
+            <ul style="padding-left: 20px; line-height: 1.6;">
+                <li><strong>Crop Rotation:</strong> Never plant the same crop family twice in a row to prevent soil nutrient depletion.</li>
+                <li><strong>Testing:</strong> Test soil pH annually. Add lime if too acidic (pH < 6.0).</li>
+                <li><strong>Mulching:</strong> Cover soil with organic dry matter to retain moisture during drought.</li>
+            </ul>
+        </div>
+
+        <div class="card" style="flex: 1; min-width: 280px;">
+            <h3 style="color: var(--primary-green);">Weather Defense</h3>
+            <ul style="padding-left: 20px; line-height: 1.6;">
+                <li><strong>Heavy Rain:</strong> Dig trenches/furrows to direct excess water away from roots.</li>
+                <li><strong>Drought:</strong> Water deeply in the evening to minimize evaporation.</li>
+                <li><strong>Wind:</strong> Plant tree borders or taller crops (like Maize) as windbreaks for vegetables.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+        <h3 style="color: var(--primary-maroon);">Seasonal Planting Guide (Kenya Region)</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead style="background: var(--light-gray);">
+                <tr>
+                    <th style="padding: 10px; text-align: left;">Season</th>
+                    <th style="padding: 10px; text-align: left;">Months</th>
+                    <th style="padding: 10px; text-align: left;">Recommended Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; font-weight: bold;">Long Rains</td>
+                    <td style="padding: 10px;">March - May</td>
+                    <td style="padding: 10px;">Plant main crops (Maize, Beans) early. Watch for blight.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; font-weight: bold;">Short Rains</td>
+                    <td style="padding: 10px;">Oct - Dec</td>
+                    <td style="padding: 10px;">Plant fast-maturing crops (Beans, Veggies).</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; font-weight: bold;">Dry Season</td>
+                    <td style="padding: 10px;">Jan - Feb</td>
+                    <td style="padding: 10px;">Prepare land. Solarize soil (kill pests with heat). Irrigate if possible.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/dashboard" class="btn-primary">Check Field Crop Health</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+# --- AI & Data Science ---
+tensorflow
+numpy
+pandas
+scikit-learn
+pillow
+
+# --- Web Framework & API ---
+flask
+requests
+
+# --- Utilities & Environment ---
+python-dotenv

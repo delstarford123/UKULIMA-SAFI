@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gps_guide.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="card gps-action-card">
+    <button onclick="getLocation()" class="btn-primary">Get My Current Location</button>
+    <div id="status">Waiting for GPS...</div>
+</div>
+<script src="{{ url_for('static', filename='js/gps_guide.js') }}"></script>
+{% endblock %}
