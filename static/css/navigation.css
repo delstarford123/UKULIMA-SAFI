@@ -1,82 +1,137 @@
-/* Navigation Bar Container */
+/* --- VARIABLES (Ensuring Consistency) --- */
+:root {
+    --nav-bg: #800000;       /* Primary Maroon */
+    --nav-text: #ffffff;     /* White */
+    --nav-hover: #2E8B57;    /* Green Accent */
+    --mobile-bg: #600000;    /* Slightly darker maroon for mobile dropdown */
+}
+
+/* --- NAVBAR CONTAINER --- */
 .navbar {
-    background-color: var(--primary-maroon, #800000); /* Fallback to maroon if var not set */
-    padding: 1rem 2rem;
+    background-color: var(--nav-bg);
+    padding: 0 2rem;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: relative; /* Needed for absolute positioning of mobile menu */
+    position: sticky; /* Keeps nav at top when scrolling */
+    top: 0;
     z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Brand Logo */
+/* --- BRAND LOGO --- */
 .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--nav-text);
     text-decoration: none;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
 }
 
 .navbar-brand span {
-    color: #4CAF50; /* Green accent */
+    color: #4CAF50; /* Bright Green for 'SAFI' */
     margin-left: 5px;
 }
 
-/* Navigation Links (Desktop) */
+/* --- NAVIGATION LINKS (DESKTOP) --- */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
     margin: 0;
     padding: 0;
+    gap: 25px;
 }
 
 .nav-links li {
-    padding: 0;
+    position: relative;
 }
 
 .nav-links a {
-    color: #ffffff;
+    color: var(--nav-text);
     text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
     font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
+/* Hover Effect: Green background + Scale */
 .nav-links a:hover {
-    color: #90EE90; /* Light green on hover */
+    background-color: var(--nav-hover);
+    transform: translateY(-2px); 
 }
 
-/* Hamburger Menu Icon (Hidden on Desktop) */
+/* --- HAMBURGER MENU (MOBILE TOGGLE) --- */
 .menu-toggle {
-    display: none;
+    display: none; /* Hidden on desktop */
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
 }
 
-.menu-toggle .bar {
-    width: 25px;
+.bar {
+    width: 28px;
     height: 3px;
-    background-color: #ffffff;
+    background-color: var(--nav-text);
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    /* Show Hamburger Icon */
-    .menu-toggle {
-        display: flex;
-        position: absolute;
-        top: 1.2rem;
-        right: 2rem;
+    .navbar {
+        padding: 0 1.5rem;
     }
 
-    /* Animate Hamburger to X when active */
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: flex; 
+    }
+
+    /* Hide links by default, position them absolutely */
+    .nav-links {
+        position: absolute;
+        top: 70px; /* Height of navbar */
+        left: 0;
+        width: 100%;
+        background-color: var(--mobile-bg);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        overflow: hidden;
+        max-height: 0; /* Collapsed state */
+        transition: max-height 0.4s ease-in-out; /* Smooth slide effect */
+    }
+
+    /* When class 'active' is added via JS, show menu */
+    .nav-links.active {
+        max-height: 400px; /* Expand enough to show all links */
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 20px;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links a:hover {
+        background-color: var(--nav-hover);
+        transform: none; /* Disable shift on mobile */
+    }
+
+    /* Hamburger Animation (Turn to 'X') */
     .menu-toggle.is-active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -85,40 +140,5 @@
     }
     .menu-toggle.is-active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* Hide Nav Links by default on Mobile */
-    .nav-links {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 100%; /* Directly below the navbar */
-        left: 0;
-        background-color: var(--primary-maroon, #800000);
-        text-align: center;
-        padding: 0;
-        max-height: 0; /* Hidden state */
-        overflow: hidden;
-        transition: max-height 0.3s ease-in-out;
-    }
-
-    .nav-links.active {
-        max-height: 300px; /* Expand to show links */
-    }
-
-    .nav-links li {
-        width: 100%;
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 1.5rem;
-        width: 100%;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-links a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
     }
 }
