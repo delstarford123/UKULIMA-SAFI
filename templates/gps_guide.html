@@ -28,13 +28,12 @@
     .hero-section {
         background: linear-gradient(135deg, var(--primary-maroon), #5c0000);
         color: white;
-        padding: 40px 20px;
+        padding: 50px 20px 80px; /* Extra bottom padding for overlap */
         border-radius: 0 0 30px 30px;
         text-align: center;
-        margin-bottom: -40px; /* Overlap effect */
         box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2);
     }
-    .hero-section h2 { margin: 0; font-size: 2.2rem; }
+    .hero-section h2 { margin: 0; font-size: 2.2rem; font-weight: 700; }
     .hero-section p { opacity: 0.9; margin-top: 10px; font-size: 1.1rem; }
 
     /* GPS Card Floating Effect */
@@ -42,12 +41,13 @@
         background: white;
         border: none;
         border-radius: var(--radius-std);
-        padding: 25px;
-        margin: 0 auto 30px;
+        padding: 30px;
+        margin: -50px auto 30px; /* Negative margin pulls it up */
         max-width: 600px;
         box-shadow: var(--shadow-hover);
         position: relative;
         z-index: 10;
+        text-align: center;
     }
 
     .manual-input-group {
@@ -90,10 +90,17 @@
     }
     .search-input {
         width: 100%;
-        padding: 10px 15px 10px 40px; /* Space for icon */
+        padding: 12px 15px 12px 40px; /* Space for icon */
         border: 1px solid #ddd;
-        border-radius: 25px;
+        border-radius: 30px;
         font-size: 0.95rem;
+        background-color: #f9f9f9;
+        transition: 0.3s;
+    }
+    .search-input:focus {
+        background-color: #fff;
+        border-color: var(--primary-green);
+        outline: none;
     }
     .search-icon {
         position: absolute;
@@ -109,7 +116,7 @@
     }
     
     .filter-btn {
-        padding: 8px 20px;
+        padding: 10px 20px;
         border: none;
         background: #f0f0f0;
         color: #555;
@@ -119,6 +126,7 @@
         cursor: pointer;
         transition: all 0.2s;
     }
+    .filter-btn:hover { background: #e0e0e0; }
     .filter-btn.active {
         background: var(--primary-green);
         color: white;
@@ -146,18 +154,12 @@
         align-items: center;
         transition: background 0.2s;
     }
-    .region-header:hover {
-        background: #f9f9f9;
-    }
-    .region-header.active .arrow-icon {
-        transform: rotate(180deg);
-    }
-    .arrow-icon { transition: transform 0.3s ease; }
+    .region-header:hover { background: #fcfcfc; }
     
     .region-title {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         font-weight: 700;
-        color: #333;
+        color: #2c3e50;
     }
 
     .region-content {
@@ -170,6 +172,9 @@
     }
     @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     
+    .arrow-icon { transition: transform 0.3s ease; }
+    .region-header.active .arrow-icon { transform: rotate(180deg); }
+
     .resource-item {
         padding: 20px 25px;
         border-bottom: 1px solid #f5f5f5;
@@ -180,14 +185,12 @@
         gap: 15px;
         transition: background 0.2s;
     }
-    .resource-item:hover {
-        background: #fafafa;
-    }
+    .resource-item:hover { background: #fafafa; }
     
     .resource-info h4 {
-        color: #2c3e50;
+        color: #333;
         margin: 0 0 6px 0;
-        font-size: 1.05rem;
+        font-size: 1.1rem;
     }
     
     .resource-meta {
@@ -197,8 +200,11 @@
         color: #666;
         align-items: center;
     }
-    
-    .resource-meta i { margin-right: 5px; }
+    .resource-meta a {
+        color: #555; text-decoration: none;
+        display: flex; align-items: center; gap: 5px;
+    }
+    .resource-meta a:hover { color: var(--primary-green); text-decoration: underline; }
 
     .nav-btn {
         padding: 10px 20px;
@@ -210,6 +216,9 @@
         color: var(--primary-green);
         transition: all 0.2s;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
     .nav-btn:hover {
         background: var(--primary-green);
@@ -223,16 +232,23 @@
         display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
     }
     .modal-content {
-        background-color: #fefefe; margin: 15% auto; padding: 25px; border: 1px solid #888; width: 90%; max-width: 400px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: zoomIn 0.3s; border: none;
+        background-color: #fefefe; margin: 15% auto; padding: 30px; border: none; width: 90%; max-width: 450px; border-radius: 20px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.25); animation: zoomIn 0.3s;
     }
-    @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+    @keyframes zoomIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
     
-    .mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
-    .mode-btn { border: 2px solid #f0f0f0; background: white; border-radius: 10px; padding: 15px 5px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; color: #333; }
-    .mode-btn:hover { border-color: var(--primary-maroon); background: #fff5f5; color: var(--primary-maroon); }
-    .mode-icon { font-size: 1.5rem; }
-    .mode-label { font-size: 0.8rem; font-weight: bold; }
-    .cancel-btn { background: transparent; border: none; color: #666; text-decoration: underline; cursor: pointer; margin-top: 10px; }
+    .mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 25px 0; }
+    
+    .mode-btn { 
+        border: 2px solid #f0f0f0; background: white; border-radius: 12px; padding: 20px 10px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #333; 
+    }
+    .mode-btn:hover { 
+        border-color: var(--primary-maroon); background: #fffbfb; color: var(--primary-maroon); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .mode-icon { font-size: 2rem; }
+    .mode-label { font-size: 0.9rem; font-weight: 700; }
+    
+    .cancel-btn { background: #f0f0f0; border: none; color: #666; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+    .cancel-btn:hover { background: #e0e0e0; color: #333; }
 
 </style>
 {% endblock %}
@@ -248,16 +264,17 @@
 
     <!-- 2. GPS CONTROL CARD (Floating) -->
     <div class="card gps-action-card">
-        <h3 style="color: var(--primary-maroon); margin-bottom: 15px;">Set Your Location</h3>
+        <h3 style="color: var(--primary-maroon); margin-bottom: 15px;">📍 Set Your Location</h3>
+        <p style="color:#666; font-size:0.95rem; margin-bottom: 20px;">We use your position to guide you to the nearest help.</p>
         
         <div style="display: flex; flex-direction: column; gap: 15px;">
-            <button onclick="getLocation()" class="btn-primary" id="gpsBtn" style="width: 100%; padding: 12px; border-radius: 8px;">
-                 Use Live GPS
+            <button onclick="getLocation()" class="btn-primary" id="gpsBtn" style="width: 100%; padding: 14px; border-radius: 8px; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <span>📡</span> Use Live GPS
             </button>
             
             <div style="position: relative; text-align: center;">
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <span style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: white; padding: 0 10px; color: #999; font-size: 0.8rem; font-weight: bold;">OR ENTER MANUALLY</span>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 10px; color: #999; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px;">OR ENTER MANUALLY</span>
             </div>
 
             <div class="manual-input-group">
@@ -283,8 +300,8 @@
         </div>
         
         <div class="search-box">
-            <span class="search-icon"></span>
-            <input type="text" id="resourceSearch" class="search-input" placeholder="Search by name or region..." onkeyup="filterSearch()">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="resourceSearch" class="search-input" placeholder="Search name or region..." onkeyup="filterSearch()">
         </div>
     </div>
 
@@ -294,8 +311,8 @@
         
         <!-- AGROVETS -->
         <div class="type-group agrovet-group">
-            <div style="margin-bottom: 10px; font-weight: bold; color: var(--primary-green); display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 1.2rem;"></span> Certified Agrovets
+            <div style="margin-bottom: 15px; font-weight: bold; color: var(--primary-green); display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
+                <span>🏪</span> Certified Agrovets
             </div>
             
             {% for region, items in grouped_shops %}
@@ -310,15 +327,15 @@
                         <div class="resource-info">
                             <h4>{{ shop.agrovet }}</h4>
                             <div class="resource-meta">
-                                <a href="tel:{{ shop.phone }}" style="color:inherit; text-decoration:none;"> {{ shop.phone }}</a>
+                                <a href="tel:{{ shop.phone }}">📞 {{ shop.phone }}</a>
                                 {% if shop.email %}
-                                    <span style="color:#ccc;">|</span>
-                                    <a href="mailto:{{ shop.email }}" style="color:inherit; text-decoration:none;">Email</a>
+                                    <span style="color:#ddd;">|</span>
+                                    <a href="mailto:{{ shop.email }}">📧 Email</a>
                                 {% endif %}
                             </div>
                         </div>
                         <button onclick="openNavigationModal('{{ shop.location or shop.agrovet + ', ' + shop.region }}')" class="nav-btn">
-                            Navigate
+                           🚀 Navigate
                         </button>
                     </div>
                     {% endfor %}
@@ -328,14 +345,14 @@
         </div>
 
         <!-- AGRONOMISTS -->
-        <div class="type-group agronomist-group" style="margin-top: 40px;">
-            <div style="margin-bottom: 10px; font-weight: bold; color: var(--primary-maroon); display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 1.2rem;"></span> Expert Agronomists
+        <div class="type-group agronomist-group" style="margin-top: 50px;">
+            <div style="margin-bottom: 15px; font-weight: bold; color: var(--primary-maroon); display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
+                <span>👨‍🔬</span> Expert Agronomists
             </div>
 
             {% set grouped_vets = agronomists|groupby('region') %}
             {% for region, items in grouped_vets %}
-            <div class="region-section searchable-section" data-region="{{ region }}" style="border-left-color: var(--primary-green);">
+            <div class="region-section searchable-section" data-region="{{ region }}" style="border-left: 6px solid var(--primary-maroon);">
                 <div class="region-header" onclick="toggleRegion(this)">
                     <span class="region-title">{{ region }}</span>
                     <span class="arrow-icon">▼</span>
@@ -346,15 +363,15 @@
                         <div class="resource-info">
                             <h4>{{ doc.agronomist }}</h4>
                             <div class="resource-meta">
-                                <a href="tel:{{ doc.phone }}" style="color:inherit; text-decoration:none;"> {{ doc.phone }}</a>
+                                <a href="tel:{{ doc.phone }}">📞 {{ doc.phone }}</a>
                                 {% if doc.email %}
-                                    <span style="color:#ccc;">|</span>
-                                    <a href="mailto:{{ doc.email }}" style="color:inherit; text-decoration:none;"> Email</a>
+                                    <span style="color:#ddd;">|</span>
+                                    <a href="mailto:{{ doc.email }}">📧 Email</a>
                                 {% endif %}
                             </div>
                         </div>
                         <button onclick="openNavigationModal('{{ doc.location or doc.agronomist + ', ' + doc.region }}')" class="nav-btn">
-                           Navigate
+                           🚀 Navigate
                         </button>
                     </div>
                     {% endfor %}
@@ -368,23 +385,23 @@
 <!-- NAVIGATION MODAL -->
 <div id="navModal" class="modal">
     <div class="modal-content">
-        <h3 style="margin-bottom: 5px;">Start Navigation</h3>
-        <p style="color:#666; font-size: 0.9rem; margin-bottom: 20px;">
-            To: <b id="modalDestName" style="color: var(--primary-maroon);">Destination</b>
+        <h3 style="margin-bottom: 5px; color: var(--primary-maroon);">Start Navigation</h3>
+        <p style="color:#666; font-size: 0.95rem; margin-bottom: 25px;">
+            Destination: <b id="modalDestName" style="color: var(--primary-green);">...</b>
         </p>
         
         <div class="mode-grid">
             <button class="mode-btn" onclick="startNavigation('driving')">
                 <span class="mode-icon">🚗</span>
-                <span class="mode-label">Driving</span>
+                <span class="mode-label">Drive</span>
             </button>
             <button class="mode-btn" onclick="startNavigation('bicycling')">
                 <span class="mode-icon">🚲</span>
-                <span class="mode-label">Cycling</span>
+                <span class="mode-label">Cycle</span>
             </button>
             <button class="mode-btn" onclick="startNavigation('walking')">
                 <span class="mode-icon">🚶</span>
-                <span class="mode-label">Walking</span>
+                <span class="mode-label">Walk</span>
             </button>
         </div>
 
@@ -431,7 +448,7 @@
         const items = document.getElementsByClassName('searchable-item');
         const sections = document.getElementsByClassName('searchable-section');
 
-        // Filter individual items
+        // 1. Check Items
         for (let i = 0; i < items.length; i++) {
             let text = items[i].getAttribute('data-search').toLowerCase();
             if (text.includes(filter)) {
@@ -441,13 +458,12 @@
             }
         }
 
-        // Hide empty sections (regions with no matching items)
+        // 2. Hide Empty Sections
         for (let i = 0; i < sections.length; i++) {
             let visibleItems = sections[i].querySelectorAll('.searchable-item:not([style*="display: none"])');
             if (visibleItems.length > 0) {
                 sections[i].style.display = "";
-                // Auto-expand if searching
-                if (filter.length > 0) {
+                if (filter.length > 0) { // Auto-expand on search
                     sections[i].querySelector('.region-content').classList.add('active');
                     sections[i].querySelector('.region-header').classList.add('active');
                 }
@@ -457,7 +473,7 @@
         }
     }
     
-    // Auto-open first section on load
+    // Auto-open first section on load for better UX
     document.addEventListener("DOMContentLoaded", function() {
         const firstRegion = document.querySelector('.region-content');
         if(firstRegion) {
