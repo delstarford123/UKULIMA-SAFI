@@ -90,11 +90,11 @@ def outdoor():
 
 @app.route('/shops')
 def shops():
-    return render_template('available_shops.html')
+    return render_template('availlable_shops.html')
 
 @app.route('/vets')
 def vets():
-    return render_template('available_vets.html')
+    return render_template('availlable_vets.html')
 
 
 # --- API ROUTES (The Logic) ---
