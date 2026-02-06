@@ -21,7 +21,7 @@ function getLocation(auto = false) {
     // If auto-load and we already have data, don't show "Connecting..." text
     if (auto && sessionStorage.getItem('userLat')) return;
 
-    statusDiv.innerHTML = "📡 Connecting to Satellites...";
+    statusDiv.innerHTML = "Connecting to Satellites...";
     statusDiv.style.color = "var(--primary-maroon)";
     statusDiv.className = "status-searching";
     gpsBtn.disabled = true;
@@ -52,11 +52,11 @@ function updateLocationData(position) {
     const gpsBtn = document.getElementById('gpsBtn');
 
     if (statusDiv && gpsBtn) {
-        statusDiv.innerHTML = `✅ <strong>GPS Locked:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+        statusDiv.innerHTML = ` <strong>GPS Locked:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
         statusDiv.style.color = "var(--primary-green)";
         statusDiv.className = "status-success";
         gpsBtn.disabled = false;
-        gpsBtn.innerText = "📍 Update Location";
+        gpsBtn.innerText = "Update Location";
         
         // Clear manual input to avoid confusion
         const manualInput = document.getElementById('manualLocation');
@@ -68,11 +68,11 @@ function showError(error) {
     const statusDiv = document.getElementById('status');
     const gpsBtn = document.getElementById('gpsBtn');
     
-    let msg = "⚠️ GPS Error: " + error.message;
+    let msg = " GPS Error: " + error.message;
     if (error.code === error.PERMISSION_DENIED) {
-        msg = "🚫 GPS Denied. Please allow location access.";
+        msg = " GPS Denied. Please allow location access.";
     } else if (error.code === error.TIMEOUT) {
-        msg = "⏱️ GPS Timeout. Try moving outside.";
+        msg = " GPS Timeout. Try moving outside.";
     }
 
     if (statusDiv) statusDiv.innerHTML = msg;
@@ -106,7 +106,7 @@ async function openNavigationModal(destName, destRegion) {
 
     // 1. Check if we have an Origin (GPS or Manual)
     if ((!userLat || !userLon) && !manualLoc) {
-        alert("📍 Please enable GPS or enter your town first!");
+        alert("Please enable GPS or enter your town first!");
         document.querySelector('.gps-action-card').scrollIntoView({behavior: 'smooth'});
         return;
     }

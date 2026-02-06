@@ -361,13 +361,13 @@
 
     <div class="card gps-action-card">
         <div class="card-badge">LIVE</div>
-        <h3 style="color: var(--primary-maroon); margin-bottom: 5px;">📍 Smart Locator</h3>
+        <h3 style="color: var(--primary-maroon); margin-bottom: 5px;">Smart Locator</h3>
         <p style="color:#666; font-size:0.85rem; margin-bottom: 20px;">Finding the nearest Agrovets for you...</p>
         
         <div style="display: flex; flex-direction: column; gap: 12px;">
             <button onclick="getLocation()" class="btn-primary" id="gpsBtn" 
                     style="width: 100%; padding: 15px; border-radius: 12px; font-weight: bold; background: var(--primary-green); border: none; color: white; cursor: pointer;">
-                📡 Get My Live Position
+                 Get My Live Position
             </button>
             
             <div class="separator">
@@ -392,7 +392,7 @@
         </div>
         
         <div class="search-box">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"></span>
             <input type="text" id="resourceSearch" class="search-input" placeholder="Search name or region..." onkeyup="filterSearch()">
         </div>
     </div>
@@ -402,7 +402,7 @@
         
         <div class="type-group agrovet-group">
             <div style="margin-bottom: 15px; font-weight: bold; color: var(--primary-green); display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
-                <span>🏪</span> Certified Agrovets
+                <span></span> Certified Agrovets
             </div>
             
             {% for region, items in grouped_shops %}
@@ -417,15 +417,15 @@
                         <div class="resource-info">
                             <h4>{{ shop.agrovet }}</h4>
                             <div class="resource-meta">
-                                <a href="tel:{{ shop.phone }}">📞 {{ shop.phone }}</a>
+                                <a href="tel:{{ shop.phone }}"> {{ shop.phone }}</a>
                                 {% if shop.email %}
                                     <span style="color:#ddd;">|</span>
-                                    <a href="mailto:{{ shop.email }}">📧 Email</a>
+                                    <a href="mailto:{{ shop.email }}"> Email</a>
                                 {% endif %}
                             </div>
                         </div>
                         <button onclick="openNavigationModal('{{ shop.agrovet }}', '{{ shop.region }}')" class="nav-btn">
-                            🚀 Navigate
+                            Navigate
                         </button>
                     </div>
                     {% endfor %}
@@ -436,7 +436,7 @@
 
         <div class="type-group agronomist-group" style="margin-top: 50px;">
             <div style="margin-bottom: 15px; font-weight: bold; color: var(--primary-maroon); display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
-                <span>👨‍🔬</span> Expert Agronomists
+                <span></span> Expert Agronomists
             </div>
 
             {% set grouped_vets = agronomists|groupby('region') %}
@@ -452,15 +452,15 @@
                         <div class="resource-info">
                             <h4>{{ doc.agronomist }}</h4>
                             <div class="resource-meta">
-                                <a href="tel:{{ doc.phone }}">📞 {{ doc.phone }}</a>
+                                <a href="tel:{{ doc.phone }}">{{ doc.phone }}</a>
                                 {% if doc.email %}
                                     <span style="color:#ddd;">|</span>
-                                    <a href="mailto:{{ doc.email }}">📧 Email</a>
+                                    <a href="mailto:{{ doc.email }}">Email</a>
                                 {% endif %}
                             </div>
                         </div>
                          <button onclick="openNavigationModal('{{ doc.agronomist }}', '{{ doc.region }}')" class="nav-btn">
-                            🚀 Navigate
+                            Navigate
                         </button>
                     </div>
                     {% endfor %}
@@ -486,7 +486,7 @@
 
         <div class="routing-btn-group">
             <button class="mode-btn" onclick="openExternalGoogleMaps('driving')">
-                <span class="mode-icon">🗺️</span>
+                <span class="mode-icon"></span>
                 <span class="mode-label">Start Driving (Google Maps)</span>
             </button>
             <button class="cancel-btn" onclick="closeModal()">Close</button>
