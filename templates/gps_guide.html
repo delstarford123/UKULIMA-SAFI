@@ -4,9 +4,12 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/gps_guide.css') }}">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
 <style>
     /* --- PROFESSIONAL UI REFINEMENTS --- */
-    
     :root {
         --glass-bg: rgba(255, 255, 255, 0.95);
         --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
@@ -15,7 +18,7 @@
     }
 
     body {
-        background-color: #f8f9fa; /* Softer background */
+        background-color: #f8f9fa;
     }
 
     .container-custom {
@@ -28,7 +31,7 @@
     .hero-section {
         background: linear-gradient(135deg, var(--primary-maroon), #5c0000);
         color: white;
-        padding: 50px 20px 80px; /* Extra bottom padding for overlap */
+        padding: 50px 20px 80px;
         border-radius: 0 0 30px 30px;
         text-align: center;
         box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2);
@@ -42,12 +45,25 @@
         border: none;
         border-radius: var(--radius-std);
         padding: 30px;
-        margin: -50px auto 30px; /* Negative margin pulls it up */
+        margin: -50px auto 30px;
         max-width: 600px;
         box-shadow: var(--shadow-hover);
         position: relative;
         z-index: 10;
         text-align: center;
+    }
+
+    .card-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #ffcccc;
+        color: var(--primary-maroon);
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
     }
 
     .manual-input-group {
@@ -90,7 +106,7 @@
     }
     .search-input {
         width: 100%;
-        padding: 12px 15px 12px 40px; /* Space for icon */
+        padding: 12px 15px 12px 40px;
         border: 1px solid #ddd;
         border-radius: 30px;
         font-size: 0.95rem;
@@ -227,34 +243,115 @@
         box-shadow: 0 4px 10px rgba(46, 139, 87, 0.2);
     }
 
-    /* Modal Tweaks */
+    /* MODAL STYLES (INTEGRATED MAP) */
     .modal {
-        display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+        display: none; 
+        position: fixed; 
+        z-index: 2000; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        height: 100%; 
+        overflow: hidden; /* Prevent body scroll when modal open */
+        background-color: rgba(0,0,0,0.5); 
+        backdrop-filter: blur(5px);
     }
+    
     .modal-content {
-        background-color: #fefefe; margin: 15% auto; padding: 30px; border: none; width: 90%; max-width: 450px; border-radius: 20px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.25); animation: zoomIn 0.3s;
+        background-color: #fefefe; 
+        margin: 5% auto; /* Adjusted for map height */
+        padding: 25px; 
+        border: none; 
+        width: 95%; 
+        max-width: 800px; /* Wider for map visibility */
+        border-radius: 20px; 
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25); 
+        animation: zoomIn 0.3s;
+        display: flex;
+        flex-direction: column;
     }
     @keyframes zoomIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
-    
-    .mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 25px 0; }
-    
+
+    /* Map Container */
+    #embeddedMap {
+        height: 400px; 
+        width: 100%;
+        border-radius: 12px;
+        margin: 15px 0;
+        border: 2px solid #eee;
+        z-index: 10;
+        background: #e0e0e0; /* Loading placeholder */
+    }
+
+    .routing-btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+
     .mode-btn { 
-        border: 2px solid #f0f0f0; background: white; border-radius: 12px; padding: 20px 10px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #333; 
+        border: 2px solid #f0f0f0; 
+        background: white; 
+        border-radius: 12px; 
+        padding: 12px 20px; 
+        cursor: pointer; 
+        transition: 0.2s; 
+        display: flex; 
+        align-items: center; 
+        gap: 8px; 
+        color: #333; 
+        font-weight: 700;
     }
     .mode-btn:hover { 
-        border-color: var(--primary-maroon); background: #fffbfb; color: var(--primary-maroon); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-color: var(--primary-maroon); 
+        background: #fffbfb; 
+        color: var(--primary-maroon); 
+        transform: translateY(-2px);
     }
-    .mode-icon { font-size: 2rem; }
-    .mode-label { font-size: 0.9rem; font-weight: 700; }
-    
-    .cancel-btn { background: #f0f0f0; border: none; color: #666; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.2s; }
-    .cancel-btn:hover { background: #e0e0e0; color: #333; }
 
+    .cancel-btn { 
+        background: #f0f0f0; 
+        border: none; 
+        color: #666; 
+        padding: 12px 25px; 
+        border-radius: 12px; 
+        font-weight: bold; 
+        cursor: pointer; 
+        transition: 0.2s; 
+    }
+    .cancel-btn:hover { background: #e0e0e0; color: #333; }
+    
+    .separator {
+        position: relative;
+        text-align: center;
+        margin: 15px 0;
+    }
+    .separator span {
+        background: white;
+        padding: 0 10px;
+        color: #999;
+        font-size: 0.75rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 2;
+    }
+    .separator::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #eee;
+        z-index: 1;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- 1. HERO SECTION -->
 <div class="hero-section">
     <h2>Resource Locator</h2>
     <p>Find trusted experts and shops in your vicinity.</p>
@@ -262,36 +359,31 @@
 
 <div class="container-custom">
 
-    <!-- 2. GPS CONTROL CARD (Floating) -->
     <div class="card gps-action-card">
-        <h3 style="color: var(--primary-maroon); margin-bottom: 15px;">📍 Set Your Location</h3>
-        <p style="color:#666; font-size:0.95rem; margin-bottom: 20px;">We use your position to guide you to the nearest help.</p>
+        <div class="card-badge">LIVE</div>
+        <h3 style="color: var(--primary-maroon); margin-bottom: 5px;">📍 Smart Locator</h3>
+        <p style="color:#666; font-size:0.85rem; margin-bottom: 20px;">Finding the nearest Agrovets for you...</p>
         
-        <div style="display: flex; flex-direction: column; gap: 15px;">
-            <button onclick="getLocation()" class="btn-primary" id="gpsBtn" style="width: 100%; padding: 14px; border-radius: 8px; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 10px;">
-                <span>📡</span> Use Live GPS
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button onclick="getLocation()" class="btn-primary" id="gpsBtn" 
+                    style="width: 100%; padding: 15px; border-radius: 12px; font-weight: bold; background: var(--primary-green); border: none; color: white; cursor: pointer;">
+                📡 Get My Live Position
             </button>
             
-            <div style="position: relative; text-align: center;">
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 10px; color: #999; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px;">OR ENTER MANUALLY</span>
+            <div class="separator">
+                <span>OR SEARCH AREA</span>
             </div>
 
             <div class="manual-input-group">
-                <input type="text" id="manualLocation" class="manual-input" placeholder="e.g. Eldoret Town, Kakamega">
+                <input type="text" id="manualLocation" class="manual-input" placeholder="Enter Town (e.g., Lurambi, Kakamega)">
             </div>
         </div>
         
-        <div id="status" style="margin-top:15px; font-weight:600; color:#555; font-size: 0.9rem;">
-            Location not set.
+        <div id="status" class="status-indicator" style="margin-top:15px; font-weight:600; color:#555; font-size: 0.9rem;">
+            Waiting for location...
         </div>
-        
-        <!-- Hidden inputs -->
-        <input type="hidden" id="currentLat">
-        <input type="hidden" id="currentLon">
     </div>
 
-    <!-- 3. CONTROLS BAR (Filter & Search) -->
     <div class="controls-bar">
         <div class="filter-container">
             <button onclick="filterType(this, 'all')" class="filter-btn active">All</button>
@@ -305,11 +397,9 @@
         </div>
     </div>
 
-    <!-- 4. LISTINGS -->
     <div id="listings">
         {% set grouped_shops = agrovets|groupby('region') %}
         
-        <!-- AGROVETS -->
         <div class="type-group agrovet-group">
             <div style="margin-bottom: 15px; font-weight: bold; color: var(--primary-green); display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
                 <span>🏪</span> Certified Agrovets
@@ -334,8 +424,8 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <button onclick="openNavigationModal('{{ shop.location or shop.agrovet + ', ' + shop.region }}')" class="nav-btn">
-                           🚀 Navigate
+                        <button onclick="openNavigationModal('{{ shop.agrovet }}', '{{ shop.region }}')" class="nav-btn">
+                            🚀 Navigate
                         </button>
                     </div>
                     {% endfor %}
@@ -344,7 +434,6 @@
             {% endfor %}
         </div>
 
-        <!-- AGRONOMISTS -->
         <div class="type-group agronomist-group" style="margin-top: 50px;">
             <div style="margin-bottom: 15px; font-weight: bold; color: var(--primary-maroon); display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
                 <span>👨‍🔬</span> Expert Agronomists
@@ -370,8 +459,8 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <button onclick="openNavigationModal('{{ doc.location or doc.agronomist + ', ' + doc.region }}')" class="nav-btn">
-                           🚀 Navigate
+                         <button onclick="openNavigationModal('{{ doc.agronomist }}', '{{ doc.region }}')" class="nav-btn">
+                            🚀 Navigate
                         </button>
                     </div>
                     {% endfor %}
@@ -382,39 +471,40 @@
     </div>
 </div>
 
-<!-- NAVIGATION MODAL -->
 <div id="navModal" class="modal">
     <div class="modal-content">
-        <h3 style="margin-bottom: 5px; color: var(--primary-maroon);">Start Navigation</h3>
-        <p style="color:#666; font-size: 0.95rem; margin-bottom: 25px;">
-            Destination: <b id="modalDestName" style="color: var(--primary-green);">...</b>
-        </p>
-        
-        <div class="mode-grid">
-            <button class="mode-btn" onclick="startNavigation('driving')">
-                <span class="mode-icon">🚗</span>
-                <span class="mode-label">Drive</span>
-            </button>
-            <button class="mode-btn" onclick="startNavigation('bicycling')">
-                <span class="mode-icon">🚲</span>
-                <span class="mode-label">Cycle</span>
-            </button>
-            <button class="mode-btn" onclick="startNavigation('walking')">
-                <span class="mode-icon">🚶</span>
-                <span class="mode-label">Walk</span>
-            </button>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h3 style="margin:0; color: var(--primary-maroon);">Route Preview</h3>
+            <button onclick="closeModal()" style="background:none; border:none; font-size:2rem; cursor:pointer; line-height:1;">&times;</button>
         </div>
+        
+        <p style="color:#666; font-size: 0.9rem; margin-bottom: 15px;">
+            From: <b id="originLabel">My Location</b> ➝ To: <b id="modalDestName" style="color: var(--primary-green);">...</b>
+        </p>
 
-        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+        <div id="embeddedMap"></div>
+
+        <div class="routing-btn-group">
+            <button class="mode-btn" onclick="openExternalGoogleMaps('driving')">
+                <span class="mode-icon">🗺️</span>
+                <span class="mode-label">Start Driving (Google Maps)</span>
+            </button>
+            <button class="cancel-btn" onclick="closeModal()">Close</button>
+        </div>
     </div>
 </div>
 
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
 <script src="{{ url_for('static', filename='js/gps_guide.js') }}"></script>
+
 <script>
-    // --- UI LOGIC ---
+    // --- UI INTERACTION LOGIC ---
 
     function toggleRegion(header) {
         const content = header.nextElementSibling;

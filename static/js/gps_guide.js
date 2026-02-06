@@ -1,24 +1,25 @@
 /**
- * UKULIMA SAFI AI - GPS Navigation Logic
- * Handles Geolocation, Coordinate storage, and Google Maps Navigation Modal.
- * Includes Manual Location fallback for Desktops.
+ * UKULIMA SAFI AI - GPS & Embedded Map Navigation
+ * Features: Auto-GPS, Leaflet Routing, and Smart Fallback for unknown locations.
  */
 
-// Global variable to store the selected destination temporarily for the modal
 let currentDestination = "";
+let currentRegion = ""; // Store region for fallback logic
+let mapInstance = null;
+let routingControl = null;
 
-// --- 1. GEOLOCATION FUNCTIONS ---
+// =========================================================
+// 1. GEOLOCATION FUNCTIONS
+// =========================================================
 
-function getLocation() {
+function getLocation(auto = false) {
     const statusDiv = document.getElementById('status');
     const gpsBtn = document.getElementById('gpsBtn');
     
-    // Guard clause in case function is called on a page without these elements
     if (!statusDiv || !gpsBtn) return;
 
-    // Clear previous sessions to force fresh data
-    sessionStorage.removeItem('userLat');
-    sessionStorage.removeItem('userLon');
+    // If auto-load and we already have data, don't show "Connecting..." text
+    if (auto && sessionStorage.getItem('userLat')) return;
 
     statusDiv.innerHTML = "📡 Connecting to Satellites...";
     statusDiv.style.color = "var(--primary-maroon)";
@@ -42,35 +43,24 @@ function updateLocationData(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     
-    const statusDiv = document.getElementById('status');
-    const gpsBtn = document.getElementById('gpsBtn');
-
-    // 1. Save for session (so other pages know where we are)
+    // 1. Save session data
     sessionStorage.setItem('userLat', lat);
     sessionStorage.setItem('userLon', lon);
     
-    // 2. Update hidden inputs if they exist (for Form submission on Dashboard)
-    if(document.getElementById('currentLat')) {
-        document.getElementById('currentLat').value = lat;
-        document.getElementById('currentLon').value = lon;
-    }
-    
-    if(document.getElementById('userLat')) {
-        document.getElementById('userLat').value = lat;
-        document.getElementById('userLon').value = lon;
-    }
+    // 2. Update UI
+    const statusDiv = document.getElementById('status');
+    const gpsBtn = document.getElementById('gpsBtn');
 
-    // 3. UI Feedback
     if (statusDiv && gpsBtn) {
         statusDiv.innerHTML = `✅ <strong>GPS Locked:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+        statusDiv.style.color = "var(--primary-green)";
         statusDiv.className = "status-success";
         gpsBtn.disabled = false;
         gpsBtn.innerText = "📍 Update Location";
         
         // Clear manual input to avoid confusion
-        if(document.getElementById('manualLocation')) {
-            document.getElementById('manualLocation').value = ""; 
-        }
+        const manualInput = document.getElementById('manualLocation');
+        if(manualInput) manualInput.value = ""; 
     }
 }
 
@@ -80,9 +70,9 @@ function showError(error) {
     
     let msg = "⚠️ GPS Error: " + error.message;
     if (error.code === error.PERMISSION_DENIED) {
-        msg = "🚫 GPS Denied. Please allow location access in your browser settings.";
+        msg = "🚫 GPS Denied. Please allow location access.";
     } else if (error.code === error.TIMEOUT) {
-        msg = "⏱️ GPS Timeout. Please try again outside.";
+        msg = "⏱️ GPS Timeout. Try moving outside.";
     }
 
     if (statusDiv) statusDiv.innerHTML = msg;
@@ -92,27 +82,161 @@ function showError(error) {
     }
 }
 
-// --- 2. MODAL & NAVIGATION LOGIC ---
+// =========================================================
+// 2. MODAL & EMBEDDED MAP LOGIC
+// =========================================================
 
-function openNavigationModal(destination) {
-    const lat = sessionStorage.getItem('userLat');
-    const manualInput = document.getElementById('manualLocation');
-    const manualLoc = manualInput ? manualInput.value : "";
+function initMap() {
+    // If map already exists, don't re-initialize
+    if (mapInstance) return;
 
-    // Check if we have EITHER GPS OR Manual Input
-    if (!lat && !manualLoc) {
-        alert("⚠️ Please Click 'Use My Live GPS' OR enter your location manually in the text box.");
-        const gpsCard = document.querySelector('.gps-action-card');
-        if (gpsCard) gpsCard.scrollIntoView({behavior: 'smooth'});
+    // Default center (Kenya)
+    mapInstance = L.map('embeddedMap').setView([0.2827, 34.7519], 13); // Centered on Kakamega
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(mapInstance);
+}
+
+// NOTE: Now accepts two arguments (Name AND Region)
+async function openNavigationModal(destName, destRegion) {
+    const userLat = sessionStorage.getItem('userLat');
+    const userLon = sessionStorage.getItem('userLon');
+    const manualLoc = document.getElementById('manualLocation')?.value;
+
+    // 1. Check if we have an Origin (GPS or Manual)
+    if ((!userLat || !userLon) && !manualLoc) {
+        alert("📍 Please enable GPS or enter your town first!");
+        document.querySelector('.gps-action-card').scrollIntoView({behavior: 'smooth'});
         return;
     }
 
-    currentDestination = destination;
-    const modalDest = document.getElementById('modalDestName');
-    if (modalDest) modalDest.innerText = destination;
-
+    currentDestination = destName;
+    currentRegion = destRegion; // Save for fallback
+    document.getElementById('modalDestName').innerText = destName;
+    
+    // Show Modal
     const modal = document.getElementById('navModal');
-    if (modal) modal.style.display = 'block';
+    modal.style.display = 'block';
+
+    // 2. Initialize Map (Must happen after modal is visible)
+    setTimeout(() => {
+        initMap();
+        mapInstance.invalidateSize(); // CRITICAL: Fixes grey map issue
+        calculateRoute(userLat, userLon, manualLoc, destName, destRegion);
+    }, 200);
+}
+
+async function calculateRoute(lat, lon, manualLoc, destName, destRegion) {
+    // A. Define Origin Waypoint
+    let originLatLng;
+
+    if (lat && lon) {
+        originLatLng = L.latLng(lat, lon);
+        document.getElementById('originLabel').innerText = "My GPS Location";
+    } else {
+        // Geocode manual origin
+        const coords = await getCoordsFromNominatim(manualLoc);
+        if (coords) {
+            originLatLng = L.latLng(coords.lat, coords.lon);
+            document.getElementById('originLabel').innerText = manualLoc;
+        } else {
+            alert("Could not find YOUR location. Please check spelling.");
+            return;
+        }
+    }
+
+    // B. Define Destination Waypoint (WITH FALLBACK)
+    let destLatLng;
+    
+    // Attempt 1: Search for specific "Shop Name, Region, Kenya"
+    let destCoords = await getCoordsFromNominatim(`${destName}, ${destRegion}, Kenya`);
+
+    if (!destCoords) {
+        console.warn("Exact shop not found, trying region fallback...");
+        
+        // Attempt 2: Fallback to just "Region, Kenya"
+        destCoords = await getCoordsFromNominatim(`${destRegion}, Kenya`);
+        
+        if (destCoords) {
+            // Update UI to be honest with the user
+            document.getElementById('modalDestName').innerText = `${destName} (Map showing route to ${destRegion} center)`;
+        }
+    }
+
+    // Attempt 3: If still nothing, give up and use external Google Maps
+    if (!destCoords) {
+        alert(`Could not locate ${destRegion} on the map. Opening Google Maps directly.`);
+        openExternalGoogleMaps('driving');
+        closeModal();
+        return;
+    }
+    
+    destLatLng = L.latLng(destCoords.lat, destCoords.lon);
+
+    // C. Draw Route using Leaflet Routing Machine
+    if (routingControl) {
+        mapInstance.removeControl(routingControl); // Remove old line
+    }
+
+    routingControl = L.Routing.control({
+        waypoints: [originLatLng, destLatLng],
+        routeWhileDragging: false,
+        showAlternatives: false,
+        fitSelectedRoutes: true, // Auto-zoom to fit route
+        lineOptions: {
+            styles: [{color: '#800000', opacity: 0.8, weight: 6}] // Maroon line
+        },
+        createMarker: function(i, wp, nWps) {
+            if (i === 0) return L.marker(wp.latLng).bindPopup("You");
+            if (i === nWps - 1) return L.marker(wp.latLng).bindPopup(destName);
+            return null;
+        },
+        show: false // Hide text instructions to save space
+    }).addTo(mapInstance);
+}
+
+// Helper: Fetch Coordinates using OpenStreetMap (Nominatim)
+async function getCoordsFromNominatim(query) {
+    try {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data && data.length > 0) {
+            return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+        }
+        return null;
+    } catch (e) {
+        console.error("Geocoding error:", e);
+        return null;
+    }
+}
+
+// =========================================================
+// 3. EXTERNAL HANDOFF (GOOGLE MAPS)
+// =========================================================
+
+function openExternalGoogleMaps(mode) {
+    const lat = sessionStorage.getItem('userLat');
+    const lon = sessionStorage.getItem('userLon');
+    const manualLoc = document.getElementById('manualLocation')?.value;
+    
+    let originParam = "";
+
+    // Determine Origin
+    if (manualLoc) {
+        originParam = `origin=${encodeURIComponent(manualLoc)}`;
+    } else if (lat && lon) {
+        originParam = `origin=${lat},${lon}`;
+    }
+
+    // Determine Destination (Name + Region is best for Google)
+    const fullDest = `${currentDestination}, ${currentRegion}`;
+    
+    // Standard Google Maps Universal URL
+    const url = `https://www.google.com/maps/dir/?api=1&${originParam}&destination=${encodeURIComponent(fullDest)}&travelmode=${mode}`;
+    
+    window.open(url, '_blank');
 }
 
 function closeModal() {
@@ -120,36 +244,7 @@ function closeModal() {
     if (modal) modal.style.display = 'none';
 }
 
-function startNavigation(mode) {
-    const lat = sessionStorage.getItem('userLat');
-    const lon = sessionStorage.getItem('userLon');
-    const manualInput = document.getElementById('manualLocation');
-    const manualLoc = manualInput ? manualInput.value.trim() : "";
-    
-    let originParam = "";
-
-    // PRIORITY: Use Manual Input if typed, otherwise use GPS
-    if (manualLoc) {
-        originParam = encodeURIComponent(manualLoc);
-    } else if (lat && lon) {
-        originParam = `${lat},${lon}`;
-    } else {
-        alert("Please enter a location or use GPS.");
-        return;
-    }
-
-    // Construct Google Maps URL with Origin, Destination, and Travel Mode
-    // mode options: 'driving', 'walking', 'bicycling'
-    const url = `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${encodeURIComponent(currentDestination)}&travelmode=${mode}`;
-    
-    // Open in new tab
-    window.open(url, '_blank');
-    
-    // Close modal
-    closeModal();
-}
-
-// Close modal if user clicks outside of the content box
+// Close modal if user clicks outside
 window.onclick = function(event) {
     const modal = document.getElementById('navModal');
     if (event.target == modal) {
@@ -157,20 +252,17 @@ window.onclick = function(event) {
     }
 }
 
-// --- 3. AUTO-LOAD ON START ---
+// =========================================================
+// 4. AUTO-LOAD ON START
+// =========================================================
 document.addEventListener("DOMContentLoaded", function() {
     const savedLat = sessionStorage.getItem('userLat');
-    const savedLon = sessionStorage.getItem('userLon');
     
-    // Only attempt to update if we have saved coords AND we are on the GPS page
-    if (savedLat && savedLon) {
-        // Mock a position object to reuse the update function
-        const mockPosition = { 
-            coords: { 
-                latitude: parseFloat(savedLat), 
-                longitude: parseFloat(savedLon) 
-            } 
-        };
-        updateLocationData(mockPosition);
+    // Only auto-trigger if we don't have location yet
+    if (savedLat) {
+        const statusDiv = document.getElementById('status');
+        if(statusDiv) statusDiv.innerHTML = "✅ GPS Ready (Saved)";
+    } else {
+        getLocation(true); // True = silent mode (no loading text if fails)
     }
 });
