@@ -2,77 +2,209 @@
 
 {% block title %}Indoor Farming - UKULIMA SAFI AI{% endblock %}
 
-{% block content %}
-<div style="max-width: 900px; margin: 0 auto;">
+{% block extra_css %}
+<style>
+    /* Mode Switcher Styling */
+    .mode-switcher { 
+        display: flex; 
+        margin-top: -30px; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        border-radius: 12px; 
+        overflow: hidden; 
+        position: relative; 
+        z-index: 10; 
+        background: white; 
+        max-width: 600px; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+    
+    .mode-tab { 
+        flex: 1; 
+        text-align: center; 
+        padding: 15px; 
+        font-weight: 700; 
+        text-decoration: none; 
+        transition: 0.3s; 
+        color: #555; 
+        background: #f8f9fa; 
+        border-bottom: 3px solid transparent; 
+    }
+    
+    .mode-tab.active { 
+        background: white; 
+        color: var(--primary-green); 
+        border-bottom: 3px solid var(--primary-green); 
+    }
+    
+    .mode-tab:hover { background: #eee; }
 
-    <div style="display: flex; border-bottom: 2px solid #ddd; margin-bottom: 30px;">
-        <a href="/indoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: var(--primary-green); color: white; border-radius: 10px 10px 0 0; text-decoration: none;">
-            🏠 Indoor / Greenhouse
-        </a>
-        <a href="/outdoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: #eee; color: #555; text-decoration: none; border-radius: 10px 10px 0 0;">
-            🌤️ Outdoor / Field
-        </a>
+    /* Hero Section */
+    .hero-bg { 
+        background: linear-gradient(135deg, var(--primary-green), #004d26); 
+        color: white; 
+        padding: 60px 20px 80px; 
+        text-align: center; 
+        border-radius: 0 0 30px 30px; 
+        margin-bottom: 20px; 
+    }
+
+    /* Parameter Cards Grid */
+    .param-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+        gap: 15px; 
+        margin-bottom: 30px; 
+    }
+    
+    .param-card { 
+        background: white; 
+        padding: 20px; 
+        border-radius: 10px; 
+        text-align: center; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+        border: 1px solid #eee; 
+        transition: 0.3s; 
+    }
+    
+    .param-card:hover { 
+        transform: translateY(-5px); 
+        border-color: var(--primary-green); 
+    }
+    
+    .param-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .param-val { font-size: 1.2rem; font-weight: bold; color: #333; }
+    .param-label { color: #666; font-size: 0.9rem; }
+
+    /* Checklist Styling */
+    .checklist-item { 
+        display: flex; 
+        align-items: center; 
+        gap: 10px; 
+        padding: 10px; 
+        border-bottom: 1px solid #f0f0f0; 
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    
+    .checklist-item:hover { background: #fdfdfd; }
+    
+    .check-box { 
+        width: 20px; 
+        height: 20px; 
+        border: 2px solid var(--primary-maroon); 
+        border-radius: 4px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    .check-box.checked { 
+        background: var(--primary-maroon); 
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero-bg">
+    <h1 style="margin:0;">Greenhouse Control</h1>
+    <p style="opacity:0.9;">Optimization for Hydroponics & Vertical Farms.</p>
+</div>
+
+<div class="container" style="max-width: 900px; margin: 0 auto; padding-bottom: 50px;">
+
+    <div class="mode-switcher">
+        <a href="/indoor" class="mode-tab active">Indoor / Greenhouse</a>
+        <a href="/outdoor" class="mode-tab">Outdoor / Field</a>
     </div>
 
-    <div class="card" style="border-top-color: var(--primary-green);">
-        <h2 style="color: var(--primary-green);">Greenhouse & Vertical Farming Guide</h2>
-        <p>Optimized strategies for controlled environments (Greenhouses, Hydroponics, and Indoor Systems).</p>
+    <br>
+
+    <h3 style="color: var(--primary-green); text-align: center;">🎯 Target Parameters</h3>
+    
+    
+    
+    <div class="param-grid">
+        <div class="param-card">
+            <span class="param-icon"></span>
+            <div class="param-val">21°C - 28°C</div>
+            <div class="param-label">Ideal Temp</div>
+        </div>
+        <div class="param-card">
+            <span class="param-icon"></span>
+            <div class="param-val">60% - 70%</div>
+            <div class="param-label">Rel. Humidity</div>
+        </div>
+        <div class="param-card">
+            <span class="param-icon"></span>
+            <div class="param-val">5.5 - 6.5</div>
+            <div class="param-label">Water pH</div>
+        </div>
+        <div class="param-card">
+            <span class="param-icon"></span>
+            <div class="param-val">12-16 hrs</div>
+            <div class="param-label">Light Cycle</div>
+        </div>
     </div>
 
     <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        
-        <div class="card" style="flex: 1; min-width: 280px;">
-            <h3 style="color: var(--primary-maroon);">🌡️ Climate Control</h3>
-            <ul style="padding-left: 20px; line-height: 1.6;">
-                <li><strong>Temperature:</strong> Maintain 21°C–29°C for most veg. Use shade nets if >30°C.</li>
-                <li><strong>Humidity:</strong> Keep at 60-70%. High humidity leads to mold; low leads to stress.</li>
-                <li><strong>Ventilation:</strong> Open side vents daily. Use circulating fans to strengthen stems.</li>
-            </ul>
+        <div class="card" style="flex: 1; min-width: 300px; border-top: 4px solid var(--primary-maroon); padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--primary-maroon); margin-top: 0;"> Daily Maintenance</h3>
+            
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span>Check ventilation fans</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span>Measure nutrient solution EC/pH</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span>Inspect underside of leaves (Pests)</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span>Clean irrigation filters</span>
+            </div>
         </div>
 
-        <div class="card" style="flex: 1; min-width: 280px;">
-            <h3 style="color: var(--primary-maroon);">💡 Lighting & Energy</h3>
-            <ul style="padding-left: 20px; line-height: 1.6;">
-                <li><strong>Grow Lights:</strong> Use full-spectrum LEDs for indoor vertical farms (12-16 hours/day).</li>
-                <li><strong>Greenhouses:</strong> Clean roof plastic regularly to maximize natural sunlight.</li>
-                <li><strong>Energy Saving:</strong> Use reflective mulch to bounce light back onto plants.</li>
-            </ul>
+        <div class="card" style="flex: 1; min-width: 300px; border-top: 4px solid var(--primary-green); padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--primary-green); margin-top: 0;">Indoor Risks</h3>
+            <p>Indoor crops are prone to specific issues due to humidity.</p>
+            <table style="width: 100%; font-size: 0.9rem; border-collapse: collapse;">
+                <tr style="background: #f9f9f9; border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px;"><strong>Powdery Mildew</strong></td>
+                    <td style="padding: 8px;">White dust on leaves. Improve airflow immediately.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px;"><strong>Root Rot</strong></td>
+                    <td style="padding: 8px;">Brown, slimy roots. Check water oxygenation.</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 8px;"><strong>Spider Mites</strong></td>
+                    <td style="padding: 8px;">Webbing on plants. Increase humidity slightly.</td>
+                </tr>
+            </table>
+            <br>
+            <a href="/dashboard" class="btn-primary" style="display: block; text-align: center; background: var(--primary-green); color: white; padding: 10px; text-decoration: none; border-radius: 5px;">📸 Scan Indoor Crop</a>
         </div>
-    </div>
-
-    <div class="card" style="margin-top: 20px;">
-        <h3 style="color: var(--primary-green);">🦠 Common Indoor Diseases</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-            <thead style="background: var(--light-gray);">
-                <tr>
-                    <th style="padding: 10px; text-align: left;">Disease</th>
-                    <th style="padding: 10px; text-align: left;">Cause</th>
-                    <th style="padding: 10px; text-align: left;">Solution</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 10px; font-weight: bold;">Powdery Mildew</td>
-                    <td style="padding: 10px;">High humidity, poor airflow</td>
-                    <td style="padding: 10px;">Increase fan speed, reduce humidity, apply sulfur fungicide.</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 10px; font-weight: bold;">Root Rot</td>
-                    <td style="padding: 10px;">Overwatering, stagnant water</td>
-                    <td style="padding: 10px;">Check drainage, oxygenate hydroponic water, use hydrogen peroxide.</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold;">Whiteflies</td>
-                    <td style="padding: 10px;">Warm, sheltered environment</td>
-                    <td style="padding: 10px;">Use yellow sticky traps, introduce ladybugs (predators).</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="/dashboard" class="btn-primary">Scan Your Indoor Crop Now</a>
     </div>
 
 </div>
+
+<script>
+    function toggleCheck(item) {
+        const box = item.querySelector('.check-box');
+        box.classList.toggle('checked');
+        if(box.classList.contains('checked')) {
+            box.innerText = '✓';
+        } else {
+            box.innerText = '';
+        }
+    }
+</script>
 {% endblock %}

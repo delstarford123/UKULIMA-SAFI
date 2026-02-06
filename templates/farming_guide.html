@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Farming Guide - UKULIMA SAFI AI{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* --- HERO HEADER --- */
+    .hero-bg {
+        background: linear-gradient(135deg, var(--primary-green), #004d26);
+        color: white;
+        padding: 60px 20px 90px; /* Extra bottom padding for overlap */
+        text-align: center;
+        border-radius: 0 0 30px 30px;
+        margin-bottom: 0;
+        position: relative;
+    }
+    
+    /* --- TAB SWITCHER (Floating) --- */
+    .mode-switcher-container {
+        max-width: 600px;
+        margin: -40px auto 30px;
+        position: relative;
+        z-index: 10;
+        padding: 0 20px;
+    }
+    .mode-switcher {
+        display: flex;
+        background: white;
+        border-radius: 50px;
+        padding: 5px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .mode-tab {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 12px;
+        border-radius: 40px;
+        font-weight: 700;
+        color: #666;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+    .mode-tab.active {
+        background: var(--primary-green);
+        color: white;
+        box-shadow: 0 4px 10px rgba(46, 139, 87, 0.3);
+    }
+    .mode-tab.active-outdoor {
+        background: var(--primary-maroon);
+        box-shadow: 0 4px 10px rgba(128, 0, 0, 0.3);
+    }
+
+    /* --- OUTDOOR WIDGETS --- */
+    .weather-widget {
+        background: linear-gradient(135deg, var(--primary-maroon), #5c0000);
+        color: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+    .weather-widget::after {
+        content: "🌤";
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        font-size: 10rem;
+        opacity: 0.1;
+    }
+    .weather-temp { font-size: 3.5rem; font-weight: 800; margin: 10px 0; line-height: 1; }
+    .weather-advice { background: rgba(255,255,255,0.15); padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #ffd700; font-size: 0.95rem; }
+
+    /* --- INDOOR WIDGETS --- */
+    .param-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-bottom: 30px; }
+    .param-card { background: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
+    .param-card:hover { transform: translateY(-5px); border-color: var(--primary-green); }
+    .param-icon { font-size: 2rem; display: block; margin-bottom: 5px; }
+    .param-val { font-size: 1.2rem; font-weight: 800; color: #333; }
+    .param-label { color: #777; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- SHARED STYLES --- */
+    .content-view { display: none; animation: fadeIn 0.4s ease-out; }
+    .content-view.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .checklist-item { display: flex; align-items: center; gap: 15px; padding: 12px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s; }
+    .checklist-item:hover { background: #f9f9f9; }
+    .check-box { width: 22px; height: 22px; border: 2px solid #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .checklist-item.checked .check-box { background: var(--primary-green); border-color: var(--primary-green); color: white; }
+    .checklist-item.checked span { text-decoration: line-through; color: #999; }
+
+    .action-cta {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px dashed #ddd;
+        margin-top: 40px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 1. HERO HEADER -->
+<div class="hero-bg" id="heroBanner">
+    <h1 style="margin:0;">Farming Operations</h1>
+    <p style="opacity:0.9;">Professional Guide for Field & Controlled Environments</p>
+</div>
+
+<!-- 2. FLOATING TAB SWITCHER -->
+<div class="mode-switcher-container">
+    <div class="mode-switcher">
+        <button class="mode-tab active" onclick="switchMode('indoor')">Indoor / Greenhouse</button>
+        <button class="mode-tab" onclick="switchMode('outdoor')">Outdoor / Field</button>
+    </div>
+</div>
+
+<div class="container" style="max-width: 900px; margin: 0 auto; padding-bottom: 60px;">
+
+    <!-- ==========================
+         VIEW 1: INDOOR FARMING
+         ========================== -->
+    <div id="indoor-view" class="content-view active">
+        
+        <!-- Parameter Dashboard -->
+        <h3 style="color: var(--primary-green); margin-bottom: 15px;">Optimal Parameters (Hydroponics/Greenhouse)</h3>
+        <div class="param-grid">
+            <div class="param-card">
+                <span class="param-icon"></span>
+                <div class="param-val">22°C - 28°C</div>
+                <div class="param-label">Temperature</div>
+            </div>
+            <div class="param-card">
+                <span class="param-icon"></span>
+                <div class="param-val">60% - 70%</div>
+                <div class="param-label">Humidity</div>
+            </div>
+            <div class="param-card">
+                <span class="param-icon"></span>
+                <div class="param-val">5.8 - 6.3</div>
+                <div class="param-label">pH Level</div>
+            </div>
+            <div class="param-card">
+                <span class="param-icon"></span>
+                <div class="param-val">14-16 hrs</div>
+                <div class="param-label">LED Light</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <!-- Daily Checklist -->
+            <div class="card" style="flex: 1; min-width: 300px; border-top: 4px solid var(--primary-green);">
+                <h3 style="color: var(--primary-green);">Daily Maintenance Log</h3>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>Inspect nutrient solution levels</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>Check ventilation fans for airflow</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>Scout under leaves for Whiteflies/Mites</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>Clean irrigation drippers/filters</span>
+                </div>
+            </div>
+
+            <!-- Indoor Risks -->
+            <div class="card" style="flex: 1; min-width: 300px;">
+                <h3 style="color: #333;">Common Indoor Risks</h3>
+                <ul style="padding-left: 20px; color: #555; line-height: 1.6;">
+                    <li><strong>Root Rot (Pythium):</strong> Caused by low oxygen in water. <em>Solution:</em> Add air stones or H2O2.</li>
+                    <li><strong>Tip Burn:</strong> Calcium deficiency due to rapid growth. <em>Solution:</em> Increase airflow over leaves.</li>
+                    <li><strong>Algae Growth:</strong> Light hitting nutrient water. <em>Solution:</em> Cover reservoirs with opaque material.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================
+         VIEW 2: OUTDOOR FARMING
+         ========================== -->
+    <div id="outdoor-view" class="content-view">
+        
+        <!-- Live Weather Widget -->
+        <div class="weather-widget">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <div>
+                    <h2 style="margin:0; font-size: 1.5rem;">Live Field Conditions</h2>
+                    <p style="opacity:0.8; margin: 5px 0;">Region: <span id="wRegion">Locating...</span></p>
+                </div>
+                <button onclick="getLiveWeather()" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 5px 15px; border-radius: 20px; cursor: pointer;">Refresh</button>
+            </div>
+            
+            <div id="weatherContent" style="display: none; margin-top: 15px;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="weather-temp"><span id="wTemp">--</span>°C</div>
+                    <div style="text-align: left;">
+                        <div style="font-size: 1.2rem; font-weight: bold;"><span id="wHum">--</span>% Humidity</div>
+                        <div style="opacity: 0.9; text-transform: capitalize;" id="wDesc">--</div>
+                    </div>
+                </div>
+                <div class="weather-advice" id="wAdvice">
+                    Analyzing satellite data...
+                </div>
+            </div>
+            <div id="weatherLoading" style="margin-top: 20px; opacity: 0.8;">Connecting to Weather Satellite...</div>
+        </div>
+
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <!-- Strategy -->
+            <div class="card" style="flex: 1; min-width: 300px; border-top: 4px solid var(--primary-maroon);">
+                <h3 style="color: var(--primary-maroon);">Field Strategy</h3>
+                <div style="margin-bottom: 15px;">
+                    <strong>1. Crop Rotation</strong><br>
+                    <span style="color:#666; font-size:0.9rem;">Prevent soil exhaustion. Follow Maize with Beans to fix nitrogen.</span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>2. Trenching</strong><br>
+                    <span style="color:#666; font-size:0.9rem;">Ensure drainage channels are clear before the Long Rains (March-May).</span>
+                </div>
+                <div>
+                    <strong>3. Solarization</strong><br>
+                    <span style="color:#666; font-size:0.9rem;">In dry season (Jan-Feb), cover moist soil with clear plastic to kill pests/weeds with heat.</span>
+                </div>
+            </div>
+
+            <!-- Calendar -->
+            <div class="card" style="flex: 1; min-width: 300px;">
+                <h3 style="color: #333;">Seasonal Calendar</h3>
+                <table style="width: 100%; font-size: 0.9rem; border-collapse: collapse;">
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 10px; font-weight:bold;">Long Rains</td>
+                        <td style="color:#666;">Mar - May</td>
+                        <td style="color:green;">Plant Main Crops</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 10px; font-weight:bold;">Short Rains</td>
+                        <td style="color:#666;">Oct - Dec</td>
+                        <td style="color:green;">Fast Veggies/Beans</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; font-weight:bold;">Dry Season</td>
+                        <td style="color:#666;">Jan - Feb</td>
+                        <td style="color:maroon;">Prep Land / Irrigate</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARED ACTION CTA -->
+    <div class="action-cta">
+        <h3 style="color: var(--primary-maroon);">Is your crop looking unhealthy?</h3>
+        <p style="color: #666; margin-bottom: 20px;">Take a photo now and let UKULIMA SAFI AI diagnose the issue instantly.</p>
+        <a href="/dashboard" class="btn-primary" style="padding: 12px 40px; font-size: 1.1rem;">Start AI Diagnosis</a>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // --- MODE SWITCHER LOGIC ---
+    function switchMode(mode) {
+        // 1. Update Tabs
+        const buttons = document.querySelectorAll('.mode-tab');
+        buttons.forEach(btn => {
+            btn.classList.remove('active', 'active-outdoor');
+            if(mode === 'outdoor' && btn.textContent.includes('Outdoor')) {
+                btn.classList.add('active', 'active-outdoor');
+            } else if (mode === 'indoor' && btn.textContent.includes('Indoor')) {
+                btn.classList.add('active');
+            }
+        });
+
+        // 2. Show/Hide Content
+        document.getElementById('indoor-view').classList.remove('active');
+        document.getElementById('outdoor-view').classList.remove('active');
+        
+        document.getElementById(mode + '-view').classList.add('active');
+
+        // 3. Update Hero Background Color
+        const hero = document.getElementById('heroBanner');
+        if (mode === 'outdoor') {
+            hero.style.background = "linear-gradient(135deg, var(--primary-maroon), #3e0000)";
+            // Trigger weather fetch if switching to outdoor
+            getLiveWeather();
+        } else {
+            hero.style.background = "linear-gradient(135deg, var(--primary-green), #004d26)";
+        }
+    }
+
+    // --- CHECKLIST INTERACTION ---
+    function toggleCheck(item) {
+        item.classList.toggle('checked');
+    }
+
+    // --- WEATHER API LOGIC (Outdoor Only) ---
+    function getLiveWeather() {
+        const loading = document.getElementById('weatherLoading');
+        const content = document.getElementById('weatherContent');
+        const regionSpan = document.getElementById('wRegion');
+        
+        // Don't reload if already loaded
+        if (content.style.display === 'block') return;
+
+        // Use session location if available, else default
+        let region = "Kakamega"; 
+        
+        fetch(`/weather_check?region=${region}`) 
+        .then(response => response.json())
+        .then(data => {
+            loading.style.display = 'none';
+            if(data) {
+                content.style.display = 'block';
+                regionSpan.innerText = data.city;
+                document.getElementById('wTemp').innerText = data.temp;
+                document.getElementById('wHum').innerText = data.humidity;
+                document.getElementById('wDesc').innerText = data.description;
+                
+                // Smart Advice Logic
+                let advice = "Conditions are stable. Good for general field work.";
+                if(data.condition.toLowerCase().includes('rain')) {
+                    advice = "<strong>RAIN ALERT:</strong> Do NOT spray pesticides today. Ensure drainage is clear.";
+                } else if(data.humidity > 80) {
+                    advice = " <strong>HIGH HUMIDITY:</strong> High risk of Fungal Blight. Scout crops immediately.";
+                } else if(data.temp > 29) {
+                    advice = " <strong>HEAT STRESS:</strong> Irrigate this evening to prevent wilting.";
+                }
+                
+                document.getElementById('wAdvice').innerHTML = advice;
+            } else {
+                loading.innerText = "Weather data unavailable.";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            loading.innerText = "Connection failed.";
+        });
+    }
+</script>
+{% endblock %}
+
+

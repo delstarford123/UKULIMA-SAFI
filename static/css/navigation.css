@@ -2,8 +2,9 @@
 :root {
     --nav-bg: #800000;       /* Primary Maroon */
     --nav-text: #ffffff;     /* White */
-    --nav-hover: #2E8B57;    /* Green Accent */
+    --nav-hover: #457258;    /* Green Accent */
     --mobile-bg: #600000;    /* Slightly darker maroon for mobile dropdown */
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* --- NAVBAR CONTAINER --- */
@@ -17,7 +18,7 @@
     position: sticky; /* Keeps nav at top when scrolling */
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -48,6 +49,7 @@
 
 .nav-links li {
     position: relative;
+    display: inline-block;
 }
 
 .nav-links a {
@@ -58,6 +60,7 @@
     padding: 8px 12px;
     border-radius: 4px;
     transition: all 0.3s ease;
+    white-space: nowrap; /* Prevents text wrapping */
 }
 
 /* Hover Effect: Green background + Scale */
@@ -83,7 +86,7 @@
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 768px) {
+@media (max-width: 900px) { /* Adjusted breakpoint for better tablet support */
     .navbar {
         padding: 0 1.5rem;
     }
@@ -105,13 +108,14 @@
         gap: 0;
         overflow: hidden;
         max-height: 0; /* Collapsed state */
-        transition: max-height 0.4s ease-in-out; /* Smooth slide effect */
+        transition: max-height 0.4s ease-in-out, box-shadow 0.3s ease; /* Smooth slide effect */
+        box-shadow: none;
     }
 
     /* When class 'active' is added via JS, show menu */
     .nav-links.active {
-        max-height: 400px; /* Expand enough to show all links */
-        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+        max-height: 500px; /* Expand enough to show all links */
+        box-shadow: 0 10px 15px rgba(0,0,0,0.2);
     }
 
     .nav-links li {
@@ -121,19 +125,19 @@
 
     .nav-links a {
         display: block;
-        padding: 20px;
+        padding: 15px 0;
         width: 100%;
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links a:hover {
         background-color: var(--nav-hover);
-        transform: none; /* Disable shift on mobile */
+        transform: none; /* Disable shift on mobile for better UX */
     }
 
     /* Hamburger Animation (Turn to 'X') */
     .menu-toggle.is-active .bar:nth-child(2) {
-        opacity: 0;
+        opacity: 0; /* Fade out middle bar */
     }
     .menu-toggle.is-active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);

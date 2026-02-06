@@ -2,77 +2,228 @@
 
 {% block title %}Outdoor Farming - UKULIMA SAFI AI{% endblock %}
 
+{% block extra_css %}
+<style>
+    /* Mode Switcher Styling */
+    .mode-switcher { 
+        display: flex; 
+        margin-top: -30px; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        border-radius: 12px; 
+        overflow: hidden; 
+        position: relative; 
+        z-index: 10; 
+        background: white; 
+        max-width: 600px; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+    .mode-tab { 
+        flex: 1; 
+        text-align: center; 
+        padding: 15px; 
+        font-weight: 700; 
+        text-decoration: none; 
+        transition: 0.3s; 
+        color: #555; 
+        background: #f8f9fa; 
+        border-bottom: 3px solid transparent; 
+    }
+    .mode-tab.active { 
+        background: white; 
+        color: var(--primary-maroon); 
+        border-bottom: 3px solid var(--primary-maroon); 
+    }
+    .mode-tab:hover { background: #eee; }
+
+    /* Weather Widget */
+    .weather-widget { 
+        background: linear-gradient(135deg, #2E8B57, #1a5c38); 
+        color: white; 
+        border-radius: 12px; 
+        padding: 25px; 
+        margin-bottom: 30px; 
+        box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3); 
+        text-align: center; 
+    }
+    .weather-temp { font-size: 3rem; font-weight: bold; margin: 10px 0; }
+    .weather-advice { 
+        background: rgba(255,255,255,0.1); 
+        padding: 15px; 
+        border-radius: 8px; 
+        margin-top: 15px; 
+        font-style: italic; 
+        border-left: 4px solid #ffcc00; 
+        text-align: left; 
+    }
+
+    /* Timeline & Grid Styling */
+    .hero-bg { 
+        background: linear-gradient(135deg, var(--primary-maroon), #3e0000); 
+        color: white; 
+        padding: 60px 20px 80px; 
+        text-align: center; 
+        border-radius: 0 0 30px 30px; 
+        margin-bottom: 20px; 
+    }
+    
+    .timeline-item { display: flex; gap: 20px; padding: 15px 0; border-bottom: 1px solid #eee; align-items: flex-start; }
+    .timeline-icon { 
+        background: var(--primary-maroon); 
+        color: white; 
+        width: 30px; 
+        height: 30px; 
+        border-radius: 50%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-weight: bold; 
+        flex-shrink: 0; 
+        margin-top: 5px;
+    }
+    
+    /* Table Styling */
+    .season-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+    .season-table th { background: #f8f9fa; padding: 10px; text-align: left; color: #555; }
+    .season-table td { padding: 10px; border-bottom: 1px solid #eee; }
+</style>
+{% endblock %}
+
 {% block content %}
-<div style="max-width: 900px; margin: 0 auto;">
-
-    <div style="display: flex; border-bottom: 2px solid #ddd; margin-bottom: 30px;">
-        <a href="/indoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: #eee; color: #555; border-radius: 10px 10px 0 0; text-decoration: none;">
-            Indoor / Greenhouse
-        </a>
-        <a href="/outdoor" style="flex: 1; text-align: center; padding: 15px; font-weight: bold; background: var(--primary-maroon); color: white; text-decoration: none; border-radius: 10px 10px 0 0;">
-            Outdoor / Field
-        </a>
-    </div>
-
-    <div class="card" style="border-top-color: var(--primary-maroon);">
-        <h2 style="color: var(--primary-maroon);">Field & Open Air Farming Guide</h2>
-        <p>Strategies for traditional farming, dealing with weather patterns, and soil management.</p>
-    </div>
-
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        
-        <div class="card" style="flex: 1; min-width: 280px;">
-            <h3 style="color: var(--primary-green);">Soil Management</h3>
-            <ul style="padding-left: 20px; line-height: 1.6;">
-                <li><strong>Crop Rotation:</strong> Never plant the same crop family twice in a row to prevent soil nutrient depletion.</li>
-                <li><strong>Testing:</strong> Test soil pH annually. Add lime if too acidic (pH < 6.0).</li>
-                <li><strong>Mulching:</strong> Cover soil with organic dry matter to retain moisture during drought.</li>
-            </ul>
-        </div>
-
-        <div class="card" style="flex: 1; min-width: 280px;">
-            <h3 style="color: var(--primary-green);">Weather Defense</h3>
-            <ul style="padding-left: 20px; line-height: 1.6;">
-                <li><strong>Heavy Rain:</strong> Dig trenches/furrows to direct excess water away from roots.</li>
-                <li><strong>Drought:</strong> Water deeply in the evening to minimize evaporation.</li>
-                <li><strong>Wind:</strong> Plant tree borders or taller crops (like Maize) as windbreaks for vegetables.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="card" style="margin-top: 20px;">
-        <h3 style="color: var(--primary-maroon);">Seasonal Planting Guide (Kenya Region)</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-            <thead style="background: var(--light-gray);">
-                <tr>
-                    <th style="padding: 10px; text-align: left;">Season</th>
-                    <th style="padding: 10px; text-align: left;">Months</th>
-                    <th style="padding: 10px; text-align: left;">Recommended Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 10px; font-weight: bold;">Long Rains</td>
-                    <td style="padding: 10px;">March - May</td>
-                    <td style="padding: 10px;">Plant main crops (Maize, Beans) early. Watch for blight.</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 10px; font-weight: bold;">Short Rains</td>
-                    <td style="padding: 10px;">Oct - Dec</td>
-                    <td style="padding: 10px;">Plant fast-maturing crops (Beans, Veggies).</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold;">Dry Season</td>
-                    <td style="padding: 10px;">Jan - Feb</td>
-                    <td style="padding: 10px;">Prepare land. Solarize soil (kill pests with heat). Irrigate if possible.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="/dashboard" class="btn-primary">Check Field Crop Health</a>
-    </div>
-
+<div class="hero-bg">
+    <h1 style="margin:0;">Outdoor Field Guide</h1>
+    <p style="opacity:0.9;">Manage soil, seasons, and weather patterns.</p>
 </div>
+
+<div class="container" style="max-width: 900px; margin: 0 auto; padding-bottom: 50px;">
+
+    <div class="mode-switcher">
+        <a href="/indoor" class="mode-tab">Indoor / Greenhouse</a>
+        <a href="/outdoor" class="mode-tab active">Outdoor / Field</a>
+    </div>
+
+    <br>
+
+    <div class="weather-widget">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin:0;">📡 Live Field Conditions</h3>
+            <button onclick="getLiveWeather()" style="background: white; color: var(--primary-green); border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-weight: bold;">Refresh</button>
+        </div>
+        
+        <div id="weatherContent" style="display: none;">
+            <div class="weather-temp"><span id="wTemp">--</span>°C</div>
+            <div>Humidity: <span id="wHum">--</span>% | <span id="wDesc">--</span></div>
+            <div class="weather-advice" id="wAdvice">Analyzing conditions...</div>
+        </div>
+        <div id="weatherLoading" style="margin-top:20px;">Loading local weather...</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+        
+        <div class="card" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-green);">
+            <h3 style="color: var(--primary-green); margin-top: 0;">Soil & Defense</h3>
+            
+            
+
+            <div class="timeline-item">
+                <div class="timeline-icon">1</div>
+                <div>
+                    <strong>Crop Rotation</strong><br>
+                    <small>Never plant Solanaceae (Tomato/Potato) back-to-back. Rotate with Legumes to fix nitrogen.</small>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">2</div>
+                <div>
+                    <strong>Weather Proofing</strong><br>
+                    <small>Dig trenches/furrows to direct excess water. Plant maize windbreaks.</small>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">3</div>
+                <div>
+                    <strong>pH Balancing</strong><br>
+                    <small>Test soil annually. Add lime if pH < 6.0 to unlock nutrients.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-maroon);">
+            <h3 style="color: var(--primary-maroon); margin-top: 0;">Seasonal Guide</h3>
+            <p style="font-size: 0.9rem; color: #666;">Optimized for East African climate patterns.</p>
+            
+            
+
+            <table class="season-table">
+                <thead>
+                    <tr>
+                        <th>Season</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold;">Long Rains<br><small style="color:#666;">Mar-May</small></td>
+                        <td>Plant main crops (Maize, Beans). Watch for blight.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Short Rains<br><small style="color:#666;">Oct-Dec</small></td>
+                        <td>Plant fast-maturing veggies and beans.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Dry Season<br><small style="color:#666;">Jan-Feb</small></td>
+                        <td>Solarize soil (heat kills pests). Irrigate deeply.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                 <a href="/dashboard" class="btn-primary" style="background: var(--primary-maroon); color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; display: inline-block;">📸 Scan Field Crop</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Automatically fetch weather
+    function getLiveWeather() {
+        const loading = document.getElementById('weatherLoading');
+        const content = document.getElementById('weatherContent');
+        
+        loading.style.display = 'block';
+        content.style.display = 'none';
+
+        // Fetch for default region (e.g. Kakamega)
+        fetch('/weather_check?region=Kakamega') 
+        .then(response => response.json())
+        .then(data => {
+            loading.style.display = 'none';
+            if(data) {
+                content.style.display = 'block';
+                document.getElementById('wTemp').innerText = data.temp;
+                document.getElementById('wHum').innerText = data.humidity;
+                document.getElementById('wDesc').innerText = data.description;
+                
+                let advice = "Conditions are stable.";
+                if(data.condition && data.condition.toLowerCase().includes('rain')) {
+                    advice = " Rain detected. Do NOT spray pesticides today.";
+                } else if(data.humidity > 80) {
+                    advice = " High Humidity. Risk of Blight is high. Scout crops.";
+                } else if(data.temp > 28) {
+                    advice = " High Heat. Irrigate this evening.";
+                }
+                
+                document.getElementById('wAdvice').innerText = advice;
+            } else {
+                loading.innerText = "Weather unavailable.";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            loading.innerText = "Connection failed.";
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", getLiveWeather);
+</script>
 {% endblock %}

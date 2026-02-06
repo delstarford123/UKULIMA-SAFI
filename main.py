@@ -88,6 +88,15 @@ def indoor():
 def outdoor():
     return render_template('outdoor_farming.html')
 
+@app.route('/indoorfarming')
+def indoorfarming():
+    # Pass a flag to tell the template to open Indoor tab by default
+    return render_template('farming_guide.html', mode='indoor')
+
+@app.route('/outdoorfarming')
+def outdoorfarming():
+    # Pass a flag to tell the template to open Outdoor tab by default
+    return render_template('farming_guide.html', mode='outdoor')
 @app.route('/shops')
 def shops():
     return render_template('availlable_shops.html')
