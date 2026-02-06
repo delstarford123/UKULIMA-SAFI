@@ -53,12 +53,12 @@
 
 {% block content %}
 <div style="max-width: 900px; margin: 0 auto;">
-    <h2 style="color: var(--primary-maroon);">📍 GPS Resource Locator</h2>
+    <h2 style="color: var(--primary-maroon);"> GPS Resource Locator</h2>
     <p>Activate GPS to find and navigate to the nearest experts.</p>
 
     <!-- GPS Activation Card -->
     <div class="card gps-action-card">
-        <button onclick="getLocation()" class="btn-primary" id="gpsBtn">📡 Get My Current Location</button>
+        <button onclick="getLocation()" class="btn-primary" id="gpsBtn"> Get My Current Location</button>
         <div id="status" style="margin-top:10px; font-weight:bold; color:#555;">Waiting for GPS signal...</div>
         
         <!-- Hidden inputs to store live coords for JS to grab -->
@@ -68,8 +68,8 @@
 
     <!-- Toggle Buttons -->
     <div style="text-align: center; margin-bottom: 20px;">
-        <button onclick="filterType('agrovet')" class="btn-secondary">🏪 Agrovets</button>
-        <button onclick="filterType('agronomist')" class="btn-secondary">👨‍🔬 Agronomists</button>
+        <button onclick="filterType('agrovet')" class="btn-secondary">Agrovets</button>
+        <button onclick="filterType('agronomist')" class="btn-secondary">Agronomists</button>
         <button onclick="filterType('all')" class="btn-primary">Show All</button>
     </div>
 
@@ -79,7 +79,7 @@
         
         <!-- AGROVETS SECTION -->
         <div class="type-group agrovet-group">
-            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;">🏪 Agrovets</h3>
+            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;"> Agrovets</h3>
             {% for region, items in grouped_shops %}
             <div class="region-section">
                 <div class="region-header" onclick="toggleRegion(this)">
@@ -91,13 +91,13 @@
                     <div class="resource-item">
                         <div>
                             <strong>{{ shop.agrovet }}</strong><br>
-                            <small>📞 {{ shop.phone }}</small>
+                            <small> {{ shop.phone }}</small>
                         </div>
                         <!-- The target attribute stores the destination for JS to use -->
                         <a href="https://www.google.com/maps/search/?api=1&query={{ shop.location|urlencode }}" 
                            class="nav-btn dynamic-link" 
                            data-dest="{{ shop.location or shop.agrovet + ', ' + shop.region }}">
-                           🚀 Navigate
+                           Navigate
                         </a>
                     </div>
                     {% endfor %}
@@ -108,7 +108,7 @@
 
         <!-- AGRONOMISTS SECTION -->
         <div class="type-group agronomist-group" style="margin-top: 30px;">
-            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;">👨‍🔬 Agronomists</h3>
+            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;">Agronomists</h3>
             {% set grouped_vets = agronomists|groupby('region') %}
             {% for region, items in grouped_vets %}
             <div class="region-section">
@@ -121,12 +121,12 @@
                     <div class="resource-item">
                         <div>
                             <strong>{{ doc.agronomist }}</strong><br>
-                            <small>📞 {{ doc.phone }} | 📧 {{ doc.email }}</small>
+                            <small> {{ doc.phone }} | 📧 {{ doc.email }}</small>
                         </div>
                         <a href="https://www.google.com/maps/search/?api=1&query={{ doc.location|urlencode }}" 
                            class="nav-btn dynamic-link" 
                            data-dest="{{ doc.location or doc.agronomist + ', ' + doc.region }}">
-                           🚀 Navigate
+                           Navigate
                         </a>
                     </div>
                     {% endfor %}

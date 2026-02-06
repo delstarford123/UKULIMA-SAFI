@@ -1,30 +1,124 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="text-align: center; padding: 50px 0;">
-    <h1 style="color: var(--primary-maroon); font-size: 3rem;">Welcome to UKULIMA SAFI</h1>
-    <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 20px auto;">
+<style>
+    /* Hero Section */
+    .hero-container {
+        padding: 60px 20px;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-title {
+        color: var(--primary-maroon, #800000);
+        font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive font size */
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+    }
+
+    /* Action Buttons */
+    .cta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+
+    .btn-main {
+        padding: 14px 32px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .btn-main:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Feature Grid */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
+    }
+
+    .feature-card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        transition: border-color 0.3s;
+        text-align: left;
+    }
+
+    .feature-card:hover {
+        border-color: var(--primary-green, #2e7d32);
+    }
+
+    .feature-card h3 {
+        color: var(--primary-green, #2e7d32);
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+    }
+
+    .feature-card p {
+        color: #666;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    /* Media Query for Tablets and Desktops */
+    @media (min-width: 768px) {
+        .cta-group {
+            flex-direction: row;
+        }
+        .hero-container {
+            padding: 80px 20px;
+        }
+    }
+</style>
+
+<div class="hero-container">
+    <h1 class="hero-title">Welcome to <br>UKULIMA SAFI</h1>
+    <p class="hero-subtitle">
         Your intelligent farming companion. Detect crop diseases, analyze growth stages, 
-        and get real-time treatment advice tailored to your location and weather conditions.
+        and get real-time treatment advice tailored to your local environment.
     </p>
 
-    <div style="margin-top: 30px;">
-        <a href="/dashboard" class="btn-primary" style="font-size: 1.2rem; margin-right: 15px;">Start Diagnosis</a>
-        <a href="/guide" class="btn-secondary" style="font-size: 1.2rem;"> Find Agrovets</a>
+    <div class="cta-group">
+        <a href="/dashboard" class="btn-primary btn-main">Start Diagnosis</a>
+        <a href="/guide" class="btn-secondary btn-main">Find Agrovets</a>
     </div>
 
-    <div style="display: flex; gap: 20px; margin-top: 50px; justify-content: center; flex-wrap: wrap;">
-        <div class="card" style="flex: 1; min-width: 250px;">
-            <h3 style="color: var(--primary-green);">Disease Detection</h3>
-            <p>Upload a photo of your crop to instantly identify diseases and pests.</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Disease Detection</h3>
+            <p>Upload a photo of your crop to instantly identify diseases and pests using AI-driven analysis.</p>
         </div>
-        <div class="card" style="flex: 1; min-width: 250px;">
-            <h3 style="color: var(--primary-green);">Weather Logic</h3>
-            <p>Get advice based on real-time temperature and humidity in your area.</p>
+        <div class="feature-card">
+            <h3>Weather Logic</h3>
+            <p>Receive precision advice based on real-time temperature and humidity in your specific region.</p>
         </div>
-        <div class="card" style="flex: 1; min-width: 250px;">
-            <h3 style="color: var(--primary-green);">Expert Connect</h3>
-            <p>Locate the nearest Agrovets and Agronomists with GPS guidance.</p>
+        <div class="feature-card">
+            <h3>Expert Connect</h3>
+            <p>Locate the nearest certified Agrovets and Agronomists with integrated GPS guidance.</p>
         </div>
     </div>
 </div>
