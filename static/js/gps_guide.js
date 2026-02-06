@@ -1,112 +1,176 @@
-// UKULIMA SAFI AI - GPS Navigation Logic
+/**
+ * UKULIMA SAFI AI - GPS Navigation Logic
+ * Handles Geolocation, Coordinate storage, and Google Maps Navigation Modal.
+ * Includes Manual Location fallback for Desktops.
+ */
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Check if we already have a location saved from a previous page
-    const savedLat = sessionStorage.getItem('userLat');
-    const savedLon = sessionStorage.getItem('userLon');
+// Global variable to store the selected destination temporarily for the modal
+let currentDestination = "";
 
-    if (savedLat && savedLon) {
-        showPosition({
-            coords: { latitude: savedLat, longitude: savedLon }
-        }, true); // 'true' indicates it was loaded from cache
-    }
-});
+// --- 1. GEOLOCATION FUNCTIONS ---
 
 function getLocation() {
     const statusDiv = document.getElementById('status');
-    const gpsBtn = document.querySelector('.btn-primary');
+    const gpsBtn = document.getElementById('gpsBtn');
+    
+    // Guard clause in case function is called on a page without these elements
+    if (!statusDiv || !gpsBtn) return;
 
-    // Update UI to show searching state
-    statusDiv.innerHTML = "📡 Contacting Satellites...";
+    // Clear previous sessions to force fresh data
+    sessionStorage.removeItem('userLat');
+    sessionStorage.removeItem('userLon');
+
+    statusDiv.innerHTML = "📡 Connecting to Satellites...";
+    statusDiv.style.color = "var(--primary-maroon)";
     statusDiv.className = "status-searching";
     gpsBtn.disabled = true;
     gpsBtn.innerText = "Locating...";
 
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError, {
-            enableHighAccuracy: true, // Request best possible GPS
-            timeout: 10000,           // Wait max 10 seconds
-            maximumAge: 0             // Don't use old cached positions
+        navigator.geolocation.getCurrentPosition(updateLocationData, showError, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
         });
     } else {
-        statusDiv.innerHTML = "⚠️ Geolocation is not supported by this browser.";
-        statusDiv.className = "status-error";
+        statusDiv.innerHTML = "⚠️ Geolocation not supported by this browser.";
         gpsBtn.disabled = false;
-        gpsBtn.innerText = "Try Again";
     }
 }
 
-function showPosition(position, isCached = false) {
-    const statusDiv = document.getElementById('status');
-    const gpsBtn = document.querySelector('.btn-primary'); // The button in the HTML
-    
+function updateLocationData(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
+    
+    const statusDiv = document.getElementById('status');
+    const gpsBtn = document.getElementById('gpsBtn');
 
-    // 1. SAVE TO STORAGE (So other pages can use it)
+    // 1. Save for session (so other pages know where we are)
     sessionStorage.setItem('userLat', lat);
     sessionStorage.setItem('userLon', lon);
-
-    // 2. UPDATE UI
-    let message = isCached ? "📍 Location Retrieved from Memory:" : "✅ GPS Signal Locked:";
     
-    statusDiv.innerHTML = `
-        <div style="margin-bottom: 10px;">${message}</div>
-        <span class="coords-box">Lat: ${lat.toFixed(4)}</span>
-        <span class="coords-box">Lon: ${lon.toFixed(4)}</span>
-        <div style="margin-top:10px; font-size: 0.9rem;">
-            System is now calibrated to your location.
-        </div>
-    `;
-    statusDiv.className = "status-success";
-
-    // Reset button
-    if (gpsBtn) {
-        gpsBtn.innerText = "📡 Refresh Location";
-        gpsBtn.disabled = false;
+    // 2. Update hidden inputs if they exist (for Form submission on Dashboard)
+    if(document.getElementById('currentLat')) {
+        document.getElementById('currentLat').value = lat;
+        document.getElementById('currentLon').value = lon;
+    }
+    
+    if(document.getElementById('userLat')) {
+        document.getElementById('userLat').value = lat;
+        document.getElementById('userLon').value = lon;
     }
 
-    // 3. ENHANCE LINKS (Optional: Append coords to links if backend supports it)
-    // This makes the "Find Agrovets" buttons smarter immediately
-    updateLinkWithCoords('/shops', lat, lon);
-    updateLinkWithCoords('/vets', lat, lon);
+    // 3. UI Feedback
+    if (statusDiv && gpsBtn) {
+        statusDiv.innerHTML = `✅ <strong>GPS Locked:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+        statusDiv.className = "status-success";
+        gpsBtn.disabled = false;
+        gpsBtn.innerText = "📍 Update Location";
+        
+        // Clear manual input to avoid confusion
+        if(document.getElementById('manualLocation')) {
+            document.getElementById('manualLocation').value = ""; 
+        }
+    }
 }
 
 function showError(error) {
     const statusDiv = document.getElementById('status');
-    const gpsBtn = document.querySelector('.btn-primary');
+    const gpsBtn = document.getElementById('gpsBtn');
     
-    let msg = "";
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            msg = "🚫 User denied the request for Geolocation.";
-            break;
-        case error.POSITION_UNAVAILABLE:
-            msg = "❌ Location information is unavailable.";
-            break;
-        case error.TIMEOUT:
-            msg = "?? The request to get user location timed out.";
-            break;
-        case error.UNKNOWN_ERROR:
-            msg = "⚠️ An unknown error occurred.";
-            break;
+    let msg = "⚠️ GPS Error: " + error.message;
+    if (error.code === error.PERMISSION_DENIED) {
+        msg = "🚫 GPS Denied. Please allow location access in your browser settings.";
+    } else if (error.code === error.TIMEOUT) {
+        msg = "⏱️ GPS Timeout. Please try again outside.";
     }
-    
-    statusDiv.innerHTML = msg;
-    statusDiv.className = "status-error";
-    
+
+    if (statusDiv) statusDiv.innerHTML = msg;
     if (gpsBtn) {
         gpsBtn.disabled = false;
         gpsBtn.innerText = "Try Again";
     }
 }
 
-// Helper to add query params to the static links on the page
-function updateLinkWithCoords(pathStub, lat, lon) {
-    // Find links that contain the path (e.g., href="/shops")
-    const links = document.querySelectorAll(`a[href^="${pathStub}"]`);
-    links.forEach(link => {
-        // Change href to /shops?lat=...&lon=...
-        link.href = `${pathStub}?lat=${lat}&lon=${lon}`;
-    });
+// --- 2. MODAL & NAVIGATION LOGIC ---
+
+function openNavigationModal(destination) {
+    const lat = sessionStorage.getItem('userLat');
+    const manualInput = document.getElementById('manualLocation');
+    const manualLoc = manualInput ? manualInput.value : "";
+
+    // Check if we have EITHER GPS OR Manual Input
+    if (!lat && !manualLoc) {
+        alert("⚠️ Please Click 'Use My Live GPS' OR enter your location manually in the text box.");
+        const gpsCard = document.querySelector('.gps-action-card');
+        if (gpsCard) gpsCard.scrollIntoView({behavior: 'smooth'});
+        return;
+    }
+
+    currentDestination = destination;
+    const modalDest = document.getElementById('modalDestName');
+    if (modalDest) modalDest.innerText = destination;
+
+    const modal = document.getElementById('navModal');
+    if (modal) modal.style.display = 'block';
 }
+
+function closeModal() {
+    const modal = document.getElementById('navModal');
+    if (modal) modal.style.display = 'none';
+}
+
+function startNavigation(mode) {
+    const lat = sessionStorage.getItem('userLat');
+    const lon = sessionStorage.getItem('userLon');
+    const manualInput = document.getElementById('manualLocation');
+    const manualLoc = manualInput ? manualInput.value.trim() : "";
+    
+    let originParam = "";
+
+    // PRIORITY: Use Manual Input if typed, otherwise use GPS
+    if (manualLoc) {
+        originParam = encodeURIComponent(manualLoc);
+    } else if (lat && lon) {
+        originParam = `${lat},${lon}`;
+    } else {
+        alert("Please enter a location or use GPS.");
+        return;
+    }
+
+    // Construct Google Maps URL with Origin, Destination, and Travel Mode
+    // mode options: 'driving', 'walking', 'bicycling'
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${encodeURIComponent(currentDestination)}&travelmode=${mode}`;
+    
+    // Open in new tab
+    window.open(url, '_blank');
+    
+    // Close modal
+    closeModal();
+}
+
+// Close modal if user clicks outside of the content box
+window.onclick = function(event) {
+    const modal = document.getElementById('navModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// --- 3. AUTO-LOAD ON START ---
+document.addEventListener("DOMContentLoaded", function() {
+    const savedLat = sessionStorage.getItem('userLat');
+    const savedLon = sessionStorage.getItem('userLon');
+    
+    // Only attempt to update if we have saved coords AND we are on the GPS page
+    if (savedLat && savedLon) {
+        // Mock a position object to reuse the update function
+        const mockPosition = { 
+            coords: { 
+                latitude: parseFloat(savedLat), 
+                longitude: parseFloat(savedLon) 
+            } 
+        };
+        updateLocationData(mockPosition);
+    }
+});

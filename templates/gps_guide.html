@@ -1,104 +1,325 @@
 {% extends "base.html" %}
 
+{% block title %}Find Resources - UKULIMA SAFI AI{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/gps_guide.css') }}">
 <style>
-    /* Specific styles for the organization */
-    .region-section {
-        margin-bottom: 30px;
-        border: 1px solid #ddd;
+    /* --- PROFESSIONAL UI REFINEMENTS --- */
+    
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
+        --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+        --radius-std: 12px;
+    }
+
+    body {
+        background-color: #f8f9fa; /* Softer background */
+    }
+
+    .container-custom {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-bottom: 60px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary-maroon), #5c0000);
+        color: white;
+        padding: 40px 20px;
+        border-radius: 0 0 30px 30px;
+        text-align: center;
+        margin-bottom: -40px; /* Overlap effect */
+        box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2);
+    }
+    .hero-section h2 { margin: 0; font-size: 2.2rem; }
+    .hero-section p { opacity: 0.9; margin-top: 10px; font-size: 1.1rem; }
+
+    /* GPS Card Floating Effect */
+    .gps-action-card {
+        background: white;
+        border: none;
+        border-radius: var(--radius-std);
+        padding: 25px;
+        margin: 0 auto 30px;
+        max-width: 600px;
+        box-shadow: var(--shadow-hover);
+        position: relative;
+        z-index: 10;
+    }
+
+    .manual-input-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .manual-input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 2px solid #eee;
         border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+    .manual-input:focus {
+        border-color: var(--primary-green);
+        outline: none;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 25px;
+        background: white;
+        padding: 15px 20px;
+        border-radius: var(--radius-std);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .search-box {
+        flex: 1;
+        min-width: 250px;
+        position: relative;
+    }
+    .search-input {
+        width: 100%;
+        padding: 10px 15px 10px 40px; /* Space for icon */
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        font-size: 0.95rem;
+    }
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+    }
+
+    .filter-container {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        padding: 8px 20px;
+        border: none;
+        background: #f0f0f0;
+        color: #555;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .filter-btn.active {
+        background: var(--primary-green);
+        color: white;
+        box-shadow: 0 4px 10px rgba(46, 139, 87, 0.3);
+    }
+
+    /* Listings Styling */
+    .region-section {
+        background: white;
+        border: none;
+        border-radius: var(--radius-std);
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-soft);
         overflow: hidden;
     }
+    
     .region-header {
-        background-color: var(--primary-green);
-        color: white;
-        padding: 10px 20px;
+        background: white;
+        padding: 18px 25px;
+        border-left: 6px solid var(--primary-maroon);
+        border-bottom: 1px solid #f0f0f0;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        transition: background 0.2s;
     }
+    .region-header:hover {
+        background: #f9f9f9;
+    }
+    .region-header.active .arrow-icon {
+        transform: rotate(180deg);
+    }
+    .arrow-icon { transition: transform 0.3s ease; }
+    
+    .region-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #333;
+    }
+
     .region-content {
-        display: none; /* Hidden by default */
-        padding: 15px;
-        background-color: white;
+        display: none;
+        padding: 0;
     }
     .region-content.active {
         display: block;
+        animation: slideDown 0.3s ease-out;
     }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    
     .resource-item {
+        padding: 20px 25px;
+        border-bottom: 1px solid #f5f5f5;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
+        flex-wrap: wrap;
+        gap: 15px;
+        transition: background 0.2s;
     }
-    .resource-item:last-child { border-bottom: none; }
-    .nav-btn {
-        background-color: var(--primary-maroon);
-        color: white;
-        padding: 5px 15px;
-        text-decoration: none;
-        border-radius: 20px;
-        font-size: 0.85rem;
+    .resource-item:hover {
+        background: #fafafa;
+    }
+    
+    .resource-info h4 {
+        color: #2c3e50;
+        margin: 0 0 6px 0;
+        font-size: 1.05rem;
+    }
+    
+    .resource-meta {
         display: flex;
+        gap: 15px;
+        font-size: 0.9rem;
+        color: #666;
         align-items: center;
-        gap: 5px;
-        transition: 0.3s;
     }
-    .nav-btn:hover { background-color: #006400; }
+    
+    .resource-meta i { margin-right: 5px; }
+
+    .nav-btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: none;
+        border: 1px solid var(--primary-green);
+        background: white;
+        color: var(--primary-green);
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+    .nav-btn:hover {
+        background: var(--primary-green);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(46, 139, 87, 0.2);
+    }
+
+    /* Modal Tweaks */
+    .modal {
+        display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+    }
+    .modal-content {
+        background-color: #fefefe; margin: 15% auto; padding: 25px; border: 1px solid #888; width: 90%; max-width: 400px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: zoomIn 0.3s; border: none;
+    }
+    @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+    
+    .mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
+    .mode-btn { border: 2px solid #f0f0f0; background: white; border-radius: 10px; padding: 15px 5px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; color: #333; }
+    .mode-btn:hover { border-color: var(--primary-maroon); background: #fff5f5; color: var(--primary-maroon); }
+    .mode-icon { font-size: 1.5rem; }
+    .mode-label { font-size: 0.8rem; font-weight: bold; }
+    .cancel-btn { background: transparent; border: none; color: #666; text-decoration: underline; cursor: pointer; margin-top: 10px; }
+
 </style>
 {% endblock %}
 
 {% block content %}
-<div style="max-width: 900px; margin: 0 auto;">
-    <h2 style="color: var(--primary-maroon);"> GPS Resource Locator</h2>
-    <p>Activate GPS to find and navigate to the nearest experts.</p>
+<!-- 1. HERO SECTION -->
+<div class="hero-section">
+    <h2>Resource Locator</h2>
+    <p>Find trusted experts and shops in your vicinity.</p>
+</div>
 
-    <!-- GPS Activation Card -->
+<div class="container-custom">
+
+    <!-- 2. GPS CONTROL CARD (Floating) -->
     <div class="card gps-action-card">
-        <button onclick="getLocation()" class="btn-primary" id="gpsBtn"> Get My Current Location</button>
-        <div id="status" style="margin-top:10px; font-weight:bold; color:#555;">Waiting for GPS signal...</div>
+        <h3 style="color: var(--primary-maroon); margin-bottom: 15px;">Set Your Location</h3>
         
-        <!-- Hidden inputs to store live coords for JS to grab -->
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <button onclick="getLocation()" class="btn-primary" id="gpsBtn" style="width: 100%; padding: 12px; border-radius: 8px;">
+                 Use Live GPS
+            </button>
+            
+            <div style="position: relative; text-align: center;">
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                <span style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: white; padding: 0 10px; color: #999; font-size: 0.8rem; font-weight: bold;">OR ENTER MANUALLY</span>
+            </div>
+
+            <div class="manual-input-group">
+                <input type="text" id="manualLocation" class="manual-input" placeholder="e.g. Eldoret Town, Kakamega">
+            </div>
+        </div>
+        
+        <div id="status" style="margin-top:15px; font-weight:600; color:#555; font-size: 0.9rem;">
+            Location not set.
+        </div>
+        
+        <!-- Hidden inputs -->
         <input type="hidden" id="currentLat">
         <input type="hidden" id="currentLon">
     </div>
 
-    <!-- Toggle Buttons -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <button onclick="filterType('agrovet')" class="btn-secondary">Agrovets</button>
-        <button onclick="filterType('agronomist')" class="btn-secondary">Agronomists</button>
-        <button onclick="filterType('all')" class="btn-primary">Show All</button>
+    <!-- 3. CONTROLS BAR (Filter & Search) -->
+    <div class="controls-bar">
+        <div class="filter-container">
+            <button onclick="filterType(this, 'all')" class="filter-btn active">All</button>
+            <button onclick="filterType(this, 'agrovet')" class="filter-btn">Agrovets</button>
+            <button onclick="filterType(this, 'agronomist')" class="filter-btn">Agronomists</button>
+        </div>
+        
+        <div class="search-box">
+            <span class="search-icon"></span>
+            <input type="text" id="resourceSearch" class="search-input" placeholder="Search by name or region..." onkeyup="filterSearch()">
+        </div>
     </div>
 
-    <!-- Listings Container -->
+    <!-- 4. LISTINGS -->
     <div id="listings">
         {% set grouped_shops = agrovets|groupby('region') %}
         
-        <!-- AGROVETS SECTION -->
+        <!-- AGROVETS -->
         <div class="type-group agrovet-group">
-            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;"> Agrovets</h3>
+            <div style="margin-bottom: 10px; font-weight: bold; color: var(--primary-green); display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.2rem;"></span> Certified Agrovets
+            </div>
+            
             {% for region, items in grouped_shops %}
-            <div class="region-section">
+            <div class="region-section searchable-section" data-region="{{ region }}">
                 <div class="region-header" onclick="toggleRegion(this)">
-                    <span>{{ region }} Region</span>
-                    <span style="font-size: 0.8rem;">▼</span>
+                    <span class="region-title">{{ region }}</span>
+                    <span class="arrow-icon">▼</span>
                 </div>
                 <div class="region-content">
                     {% for shop in items %}
-                    <div class="resource-item">
-                        <div>
-                            <strong>{{ shop.agrovet }}</strong><br>
-                            <small> {{ shop.phone }}</small>
+                    <div class="resource-item searchable-item" data-search="{{ shop.agrovet }} {{ region }}">
+                        <div class="resource-info">
+                            <h4>{{ shop.agrovet }}</h4>
+                            <div class="resource-meta">
+                                <a href="tel:{{ shop.phone }}" style="color:inherit; text-decoration:none;"> {{ shop.phone }}</a>
+                                {% if shop.email %}
+                                    <span style="color:#ccc;">|</span>
+                                    <a href="mailto:{{ shop.email }}" style="color:inherit; text-decoration:none;">Email</a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <!-- The target attribute stores the destination for JS to use -->
-                        <a href="https://www.google.com/maps/search/?api=1&query={{ shop.location|urlencode }}" 
-                           class="nav-btn dynamic-link" 
-                           data-dest="{{ shop.location or shop.agrovet + ', ' + shop.region }}">
-                           Navigate
-                        </a>
+                        <button onclick="openNavigationModal('{{ shop.location or shop.agrovet + ', ' + shop.region }}')" class="nav-btn">
+                            Navigate
+                        </button>
                     </div>
                     {% endfor %}
                 </div>
@@ -106,50 +327,88 @@
             {% endfor %}
         </div>
 
-        <!-- AGRONOMISTS SECTION -->
-        <div class="type-group agronomist-group" style="margin-top: 30px;">
-            <h3 style="color: var(--primary-green); border-bottom: 2px solid #ccc;">Agronomists</h3>
+        <!-- AGRONOMISTS -->
+        <div class="type-group agronomist-group" style="margin-top: 40px;">
+            <div style="margin-bottom: 10px; font-weight: bold; color: var(--primary-maroon); display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.2rem;"></span> Expert Agronomists
+            </div>
+
             {% set grouped_vets = agronomists|groupby('region') %}
             {% for region, items in grouped_vets %}
-            <div class="region-section">
+            <div class="region-section searchable-section" data-region="{{ region }}" style="border-left-color: var(--primary-green);">
                 <div class="region-header" onclick="toggleRegion(this)">
-                    <span>{{ region }} Region</span>
-                    <span style="font-size: 0.8rem;">▼</span>
+                    <span class="region-title">{{ region }}</span>
+                    <span class="arrow-icon">▼</span>
                 </div>
                 <div class="region-content">
                     {% for doc in items %}
-                    <div class="resource-item">
-                        <div>
-                            <strong>{{ doc.agronomist }}</strong><br>
-                            <small> {{ doc.phone }} | 📧 {{ doc.email }}</small>
+                    <div class="resource-item searchable-item" data-search="{{ doc.agronomist }} {{ region }}">
+                        <div class="resource-info">
+                            <h4>{{ doc.agronomist }}</h4>
+                            <div class="resource-meta">
+                                <a href="tel:{{ doc.phone }}" style="color:inherit; text-decoration:none;"> {{ doc.phone }}</a>
+                                {% if doc.email %}
+                                    <span style="color:#ccc;">|</span>
+                                    <a href="mailto:{{ doc.email }}" style="color:inherit; text-decoration:none;"> Email</a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <a href="https://www.google.com/maps/search/?api=1&query={{ doc.location|urlencode }}" 
-                           class="nav-btn dynamic-link" 
-                           data-dest="{{ doc.location or doc.agronomist + ', ' + doc.region }}">
+                        <button onclick="openNavigationModal('{{ doc.location or doc.agronomist + ', ' + doc.region }}')" class="nav-btn">
                            Navigate
-                        </a>
+                        </button>
                     </div>
                     {% endfor %}
                 </div>
             </div>
             {% endfor %}
         </div>
-
     </div>
 </div>
+
+<!-- NAVIGATION MODAL -->
+<div id="navModal" class="modal">
+    <div class="modal-content">
+        <h3 style="margin-bottom: 5px;">Start Navigation</h3>
+        <p style="color:#666; font-size: 0.9rem; margin-bottom: 20px;">
+            To: <b id="modalDestName" style="color: var(--primary-maroon);">Destination</b>
+        </p>
+        
+        <div class="mode-grid">
+            <button class="mode-btn" onclick="startNavigation('driving')">
+                <span class="mode-icon">🚗</span>
+                <span class="mode-label">Driving</span>
+            </button>
+            <button class="mode-btn" onclick="startNavigation('bicycling')">
+                <span class="mode-icon">🚲</span>
+                <span class="mode-label">Cycling</span>
+            </button>
+            <button class="mode-btn" onclick="startNavigation('walking')">
+                <span class="mode-icon">🚶</span>
+                <span class="mode-label">Walking</span>
+            </button>
+        </div>
+
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/gps_guide.js') }}"></script>
 <script>
-    // Accordion Logic
+    // --- UI LOGIC ---
+
     function toggleRegion(header) {
         const content = header.nextElementSibling;
+        header.classList.toggle('active');
         content.classList.toggle('active');
     }
 
-    // Filter Logic
-    function filterType(type) {
+    function filterType(btn, type) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
         const agrovets = document.querySelector('.agrovet-group');
         const agronomists = document.querySelector('.agronomist-group');
         
@@ -164,8 +423,47 @@
             agronomists.style.display = 'block';
         }
     }
+
+    // --- SEARCH FILTER LOGIC ---
+    function filterSearch() {
+        const input = document.getElementById('resourceSearch');
+        const filter = input.value.toLowerCase();
+        const items = document.getElementsByClassName('searchable-item');
+        const sections = document.getElementsByClassName('searchable-section');
+
+        // Filter individual items
+        for (let i = 0; i < items.length; i++) {
+            let text = items[i].getAttribute('data-search').toLowerCase();
+            if (text.includes(filter)) {
+                items[i].style.display = "";
+            } else {
+                items[i].style.display = "none";
+            }
+        }
+
+        // Hide empty sections (regions with no matching items)
+        for (let i = 0; i < sections.length; i++) {
+            let visibleItems = sections[i].querySelectorAll('.searchable-item:not([style*="display: none"])');
+            if (visibleItems.length > 0) {
+                sections[i].style.display = "";
+                // Auto-expand if searching
+                if (filter.length > 0) {
+                    sections[i].querySelector('.region-content').classList.add('active');
+                    sections[i].querySelector('.region-header').classList.add('active');
+                }
+            } else {
+                sections[i].style.display = "none";
+            }
+        }
+    }
     
-    // Open all regions by default for better visibility
-    document.querySelectorAll('.region-content').forEach(el => el.classList.add('active'));
+    // Auto-open first section on load
+    document.addEventListener("DOMContentLoaded", function() {
+        const firstRegion = document.querySelector('.region-content');
+        if(firstRegion) {
+            firstRegion.classList.add('active');
+            firstRegion.previousElementSibling.classList.add('active');
+        }
+    });
 </script>
 {% endblock %}
