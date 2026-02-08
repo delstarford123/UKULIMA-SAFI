@@ -5,39 +5,39 @@
 {% block content %}
 <div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
     <h2 style="color: var(--primary-maroon); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
-         Farming Education Hub
+        📚 Farming Education Hub
     </h2>
     <p>Guides, tutorials, and best practices to improve your yield.</p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
         
-        <!-- Article 1 -->
-        <div class="card" style="padding: 0; overflow: hidden;">
-            <div style="background-color: var(--primary-green); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"></div>
-            <div style="padding: 20px;">
-                <h3 style="margin-top: 0;">Sustainable Soil Management</h3>
-                <p>Learn how to maintain soil health through crop rotation and organic composting.</p>
-                <a href="#" class="btn-secondary">Read Guide</a>
+        <!-- Article 1: Soil Management -->
+        <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="background-color: var(--primary-green); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🌱</div>
+            <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 style="margin-top: 0; color: var(--primary-maroon);">Sustainable Soil Management</h3>
+                <p style="flex-grow: 1;">Learn how to maintain soil health through crop rotation and organic composting.</p>
+                <a href="{{ url_for('download_file', filename='soil management.pdf') }}" target="_blank" class="btn-secondary" style="text-align: center; margin-top: 10px;">📄 Read Guide</a>
             </div>
         </div>
 
-        <!-- Article 2 -->
-        <div class="card" style="padding: 0; overflow: hidden;">
-            <div style="background-color: var(--primary-maroon); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"></div>
-            <div style="padding: 20px;">
-                <h3 style="margin-top: 0;">Drip Irrigation Basics</h3>
-                <p>Save water and increase efficiency. A step-by-step guide to setting up drip lines.</p>
-                <a href="#" class="btn-secondary">Watch Video</a>
+        <!-- Article 2: Drip Irrigation -->
+        <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="background-color: var(--primary-maroon); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">💧</div>
+            <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 style="margin-top: 0; color: var(--primary-maroon);">Drip Irrigation Basics</h3>
+                <p style="flex-grow: 1;">Save water and increase efficiency. A step-by-step guide to setting up drip lines.</p>
+                <a href="{{ url_for('download_file', filename='drip irrigation.pdf') }}" target="_blank" class="btn-secondary" style="text-align: center; margin-top: 10px;">📄 Read Guide</a>
             </div>
         </div>
 
-        <!-- Article 3 -->
-        <div class="card" style="padding: 0; overflow: hidden;">
-            <div style="background-color: #ffcc00; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"></div>
-            <div style="padding: 20px;">
-                <h3 style="margin-top: 0;">Pest Control Without Chemicals</h3>
-                <p>Natural ways to fight aphids, cutworms, and other common pests.</p>
-                <a href="#" class="btn-secondary">Read Article</a>
+        <!-- Article 3: Pest Control -->
+        <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="background-color: #ffcc00; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🚜</div>
+            <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 style="margin-top: 0; color: var(--primary-maroon);">Natural Pest Control</h3>
+                <p style="flex-grow: 1;">Natural ways to fight aphids, cutworms, and other common pests without chemicals.</p>
+                <a href="{{ url_for('download_file', filename='natural pest and disease control.pdf') }}" target="_blank" class="btn-secondary" style="text-align: center; margin-top: 10px;">📄 Read Guide</a>
             </div>
         </div>
 

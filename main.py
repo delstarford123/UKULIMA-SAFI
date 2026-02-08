@@ -6,7 +6,8 @@ import os
 import logging
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
-
+from flask import Flask, render_template, request, jsonify, send_from_directory
+from werkzeug.utils import secure_filename
 # --- IMPORT CUSTOM MODULES ---
 # We wrap imports in try-except to debug path issues easily
 try:
@@ -18,7 +19,7 @@ except ImportError as e:
     print(f"Critical Import Error: {e}")
     print("   Ensure all folders (model, weather_api) have an __init__.py file.")
     exit(1)
-
+ 
 # --- CONFIGURATION ---
 app = Flask(__name__)
 
@@ -26,9 +27,12 @@ app = Flask(__name__)
 # We use absolute paths to avoid confusion
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
+DOCS_FOLDER = os.path.join(BASE_DIR, 'static' , 'documents') 
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['DOCS_FOLDER'] = DOCS_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit uploads to 16MB
 
 # --- INITIALIZE SERVICES (Load them once at startup) ---
@@ -117,6 +121,18 @@ def market():
 def education():
     return render_template('education.html')
 # --- API ROUTES (The Logic) ---
+
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    """
+    Allows users to download PDF guides.
+    Files are served from the 'static' folder.
+    """
+    try:
+        return send_from_directory(app.config['DOCS_FOLDER'], filename, as_attachment=False)
+    except FileNotFoundError:
+        return "File not found.", 404
 
 @app.route('/predict', methods=['POST'])
 def predict():

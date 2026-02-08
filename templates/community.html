@@ -1,45 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}Farmer Community - UKULIMA SAFI AI{% endblock %}
+{% block title %}Community Forum - UKULIMA SAFI AI{% endblock %}
 
 {% block content %}
-<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-    <h2 style="color: var(--primary-maroon); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
-        Farmers' Community Forum
-    </h2>
-    <p>Connect with other farmers, share your harvest, and ask for advice.</p>
-
-    <!-- Post Box -->
-    <div class="card" style="margin-bottom: 30px;">
-        <h3 style="color: var(--primary-green);">Start a Discussion</h3>
-        <textarea placeholder="What's on your mind? (e.g. 'My maize is yellowing...')" style="width: 100%; height: 100px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
-        <button class="btn-primary" style="margin-top: 10px;">Post Discussion</button>
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+    
+    <!-- Hero Section -->
+    <div style="text-align: center; margin-bottom: 40px; padding: 40px 20px; background: linear-gradient(135deg, var(--primary-green), #145a32); color: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700;"> The Global Farmers' Circle</h1>
+        <p style="font-size: 1.1rem; margin-top: 10px; opacity: 0.9;">
+            Connect, share wisdom, and grow together. A safe space for every farmer to find answers and celebrate harvests.
+        </p>
     </div>
 
-    <!-- Active Discussions -->
-    <div class="card">
-        <h3 style="color: var(--primary-maroon);">Recent Discussions</h3>
-        
-        <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
-            <h4 style="margin: 0 0 5px 0;">Best fertilizer for Tomatoes in Kakamega?</h4>
-            <p style="color: #666; font-size: 0.9rem; margin: 0;">Posted by <strong>John K.</strong> • 2 hours ago</p>
-            <p style="margin-top: 5px;">I'm trying to grow tomatoes in the rainy season. Does anyone have recommendations for preventing blight?</p>
-            <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">Reply (5)</a>
-        </div>
-
-        <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
-            <h4 style="margin: 0 0 5px 0;">Market Prices for Cabbage dropping?</h4>
-            <p style="color: #666; font-size: 0.9rem; margin: 0;">Posted by <strong>Sarah M.</strong> • 5 hours ago</p>
-            <p style="margin-top: 5px;">Has anyone noticed the price drop in the Nairobi market? Is it better to hold off harvesting?</p>
-            <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">Reply (12)</a>
-        </div>
-
-        <div style="padding: 15px 0;">
-            <h4 style="margin: 0 0 5px 0;">Successful Hydroponic Setup!</h4>
-            <p style="color: #666; font-size: 0.9rem; margin: 0;">Posted by <strong>David O.</strong> • 1 day ago</p>
-            <p style="margin-top: 5px;">Just wanted to share my new setup. Using the UKULIMA SAFI indoor guide really helped with the pH balance!</p>
-            <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">Reply (3)</a>
+    <!-- Post Creation Box -->
+    <div class="card" style="margin-bottom: 30px; border-top: 4px solid var(--primary-maroon);">
+        <h3 style="color: var(--primary-maroon); margin-bottom: 15px;">Start a Conversation</h3>
+        <textarea id="postContent" placeholder="Ask a question, share a tip, or tell us about your day on the farm..." style="width: 100%; height: 120px; padding: 15px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
+        <div style="text-align: right; margin-top: 10px;">
+            <button id="postBtn" class="btn-primary" style="padding: 10px 25px; font-weight: 600;">Post Discussion</button>
         </div>
     </div>
+
+    <!-- Feed Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="color: #333; margin: 0;">Recent Discussions</h3>
+        <span style="font-size: 0.9rem; color: #666;">Live Feed ●</span>
+    </div>
+
+    <!-- Active Discussions Container -->
+    <div id="discussionContainer">
+        <div style="text-align: center; color: #888; padding: 40px;">
+            <!-- Loading Spinner (Animation defined in main.css) -->
+            <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-green); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 10px;"></div>
+            Loading community wisdom...
+        </div>
+    </div>
+
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Firebase Logic Script -->
+<script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}
