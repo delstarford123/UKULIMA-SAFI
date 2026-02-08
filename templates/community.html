@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Farmer Community - UKULIMA SAFI AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <h2 style="color: var(--primary-maroon); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
+        Farmers' Community Forum
+    </h2>
+    <p>Connect with other farmers, share your harvest, and ask for advice.</p>
+
+    <!-- Post Box -->
+    <div class="card" style="margin-bottom: 30px;">
+        <h3 style="color: var(--primary-green);">Start a Discussion</h3>
+        <textarea placeholder="What's on your mind? (e.g. 'My maize is yellowing...')" style="width: 100%; height: 100px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+        <button class="btn-primary" style="margin-top: 10px;">Post Discussion</button>
+    </div>
+
+    <!-- Active Discussions -->
+    <div class="card">
+        <h3 style="color: var(--primary-maroon);">Recent Discussions</h3>
+        
+        <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
+            <h4 style="margin: 0 0 5px 0;">Best fertilizer for Tomatoes in Kakamega?</h4>
+            <p style="color: #666; font-size: 0.9rem; margin: 0;">Posted by <strong>John K.</strong> • 2 hours ago</p>
+            <p style="margin-top: 5px;">I'm trying to grow tomatoes in the rainy season. Does anyone have recommendations for preventing blight?</p>
+            <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">Reply (5)</a>
+        </div>
+
+        <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
+            <h4 style="margin: 0 0 5px 0;">Market Prices for Cabbage dropping?</h4>
+            <p style="color: #666; font-size: 0.9rem; margin: 0;">Posted by <strong>Sarah M.</strong> • 5 hours ago</p>
+            <p style="margin-top: 5px;">Has anyone noticed the price drop in the Nairobi market? Is it better to hold off harvesting?</p>
+            <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">Reply (12)</a>
+        </div>
+
+        <div style="padding: 15px 0;">
+            <h4 style="margin: 0 0 5px 0;">Successful Hydroponic Setup!</h4>
+            <p style="color: #666; font-size: 0.9rem; margin: 0;">Posted by <strong>David O.</strong> • 1 day ago</p>
+            <p style="margin-top: 5px;">Just wanted to share my new setup. Using the UKULIMA SAFI indoor guide really helped with the pH balance!</p>
+            <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">Reply (3)</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

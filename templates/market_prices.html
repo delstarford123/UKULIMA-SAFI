@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Market Prices - UKULIMA SAFI AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+    <h2 style="color: var(--primary-maroon); text-align: center;">Market Price Trends</h2>
+    <p style="text-align: center; color: #666;">Current average wholesale prices per 90kg bag across major markets.</p>
+
+    <div style="overflow-x: auto; margin-top: 30px;">
+        <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <thead>
+                <tr style="background-color: var(--primary-green); color: white;">
+                    <th style="padding: 15px; text-align: left;">Crop</th>
+                    <th style="padding: 15px; text-align: left;">Nairobi</th>
+                    <th style="padding: 15px; text-align: left;">Mombasa</th>
+                    <th style="padding: 15px; text-align: left;">Kisumu</th>
+                    <th style="padding: 15px; text-align: left;">Eldoret</th>
+                    <th style="padding: 15px; text-align: left;">Trend</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; font-weight: bold;">Maize (Dry)</td>
+                    <td style="padding: 15px;">KES 3,800</td>
+                    <td style="padding: 15px;">KES 4,100</td>
+                    <td style="padding: 15px;">KES 3,900</td>
+                    <td style="padding: 15px;">KES 3,500</td>
+                    <td style="padding: 15px; color: green;">▲ Up 2%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; font-weight: bold;">Beans (Rosecoco)</td>
+                    <td style="padding: 15px;">KES 8,500</td>
+                    <td style="padding: 15px;">KES 9,000</td>
+                    <td style="padding: 15px;">KES 8,200</td>
+                    <td style="padding: 15px;">KES 7,800</td>
+                    <td style="padding: 15px; color: red;">▼ Down 1%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; font-weight: bold;">Potatoes (Irish)</td>
+                    <td style="padding: 15px;">KES 2,500</td>
+                    <td style="padding: 15px;">KES 3,200</td>
+                    <td style="padding: 15px;">KES 2,800</td>
+                    <td style="padding: 15px;">KES 1,800</td>
+                    <td style="padding: 15px; color: green;">▲ Up 5%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; font-weight: bold;">Tomatoes (Crate)</td>
+                    <td style="padding: 15px;">KES 6,000</td>
+                    <td style="padding: 15px;">KES 6,500</td>
+                    <td style="padding: 15px;">KES 5,800</td>
+                    <td style="padding: 15px;">KES 5,500</td>
+                    <td style="padding: 15px; color: orange;">▬ Stable</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; font-weight: bold;">Onions (Red)</td>
+                    <td style="padding: 15px;">KES 1,200</td>
+                    <td style="padding: 15px;">KES 1,500</td>
+                    <td style="padding: 15px;">KES 1,300</td>
+                    <td style="padding: 15px;">KES 1,100</td>
+                    <td style="padding: 15px; color: green;">▲ Up 3%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #888;">
+        * Prices are updated weekly based on market surveys.
+    </div>
+</div>
+{% endblock %}

@@ -105,7 +105,17 @@ def shops():
 def vets():
     return render_template('availlable_vets.html')
 
+@app.route('/community')
+def community():
+    return render_template('community.html')
 
+@app.route('/market')
+def market():
+    return render_template('market_prices.html')
+
+@app.route('/education')
+def education():
+    return render_template('education.html')
 # --- API ROUTES (The Logic) ---
 
 @app.route('/predict', methods=['POST'])

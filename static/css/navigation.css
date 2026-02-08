@@ -1,40 +1,41 @@
-/* --- VARIABLES (Ensuring Consistency) --- */
+/* --- VARIABLES --- */
 :root {
     --nav-bg: #800000;       /* Primary Maroon */
     --nav-text: #ffffff;     /* White */
-    --nav-hover: #457258;    /* Green Accent */
-    --mobile-bg: #600000;    /* Slightly darker maroon for mobile dropdown */
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --nav-hover: #2E8B57;    /* Green Accent */
+    --mobile-bg: #600000;    /* Darker Maroon for dropdown */
+    --active-link: rgba(255, 255, 255, 0.15);
 }
 
 /* --- NAVBAR CONTAINER --- */
 .navbar {
     background-color: var(--nav-bg);
-    padding: 0 2rem;
     height: 70px;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; /* Keeps nav at top when scrolling */
+    position: sticky; 
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    font-family: 'Poppins', sans-serif;
 }
 
 /* --- BRAND LOGO --- */
 .navbar-brand {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--nav-text);
     text-decoration: none;
-    letter-spacing: 1px;
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    z-index: 1002;
 }
 
 .navbar-brand span {
-    color: #4CAF50; /* Bright Green for 'SAFI' */
+    color: #4CAF50;
     margin-left: 5px;
 }
 
@@ -42,107 +43,122 @@
 .nav-links {
     list-style: none;
     display: flex;
+    gap: 10px; /* Reduced gap to fit more items */
     margin: 0;
     padding: 0;
-    gap: 25px;
 }
 
 .nav-links li {
-    position: relative;
     display: inline-block;
 }
 
 .nav-links a {
     color: var(--nav-text);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.85rem; /* Slightly smaller font for density */
     font-weight: 500;
-    padding: 8px 12px;
+    padding: 8px 10px; /* Reduced padding */
     border-radius: 4px;
-    transition: all 0.3s ease;
-    white-space: nowrap; /* Prevents text wrapping */
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
-/* Hover Effect: Green background + Scale */
-.nav-links a:hover {
+/* Hover & Active States */
+.nav-links a:hover,
+.nav-links a.current-page {
     background-color: var(--nav-hover);
-    transform: translateY(-2px); 
+    transform: translateY(-2px);
 }
 
 /* --- HAMBURGER MENU (MOBILE TOGGLE) --- */
 .menu-toggle {
-    display: none; /* Hidden on desktop */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    z-index: 1002;
 }
 
 .bar {
-    width: 28px;
+    width: 25px;
     height: 3px;
     background-color: var(--nav-text);
     border-radius: 3px;
     transition: all 0.3s ease-in-out;
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 900px) { /* Adjusted breakpoint for better tablet support */
+/* --- MOBILE RESPONSIVENESS (Break at 1100px for 10 items) --- */
+@media (max-width: 1100px) {
     .navbar {
         padding: 0 1.5rem;
     }
 
-    /* Show the hamburger icon */
     .menu-toggle {
-        display: flex; 
+        display: flex;
     }
 
-    /* Hide links by default, position them absolutely */
+    /* Mobile Dropdown Menu */
     .nav-links {
         position: absolute;
-        top: 70px; /* Height of navbar */
+        top: 70px;
         left: 0;
         width: 100%;
         background-color: var(--mobile-bg);
         flex-direction: column;
         align-items: center;
         gap: 0;
-        overflow: hidden;
-        max-height: 0; /* Collapsed state */
-        transition: max-height 0.4s ease-in-out, box-shadow 0.3s ease; /* Smooth slide effect */
-        box-shadow: none;
+        
+        /* Critical for 10 items: Scrollable Y-axis */
+        overflow-y: auto; 
+        max-height: 0;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.2);
     }
 
-    /* When class 'active' is added via JS, show menu */
+    /* Active State (Shown) */
     .nav-links.active {
-        max-height: 500px; /* Expand enough to show all links */
-        box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        /* Height calc ensures menu doesn't go off-screen */
+        max-height: calc(100vh - 70px);
+        padding-bottom: 20px;
     }
 
     .nav-links li {
         width: 100%;
         text-align: center;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
     }
+
+    /* Staggered Animation for up to 10 items */
+    .nav-links.active li { opacity: 1; transform: translateY(0); }
+    .nav-links.active li:nth-child(1) { transition-delay: 0.05s; }
+    .nav-links.active li:nth-child(2) { transition-delay: 0.10s; }
+    .nav-links.active li:nth-child(3) { transition-delay: 0.15s; }
+    .nav-links.active li:nth-child(4) { transition-delay: 0.20s; }
+    .nav-links.active li:nth-child(5) { transition-delay: 0.25s; }
+    .nav-links.active li:nth-child(6) { transition-delay: 0.30s; }
+    .nav-links.active li:nth-child(7) { transition-delay: 0.35s; }
+    .nav-links.active li:nth-child(8) { transition-delay: 0.40s; }
+    .nav-links.active li:nth-child(9) { transition-delay: 0.45s; }
+    .nav-links.active li:nth-child(10) { transition-delay: 0.50s; }
 
     .nav-links a {
         display: block;
-        padding: 15px 0;
+        padding: 16px 0;
         width: 100%;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 1rem;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a.current-page {
         background-color: var(--nav-hover);
-        transform: none; /* Disable shift on mobile for better UX */
+        transform: none;
     }
 
-    /* Hamburger Animation (Turn to 'X') */
-    .menu-toggle.is-active .bar:nth-child(2) {
-        opacity: 0; /* Fade out middle bar */
-    }
-    .menu-toggle.is-active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .menu-toggle.is-active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
+    /* Hamburger Animation */
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }

@@ -1,41 +1,62 @@
 /**
  * UKULIMA SAFI AI - Navigation Logic
- * Handles the responsive hamburger menu toggle and user interactions.
+ * Handles responsive menu toggle and Active Link Highlighting.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
+    const allLinks = document.querySelectorAll('.nav-links a');
 
+    // --- 1. ACTIVE LINK HIGHLIGHTER ---
+    // Automatically adds 'current-page' class to the link matching the browser URL
+    const currentPath = window.location.pathname;
+    
+    allLinks.forEach(link => {
+        // Get the path from the link (e.g., /dashboard)
+        const linkPath = link.getAttribute('href');
+        
+        // Exact match (e.g. / == /) OR partial match for sub-pages (e.g. /guide matches /guide)
+        if (linkPath === currentPath || (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+            link.classList.add('current-page');
+        }
+    });
+
+    // --- 2. MOBILE MENU LOGIC ---
     if (menuToggle && navLinks) {
-        // 1. Toggle Menu on Click
-        menuToggle.addEventListener('click', () => {
-            // Slide the menu down/up
+        // Toggle Menu
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
-            
-            // Animate the hamburger bars into an X
             menuToggle.classList.toggle('is-active');
         });
 
-        // 2. Close menu when a link is clicked (Professional UX)
-        // This ensures the menu shuts after a user selects a page on mobile
-        const links = document.querySelectorAll('.nav-links a');
-        links.forEach(link => {
+        // Close menu when a link is clicked
+        allLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('is-active');
+                closeMenu();
             });
         });
         
-        // 3. Close menu when clicking outside the navbar
-        // This is important if the user opens the menu but changes their mind
+        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            const navbar = document.querySelector('.navbar');
-            // If the click is NOT inside the navbar, close the menu
-            if (!navbar.contains(e.target)) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('is-active');
+            if (navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                closeMenu();
             }
         });
+
+        // Safety: Close menu on screen resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1100) {
+                closeMenu();
+            }
+        });
+        
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('is-active');
+        }
     }
 });

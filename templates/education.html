@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Education Hub - UKULIMA SAFI AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+    <h2 style="color: var(--primary-maroon); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
+         Farming Education Hub
+    </h2>
+    <p>Guides, tutorials, and best practices to improve your yield.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+        
+        <!-- Article 1 -->
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div style="background-color: var(--primary-green); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"></div>
+            <div style="padding: 20px;">
+                <h3 style="margin-top: 0;">Sustainable Soil Management</h3>
+                <p>Learn how to maintain soil health through crop rotation and organic composting.</p>
+                <a href="#" class="btn-secondary">Read Guide</a>
+            </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div style="background-color: var(--primary-maroon); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"></div>
+            <div style="padding: 20px;">
+                <h3 style="margin-top: 0;">Drip Irrigation Basics</h3>
+                <p>Save water and increase efficiency. A step-by-step guide to setting up drip lines.</p>
+                <a href="#" class="btn-secondary">Watch Video</a>
+            </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div style="background-color: #ffcc00; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"></div>
+            <div style="padding: 20px;">
+                <h3 style="margin-top: 0;">Pest Control Without Chemicals</h3>
+                <p>Natural ways to fight aphids, cutworms, and other common pests.</p>
+                <a href="#" class="btn-secondary">Read Article</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
