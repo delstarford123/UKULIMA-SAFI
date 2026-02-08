@@ -1,5 +1,5 @@
 # --- AI & Data Science ---
-tensorflow
+tensorflow-cpu
 numpy
 pandas
 scikit-learn

@@ -342,5 +342,8 @@ def weather_check():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    print(" UKULIMA SAFI AI Server is Running at http://127.0.0.1:5000")
-    app.run(debug=True, port=5000)
+    # Get the PORT from Render's environment, default to 5000 if running locally
+    port = int(os.environ.get('PORT', 5000))
+    print(f" UKULIMA SAFI AI Server starting on port {port}")
+    # Host MUST be 0.0.0.0 to work on cloud
+    app.run(host='0.0.0.0', port=port)
