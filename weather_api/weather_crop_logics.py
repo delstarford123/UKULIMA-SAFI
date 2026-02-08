@@ -6,6 +6,7 @@ class WeatherCropBrain:
     def __init__(self):
         pass
 
+
     def analyze_weather(self, weather_data, crop_name="General"):
         """
         Analyzes weather data and returns specific farming advice.

@@ -2,70 +2,249 @@
 
 {% block title %}Market Prices - UKULIMA SAFI AI{% endblock %}
 
-{% block content %}
-<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
-    <h2 style="color: var(--primary-maroon); text-align: center;">Market Price Trends</h2>
-    <p style="text-align: center; color: #666;">Current average wholesale prices per 90kg bag across major markets.</p>
+{% block extra_css %}
+<style>
+    /* --- HERO HEADER --- */
+    .hero-bg {
+        background: linear-gradient(135deg, var(--primary-maroon), #5c0000);
+        color: white;
+        padding: 50px 20px 70px;
+        text-align: center;
+        border-radius: 0 0 30px 30px;
+        margin-bottom: -40px;
+        box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2);
+    }
 
-    <div style="overflow-x: auto; margin-top: 30px;">
-        <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    /* --- TABLE CONTAINER --- */
+    .market-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px 40px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .market-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        overflow: hidden;
+        border-top: 5px solid var(--primary-green);
+    }
+
+    /* --- SEARCH BAR --- */
+    .search-wrapper {
+        padding: 20px;
+        background: #f9f9f9;
+        border-bottom: 1px solid #eee;
+    }
+    .search-input {
+        width: 100%;
+        padding: 12px 20px;
+        border: 2px solid #ddd;
+        border-radius: 30px;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+    .search-input:focus {
+        border-color: var(--primary-green);
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(46, 139, 87, 0.1);
+    }
+
+    /* --- TABLE STYLING --- */
+    .table-responsive {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-responsive th, 
+    .table-responsive td {
+        padding: 15px 20px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .table-responsive th {
+        background-color: var(--primary-green);
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .crop-name {
+        font-weight: 700;
+        color: var(--primary-maroon);
+        font-size: 1.05rem;
+    }
+
+    /* Trend Badges */
+    .trend-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        display: inline-block;
+    }
+    .trend-up { background-color: #e6f4ea; color: #1e7e34; }
+    .trend-down { background-color: #fde8e8; color: #c53030; }
+    .trend-stable { background-color: #fff8c5; color: #9c4221; }
+
+    /* --- MOBILE RESPONSIVENESS (THE MAGIC) --- */
+    @media (max-width: 768px) {
+        /* Hide standard table headers */
+        .table-responsive thead { display: none; }
+        
+        /* Make rows look like cards */
+        .table-responsive tbody, 
+        .table-responsive tr, 
+        .table-responsive td { display: block; width: 100%; box-sizing: border-box; }
+
+        .table-responsive tr {
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            background: #fff;
+        }
+        
+        .table-responsive td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: right;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* Use data-label attribute to show headers on left side */
+        .table-responsive td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-right: 15px;
+        }
+
+        /* Special styling for the Crop Name on mobile */
+        .table-responsive td:first-child {
+            background-color: #f8f9fa;
+            color: var(--primary-maroon);
+            font-size: 1.2rem;
+            justify-content: center;
+            font-weight: 800;
+        }
+        .table-responsive td:first-child::before { display: none; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero-bg">
+    <h2 style="margin:0;">Market Price Trends</h2>
+    <p style="opacity: 0.9;">Live wholesale prices per 90kg bag across Kenya</p>
+</div>
+
+<div class="market-container">
+    <div class="market-card">
+        
+        <!-- Search Filter -->
+        <div class="search-wrapper">
+            <input type="text" id="marketSearch" class="search-input" placeholder="🔍 Search for a crop (e.g. Maize, Beans)..." onkeyup="filterTable()">
+        </div>
+
+        <table class="table-responsive" id="priceTable">
             <thead>
-                <tr style="background-color: var(--primary-green); color: white;">
-                    <th style="padding: 15px; text-align: left;">Crop</th>
-                    <th style="padding: 15px; text-align: left;">Nairobi</th>
-                    <th style="padding: 15px; text-align: left;">Mombasa</th>
-                    <th style="padding: 15px; text-align: left;">Kisumu</th>
-                    <th style="padding: 15px; text-align: left;">Eldoret</th>
-                    <th style="padding: 15px; text-align: left;">Trend</th>
+                <tr>
+                    <th>Crop</th>
+                    <th>Nairobi</th>
+                    <th>Mombasa</th>
+                    <th>Kisumu</th>
+                    <th>Eldoret</th>
+                    <th>Trend</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 15px; font-weight: bold;">Maize (Dry)</td>
-                    <td style="padding: 15px;">KES 3,800</td>
-                    <td style="padding: 15px;">KES 4,100</td>
-                    <td style="padding: 15px;">KES 3,900</td>
-                    <td style="padding: 15px;">KES 3,500</td>
-                    <td style="padding: 15px; color: green;">▲ Up 2%</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 15px; font-weight: bold;">Beans (Rosecoco)</td>
-                    <td style="padding: 15px;">KES 8,500</td>
-                    <td style="padding: 15px;">KES 9,000</td>
-                    <td style="padding: 15px;">KES 8,200</td>
-                    <td style="padding: 15px;">KES 7,800</td>
-                    <td style="padding: 15px; color: red;">▼ Down 1%</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 15px; font-weight: bold;">Potatoes (Irish)</td>
-                    <td style="padding: 15px;">KES 2,500</td>
-                    <td style="padding: 15px;">KES 3,200</td>
-                    <td style="padding: 15px;">KES 2,800</td>
-                    <td style="padding: 15px;">KES 1,800</td>
-                    <td style="padding: 15px; color: green;">▲ Up 5%</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 15px; font-weight: bold;">Tomatoes (Crate)</td>
-                    <td style="padding: 15px;">KES 6,000</td>
-                    <td style="padding: 15px;">KES 6,500</td>
-                    <td style="padding: 15px;">KES 5,800</td>
-                    <td style="padding: 15px;">KES 5,500</td>
-                    <td style="padding: 15px; color: orange;">▬ Stable</td>
-                </tr>
+                <!-- Row 1 -->
                 <tr>
-                    <td style="padding: 15px; font-weight: bold;">Onions (Red)</td>
-                    <td style="padding: 15px;">KES 1,200</td>
-                    <td style="padding: 15px;">KES 1,500</td>
-                    <td style="padding: 15px;">KES 1,300</td>
-                    <td style="padding: 15px;">KES 1,100</td>
-                    <td style="padding: 15px; color: green;">▲ Up 3%</td>
+                    <td data-label="Crop" class="crop-name">Maize (Dry)</td>
+                    <td data-label="Nairobi">KES 3,800</td>
+                    <td data-label="Mombasa">KES 4,100</td>
+                    <td data-label="Kisumu">KES 3,900</td>
+                    <td data-label="Eldoret">KES 3,500</td>
+                    <td data-label="Trend"><span class="trend-badge trend-up">▲ Up 2%</span></td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td data-label="Crop" class="crop-name">Beans (Rosecoco)</td>
+                    <td data-label="Nairobi">KES 8,500</td>
+                    <td data-label="Mombasa">KES 9,000</td>
+                    <td data-label="Kisumu">KES 8,200</td>
+                    <td data-label="Eldoret">KES 7,800</td>
+                    <td data-label="Trend"><span class="trend-badge trend-down">▼ Down 1%</span></td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                    <td data-label="Crop" class="crop-name">Potatoes (Irish)</td>
+                    <td data-label="Nairobi">KES 2,500</td>
+                    <td data-label="Mombasa">KES 3,200</td>
+                    <td data-label="Kisumu">KES 2,800</td>
+                    <td data-label="Eldoret">KES 1,800</td>
+                    <td data-label="Trend"><span class="trend-badge trend-up">▲ Up 5%</span></td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                    <td data-label="Crop" class="crop-name">Tomatoes (Crate)</td>
+                    <td data-label="Nairobi">KES 6,000</td>
+                    <td data-label="Mombasa">KES 6,500</td>
+                    <td data-label="Kisumu">KES 5,800</td>
+                    <td data-label="Eldoret">KES 5,500</td>
+                    <td data-label="Trend"><span class="trend-badge trend-stable">▬ Stable</span></td>
+                </tr>
+                <!-- Row 5 -->
+                <tr>
+                    <td data-label="Crop" class="crop-name">Onions (Red)</td>
+                    <td data-label="Nairobi">KES 1,200</td>
+                    <td data-label="Mombasa">KES 1,500</td>
+                    <td data-label="Kisumu">KES 1,300</td>
+                    <td data-label="Eldoret">KES 1,100</td>
+                    <td data-label="Trend"><span class="trend-badge trend-up">▲ Up 3%</span></td>
                 </tr>
             </tbody>
         </table>
+
+        <div style="text-align: center; padding: 20px; font-size: 0.85rem; color: #888; background: #fcfcfc;">
+            📅 Prices updated weekly based on national market surveys.
+        </div>
     </div>
-    
-    <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #888;">
-         Prices are updated weekly based on market surveys.
-    </div>
-</div>   
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function filterTable() {
+        const input = document.getElementById("marketSearch");
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById("priceTable");
+        const tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (let i = 0; i < tr.length; i++) {
+            // Get the first column (Crop Name)
+            const td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 {% endblock %}

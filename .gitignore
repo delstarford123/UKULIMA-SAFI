@@ -12,12 +12,8 @@ pycache/
 
 --- Large AI Models ---
 
-GitHub rejects files larger than 100MB.
 
-Since you have train.py, users can generate these themselves.
 
-*.h5
-*.keras
 
 --- Temporary User Data ---
 

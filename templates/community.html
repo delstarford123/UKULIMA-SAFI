@@ -1,45 +1,294 @@
 {% extends "base.html" %}
 
-{% block title %}Community Forum - UKULIMA SAFI {% endblock %}
+{% block title %}Farmer Community - UKULIMA SAFI AI{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* --- HERO SECTION --- */
+    .hero-bg {
+        background: linear-gradient(135deg, var(--primary-green), #145a32);
+        color: white;
+        padding: 60px 20px 90px; /* Extra bottom padding for overlap */
+        text-align: center;
+        border-radius: 0 0 30px 30px;
+        margin-bottom: -50px; /* Pulls the next container up */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .hero-bg h1 { 
+        margin: 0; 
+        font-weight: 800; 
+        letter-spacing: -1px; 
+        line-height: 1.2;
+        /* Fluid Typography: Scales between 1.8rem and 3rem depending on screen width */
+        font-size: clamp(1.8rem, 5vw, 3rem); 
+    }
+    .hero-bg p { 
+        opacity: 0.95; 
+        margin-top: 15px; 
+        line-height: 1.6; 
+        max-width: 700px; 
+        margin-left: auto; 
+        margin-right: auto;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    /* --- MAIN CONTAINER --- */
+    .forum-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px 60px;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* --- INPUT CARD --- */
+    .input-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-top: 5px solid var(--primary-maroon);
+        margin-bottom: 30px;
+    }
+
+    /* Textarea Optimization */
+    textarea {
+        width: 100%;
+        border: 2px solid #eee;
+        border-radius: 12px;
+        padding: 15px;
+        font-family: inherit;
+        /* 16px font size prevents iOS from zooming in when focused */
+        font-size: 16px; 
+        resize: vertical;
+        transition: border-color 0.3s;
+        box-sizing: border-box; 
+        min-height: 100px;
+        -webkit-appearance: none;
+    }
+    textarea:focus {
+        outline: none;
+        border-color: var(--primary-green);
+    }
+
+    /* --- DYNAMIC POST STYLES --- */
+    .post-card { 
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    @media (hover: hover) {
+        .post-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    }
+
+    .post-header { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: flex-start; /* Aligns items to top if they wrap */
+        margin-bottom: 12px; 
+        flex-wrap: wrap; /* Allows wrapping on tiny screens */
+        gap: 10px;
+    }
+    
+    .post-user { 
+        font-weight: 700; 
+        color: var(--primary-maroon); 
+        display: flex; 
+        align-items: center; 
+        gap: 10px;
+        font-size: 1.05rem;
+    }
+    
+    .user-avatar {
+        width: 40px; height: 40px; 
+        background: #f0f0f0; 
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; 
+        font-size: 1.4rem;
+        flex-shrink: 0; /* Prevents avatar squishing */
+    }
+    
+    .post-time { 
+        font-size: 0.8rem; 
+        color: #999; 
+        white-space: nowrap; 
+        margin-top: 5px; /* Alignment fix */
+    }
+    
+    .post-text { 
+        font-size: 1.05rem; 
+        color: #333; 
+        line-height: 1.6; 
+        white-space: pre-wrap; 
+        margin-bottom: 15px;
+        word-wrap: break-word; 
+    }
+
+    /* Action Bar (Like/Dislike/Reply) */
+    .action-bar {
+        display: flex;
+        gap: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #f9f9f9;
+        flex-wrap: wrap; /* Wraps buttons nicely on small screens */
+    }
+    
+    .action-btn {
+        background: transparent; 
+        border: none; 
+        cursor: pointer;
+        color: #666; 
+        font-size: 0.95rem; 
+        font-weight: 600;
+        display: flex; 
+        align-items: center; 
+        gap: 6px;
+        padding: 8px 12px; 
+        border-radius: 20px; 
+        transition: background 0.2s, color 0.2s;
+    }
+    
+    .action-btn:hover { background: #e8f5e9; color: var(--primary-green); }
+    .action-btn:active { transform: scale(0.95); } /* Touch feedback */
+
+    /* Replies Section */
+    .replies-wrapper { 
+        margin-top: 15px; 
+        padding-left: 15px; 
+        border-left: 3px solid #eee; 
+        display: none; 
+    }
+    .reply-item { 
+        background: #fafafa; 
+        padding: 12px; 
+        border-radius: 8px; 
+        margin-bottom: 8px; 
+        font-size: 0.95rem; 
+        line-height: 1.5; 
+    }
+    .reply-user { 
+        font-weight: bold; 
+        color: #555; 
+        font-size: 0.85rem; 
+        display: block; 
+        margin-bottom: 4px; 
+    }
+    
+    .reply-input-group { 
+        display: flex; 
+        gap: 10px; 
+        margin-top: 10px; 
+        align-items: center; 
+    }
+    .reply-input { 
+        flex: 1; 
+        padding: 10px 15px; 
+        border: 1px solid #ddd; 
+        border-radius: 25px; 
+        font-size: 16px; 
+    }
+    .send-reply-btn { 
+        background: var(--primary-green); 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        border-radius: 25px; 
+        cursor: pointer; 
+        font-weight: 600; 
+        white-space: nowrap;
+    }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 600px) {
+        .hero-bg { padding: 50px 15px 70px; }
+        .forum-container { padding: 0 15px 40px; }
+        
+        .input-card { padding: 20px; }
+        
+        /* Make action buttons span full width on tiny screens for easier tapping */
+        .action-bar { 
+            justify-content: space-between; 
+            gap: 5px; 
+        }
+        .action-btn { 
+            padding: 10px 8px; 
+            font-size: 0.9rem;
+        }
+        
+        .post-header {
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 32px; height: 32px; font-size: 1.2rem;
+        }
+        
+        .reply-input-group {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .send-reply-btn {
+            width: 100%;
+        }
+    }
+    
+    /* Loading Spinner Animation */
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+</style>
+{% endblock %}
 
 {% block content %}
-<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
-    
-    <!-- Hero Section -->
-    <div style="text-align: center; margin-bottom: 40px; padding: 40px 20px; background: linear-gradient(135deg, var(--primary-green), #145a32); color: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700;"> The Global Farmers' Circle</h1>
-        <p style="font-size: 1.1rem; margin-top: 10px; opacity: 0.9;">
-            Connect, share wisdom, and grow together. A safe space for every farmer to find answers and celebrate harvests.
-            Whether you're troubleshooting a pest problem, sharing a success story, or just looking for advice, this is your community. Let's cultivate knowledge and friendship across fields and borders!.You can ask questions, share tips, and discuss everything from soil health to market trends. Join the conversation and let's grow together!.Share your details to get buyer or seller Leads.
-        </p>
-    </div>
 
-    <!-- Post Creation Box -->
-    <div class="card" style="margin-bottom: 30px; border-top: 4px solid var(--primary-maroon);">
-        <h3 style="color: var(--primary-maroon); margin-bottom: 15px;">Start a Conversation</h3>
-        <textarea id="postContent" placeholder="Ask a question, share a tip, or tell us about your day on the farm..." style="width: 100%; height: 120px; padding: 15px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
-        <div style="text-align: right; margin-top: 10px;">
-            <button id="postBtn" class="btn-primary" style="padding: 10px 25px; font-weight: 600;">Post Discussion</button>
+<!-- 1. HERO SECTION -->
+<div class="hero-bg">
+    <h1>The Global Farmers' Circle</h1>
+    <p>
+        Connect, share wisdom, and grow together. A safe space for every farmer to find answers, celebrate harvests, and trade.
+        <br><span style="font-size: 0.85rem; opacity: 0.85; margin-top: 8px; display: inline-block;">(Share your details safely to connect with buyers!)</span>
+    </p>
+</div>
+
+<div class="forum-container">
+
+    <!-- 2. POST CREATION CARD -->
+    <div class="input-card">
+        <h3 style="color: var(--primary-maroon); margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+            <span></span> Start a Conversation
+        </h3>
+        
+        <textarea id="postContent" placeholder="Ask a question, share a farming tip, or list produce for sale..." rows="3"></textarea>
+        
+        <div style="text-align: right; margin-top: 15px;">
+            <button id="postBtn" class="btn-primary" style="padding: 12px 30px; font-weight: 600; border-radius: 30px; width: 100%; max-width: 200px; box-shadow: 0 4px 10px rgba(128, 0, 0, 0.2);">
+                Post Discussion
+            </button>
         </div>
     </div>
 
-    <!-- Feed Header -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #333; margin: 0;">Recent Discussions</h3>
-        <span style="font-size: 0.9rem; color: #666;">Live Feed ●</span>
+    <!-- 3. FEED HEADER -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 5px;">
+        <h3 style="color: #444; margin: 0; font-size: 1.3rem;">Recent Discussions</h3>
+        <span style="font-size: 0.8rem; color: var(--primary-green); font-weight: bold; background: #e8f5e9; padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <span style="display: inline-block; width: 8px; height: 8px; background: var(--primary-green); border-radius: 50%; animation: pulse 2s infinite;"></span> Live Feed
+        </span>
     </div>
 
-
-    <!-- Active Discussions Container -->
+    <!-- 4. ACTIVE POSTS CONTAINER -->
     <div id="discussionContainer">
-        <div style="text-align: center; color: #888; padding: 40px;">
-            <!-- Loading Spinner (Animation defined in main.css) -->
-            <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-green); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 10px;"></div>
-            Loading community wisdom...
+        <!-- Loading State -->
+        <div style="text-align: center; color: #888; padding: 50px 20px; background: white; border-radius: 12px; border: 2px dashed #eee;">
+            <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-green); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px;"></div>
+            <p>Loading community wisdom...</p>
         </div>
     </div>
 
 </div>
+
 {% endblock %}
 
 {% block extra_js %}
