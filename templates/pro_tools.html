@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}Professional Tools - UKULIMA SAFI{% endblock %}
+{% block content %}
+<div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+    
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h1 style="color: var(--primary-maroon);">Agronomic Decision Support (ADSS)</h1>
+        <p style="color:#666;">Advanced tools for precision farming and market intelligence.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        
+        <!-- 1. IRRIGATION SCHEDULER -->
+        <div class="card">
+            <h3 style="color: var(--primary-green);">Smart Irrigation</h3>
+            <label>Crop Type:</label>
+            <select id="irrCrop" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+                <option value="Maize">Maize</option>
+                <option value="Beans">Beans</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Rice">Rice</option>
+                <option value="Soybeans">Soybeans</option>
+                <option value="Potatoes">Potatoes</option>
+                <option value="Tomatoes">Tomatoes</option>
+                <option value="Carrots">Carrots</option>
+                <option value="Onions">Onions</option>
+            </select>
+            <label>Rainfall (mm):</label>
+            <input type="number" id="irrRain" value="0" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+            <label>Soil Moisture (mm):</label>
+            <input type="number" id="irrMoist" value="15" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+            <button onclick="calcIrrigation()" class="btn-secondary" style="width:100%">Calculate</button>
+            <div id="irrResult" style="margin-top:15px; font-weight:bold; color:var(--primary-maroon);"></div>
+        </div>
+
+        <!-- 2. CARBON CREDIT TRACKER -->
+        <div class="card">
+            <h3 style="color: #2E8B57;"> Carbon Credits</h3>
+            <label>Farm Size (Hectares):</label>
+            <input type="number" id="carbArea" value="1" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+            <label>Crop:</label>
+            <select id="carbCrop" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+                <option value="Maize">Maize</option>
+                <option value="Beans">Beans</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Rice">Rice</option>
+                <option value="Soybeans">Soybeans</option>
+                <option value="Potatoes">Potatoes</option>
+                <option value="Trees">Agroforestry (Trees)</option>
+                <option value="Coffee">Coffee</option>
+            </select>
+            <label>Practice:</label>
+            <select id="carbPrac" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+                <option value="standard">Standard</option>
+                <option value="no-till">No-Till / Regenerative</option>
+            </select>
+            <button onclick="calcCarbon()" class="btn-primary" style="width:100%">Estimate Value</button>
+            <div id="carbResult" style="margin-top:15px; font-weight:bold; color:var(--primary-green);"></div>
+        </div>
+
+        <!-- 3. PRICE FORECASTING -->
+        <div class="card">
+            <h3 style="color: #d35400;">Price Forecast (3 Mo)</h3>
+            <label>Crop:</label>
+            <select id="fcCrop" style="width:100%; padding:8px; margin-bottom:10px; border-radius: 5px; border: 1px solid #ccc;">
+                <option value="Maize">Maize</option>
+                <option value="Beans">Beans</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Rice">Rice</option>
+                <option value="Soybeans">Soybeans</option>
+                <option value="Potatoes">Potatoes</option>
+                <option value="Tomatoes">Tomatoes</option>
+                <option value="Carrots">Carrots</option>
+                <option value="Onions">Onions</option>
+            </select>
+            <button onclick="calcForecast()" class="btn-secondary" style="width:100%">Predict Market</button>
+            <div id="fcResult" style="margin-top:15px; font-size:0.9rem;"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+async function calcIrrigation() {
+    const res = await fetch('/api/calc_irrigation', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            crop: document.getElementById('irrCrop').value,
+            rainfall: document.getElementById('irrRain').value,
+            moisture: document.getElementById('irrMoist').value
+        })
+    });
+    const data = await res.json();
+    document.getElementById('irrResult').innerText = `Water Needed: ${data.needed} mm`;
+}
+
+async function calcCarbon() {
+    const res = await fetch('/api/calc_carbon', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            area: document.getElementById('carbArea').value,
+            crop: document.getElementById('carbCrop').value,
+            practice: document.getElementById('carbPrac').value
+        })
+    });
+    const data = await res.json();
+    document.getElementById('carbResult').innerText = `Sequestration: ${data.tonnes} Tons CO2\nEst. Value: $${data.value}`;
+}
+
+async function calcForecast() {
+    const res = await fetch('/api/forecast', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ crop: document.getElementById('fcCrop').value })
+    });
+    const data = await res.json();
+    let html = "<ul style='padding-left:20px; list-style-type: none;'>";
+    for(let i=0; i<data.dates.length; i++) {
+        html += `<li style="padding: 5px 0; border-bottom: 1px solid #eee;">${data.dates[i]}: <strong style="color: var(--primary-maroon);">KES ${data.prices[i]}</strong></li>`;
+    }
+    html += "</ul>";
+    document.getElementById('fcResult').innerHTML = html;
+}
+</script>
+{% endblock %}
