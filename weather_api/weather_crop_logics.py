@@ -20,37 +20,37 @@ class WeatherCropBrain:
 
         # --- 1. GENERAL RAIN LOGIC ---
         if "rain" in condition or "drizzle" in condition or "thunderstorm" in condition:
-            advice.append("🚫 **Do Not Spray:** Avoid applying pesticides or fertilizers today as rain will wash them off.")
-            advice.append("⚠️ **Drainage:** Ensure field drainage channels are open to prevent waterlogging.")
+            advice.append("**Do Not Spray:** Avoid applying pesticides or fertilizers today as rain will wash them off.")
+            advice.append(" **Drainage:** Ensure field drainage channels are open to prevent waterlogging.")
         
         elif "clear" in condition and temp > 25:
-            advice.append("✅ **Spraying:** Conditions are ideal for foliar spraying (best in early morning/late evening).")
+            advice.append(" **Spraying:** Conditions are ideal for foliar spraying (best in early morning/late evening).")
 
         # --- 2. HUMIDITY LOGIC (Disease Risk) ---
         if humidity > 80:
-            advice.append(f"🍄 **High Disease Risk:** High humidity ({humidity}%) favors fungal diseases like Blight and Mildew.")
+            advice.append(f"**High Disease Risk:** High humidity ({humidity}%) favors fungal diseases like Blight and Mildew.")
             if crop_name.lower() in ["tomato", "potato"]:
                 advice.append("   -> **Action:** Scout for Early/Late Blight spots immediately. Consider preventive fungicide if no rain is forecast.")
         
         elif humidity < 40:
-            advice.append("💧 **Dry Air:** Low humidity increases water loss. Monitor soil moisture closely.")
+            advice.append(" **Dry Air:** Low humidity increases water loss. Monitor soil moisture closely.")
 
         # --- 3. TEMPERATURE LOGIC ---
         if temp > 30:
-            advice.append("☀️ **Heat Stress:** Temperatures are high. Irrigate in the evening to reduce evaporation loss.")
+            advice.append(" **Heat Stress:** Temperatures are high. Irrigate in the evening to reduce evaporation loss.")
             if crop_name.lower() in ["maize", "corn"]:
                 advice.append("   -> **Action:** High heat during pollination (tasseling) can reduce yield. Ensure soil is moist.")
         
         elif temp < 12:
-            advice.append("❄️ **Cold Stress:** Low temperatures may slow growth.")
+            advice.append(" **Cold Stress:** Low temperatures may slow growth.")
         
         # --- 4. WIND LOGIC ---
         if weather_data.get('wind_speed', 0) > 5: # > 5 m/s is breezy
-            advice.append("💨 **High Wind:** Avoid spraying; chemicals may drift to non-target crops.")
+            advice.append(" **High Wind:** Avoid spraying; chemicals may drift to non-target crops.")
 
         # If no specific warnings, give a green light
         if not advice:
-            advice.append("✅ **Good Conditions:** Weather is generally favorable for standard field operations.")
+            advice.append("**Good Conditions:** Weather is generally favorable for standard field operations.")
 
         return "\n".join(advice)
 
